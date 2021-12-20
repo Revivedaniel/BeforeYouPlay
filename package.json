@@ -1,5 +1,5 @@
 {
-  "name": "Before you Play",
+  "name": "BeforeYouPlay",
   "version": "1.0.0",
   "description": "Croud sourced Video Game information site.",
   "main": "server/server.js",
