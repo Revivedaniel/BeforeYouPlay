@@ -7,23 +7,25 @@ const gameSchema = new Schema({
         type: String,
         required: true,
     },
-    Summary: {
+    summary: {
         type: String,
         required: true,
         maxLength: 10000
     },
     cover_id: {
         type: String,
-        require: true,
     },
     release_year: {
         type: Number,
     },
     genres: {
-        type: Array,
+        type: String,
     },
-    age_ratings: {
-        type: Array
+    age_rating: {
+        type: Number
+    },
+    slug: {
+        type: String,
     }
 });
 
