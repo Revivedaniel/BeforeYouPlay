@@ -25,6 +25,7 @@ const Jumbotron = styled.a`
   align-items: center;
   text-align: center;
   width: 33.33%;
+  color: white;
 `;
 
 // SearchBar style
