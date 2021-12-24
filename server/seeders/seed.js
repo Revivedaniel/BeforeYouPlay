@@ -37,6 +37,12 @@ db.once('open', async () => {
     });
 
     // Games
+    gameData.map((game) => {
+      let newArr = JSON.stringify(game.genres)
+      game.genres = newArr
+      return game; 
+    })
+    await Game.deleteMany();
     await Game.insertMany(gameData)
 
     console.log('all done!');

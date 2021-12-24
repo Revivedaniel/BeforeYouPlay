@@ -4,7 +4,7 @@
         "summary": "Search buildings, streets, landmarks as you seek and find hidden objects in New York, Paris, Moscow and London!",
         "cover_id": "yektasaxw6l4ejte7ljb",
         "release_year": 2014,
-        "genres": "['Puzzle']",
+        "genres": ["puzzle"],
         "age_rating": 8,
         "slug": "city-mysteries"
     },
@@ -13,7 +13,7 @@
         "summary": "Matergari is a single player RPG set in a dangerous fantasy world. In this first chapter you will be able to explore the depths of the city of Valesia and help its inhabitants. Defeat your opponents and equip increasingly powerful weapons and armor to progress in this fantastic adventure.",
         "cover_id": "co46ty",
         "release_year": 2021,
-        "genres": "['Adventure','Indie']",
+        "genres": ["Adventure","Indie"],
         "age_rating": -1,
         "slug": "matergari-below-valesia"
     }
