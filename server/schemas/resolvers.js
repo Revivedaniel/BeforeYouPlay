@@ -21,13 +21,14 @@ const resolvers = {
         console.log(error)
       }
     },
-    game: async (parent, { _id }) => {
+    game: async (parent, { slug }) => {
       try {
-        let game = await Game.findById(_id)
+        //This will return an array so we return game[0] for the first entry
+        let game = await Game.find({ slug: slug })
 
-        return game;
+        return game[0];
       } catch (error) {
-        
+        console.log(error)
       }
     },
     games: async () => {
