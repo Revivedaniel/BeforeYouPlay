@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const GameImage = styled.img`
   max-height: 150px;
@@ -15,7 +16,7 @@ export function GameList({ games, title }) {
       <h3>{title}</h3>
       {games.map((game) => {
         return (
-          <div key={game._id}>
+          <Link key={game._id} to={`/games/${game.slug}`}>
             <GameImage
               src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
               alt={`${game.title} cover art`}
@@ -29,7 +30,7 @@ export function GameList({ games, title }) {
                 })}
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
