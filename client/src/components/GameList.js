@@ -18,7 +18,7 @@ export function GameList({ games, title }) {
           <div key={game._id}>
             <GameImage
               src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
-              alt={"Video game cover art"}
+              alt={`${game.title} cover art`}
             />
             <div>
               <p>{game.title}</p>

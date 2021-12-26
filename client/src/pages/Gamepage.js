@@ -22,7 +22,7 @@ export function Gamepage() {
       <div>
         <img
           src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
-          alt={"Video game cover art"}
+          alt={`${game.title} cover art`}
         />
         <div>
           <div>
