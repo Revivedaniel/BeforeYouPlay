@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter as Router } from "react-router-dom";
+import { useState } from "react";
 
 // UserPortal style
 const UserPortal = styled.div`
@@ -17,7 +18,7 @@ const UserPortal = styled.div`
 
 // Jumbotron
 const Jumbotron = styled.h1`
-width: 33.33%;
+  width: 33.33%;
   a {
     text-decoration: none;
     font-family: Roboto;
@@ -52,15 +53,23 @@ const HeaderContainer = styled.div`
 `;
 
 export function Header() {
+  const [search, setSearch] = useState("");
+
+  // handlers
+  const handleInputChange = (e) => {
+    const slug = e.target.value.replace(/\s+/g, '-').toLowerCase();
+    setSearch(slug);
+  };
+
   return (
     <HeaderContainer>
       <Jumbotron>
         <Link to="/">Before You Play</Link>
       </Jumbotron>
       <SearchBar id="search">
-        <input type="search" />
-        <button>Search</button>
-        <button>Feeling Lucky</button>
+        <input type="search" value={search} onChange={handleInputChange} />
+        <Link to={`/search/${search}`}>Search</Link>
+        <Link to={`/games/${search}`}>Feeling Lucky</Link>
       </SearchBar>
       <UserPortal style={{ width: "33.33%" }}>
         <div />
