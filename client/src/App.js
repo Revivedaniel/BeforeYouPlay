@@ -10,6 +10,7 @@ import { Header } from "./components/Header";
 // pages
 import { Homepage } from "./pages/Homepage";
 import { Gamepage } from "./pages/Gamepage";
+import { Searchpage } from "./pages/Searchpage";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -24,7 +25,8 @@ function App() {
         <div id="mainContainer">
           <Routes>
             <Route index path="/" element={<Homepage />} />
-            <Route index path="/games/:slug" element={<Gamepage />} />
+            <Route path="/games/:slug" element={<Gamepage />} />
+            <Route path="/search/:slug" element={<Searchpage />} />
           </Routes>
         </div>
       </Router>
