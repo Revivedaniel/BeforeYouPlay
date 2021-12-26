@@ -8,6 +8,7 @@ export const QUERY_ALL_GAMES = gql`
       release_year
       genres
       cover_id
+      slug
     }
   }
 `;
