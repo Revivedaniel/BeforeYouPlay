@@ -11,3 +11,16 @@ export const QUERY_ALL_GAMES = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_GAME = gql`
+  query singleGame($slug: String!) {
+    game(slug: $slug) {
+      title
+      summary
+      cover_id
+      release_year
+      genres
+      age_rating
+    }
+  }
+`;
