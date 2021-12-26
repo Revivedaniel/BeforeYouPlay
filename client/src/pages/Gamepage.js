@@ -31,9 +31,9 @@ export function Gamepage() {
           </div>
           <div>
             <span>Playtime</span>
-            <span>{JSON.parse(game.genres).map((genre) => {
+            <span>{JSON.parse(game.genres).map((genre, i) => {
               return (
-                <p>{genre}</p>
+                <p key={i}>{genre}</p>
               )
             })}</span>
             <span>{game.age_rating}</span>
