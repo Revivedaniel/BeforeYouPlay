@@ -14,9 +14,9 @@ export function GameList({ games, title }) {
   return (
     <div>
       <h3>{title}</h3>
-      {games.map((game) => {
+      {games.map((game, i) => {
         return (
-          <Link key={game._id} to={`/games/${game.slug}`}>
+          <Link key={i} to={`/games/${game.slug}`}>
             <GameImage
               src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
               alt={`${game.title} cover art`}
