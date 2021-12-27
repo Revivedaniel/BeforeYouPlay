@@ -25,3 +25,15 @@ export const QUERY_SINGLE_GAME = gql`
     }
   }
 `;
+
+export const QUERY_SEARCH_GAME = gql`
+  query searchGame($search: String!) {
+    searchGame(search: $search) {
+      title
+      release_year
+      genres
+      cover_id
+      slug
+    }
+  }
+`;
