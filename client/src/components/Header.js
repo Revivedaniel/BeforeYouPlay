@@ -1,19 +1,20 @@
 import styled from "styled-components";
-import { Link, BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import Auth from "../utils/auth";
 
 // UserPortal style
 const UserPortal = styled.div`
   width: 33.33%;
   display: flex;
   justify-content: flex-end;
-  div {
+  /* div {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: rgba(196, 196, 196, 1);
     margin-right: 2%;
-  }
+  } */
 `;
 
 // Jumbotron
@@ -59,6 +60,9 @@ export function Header() {
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   };
+  const handleDropDown = (e) => {
+    
+  }
 
   return (
     <HeaderContainer>
@@ -68,10 +72,29 @@ export function Header() {
       <SearchBar id="search">
         <input type="search" value={search} onChange={handleInputChange} />
         <Link to={`/search/${encodeURI(search)}`}>Search</Link>
-        <Link to={`/games/${search.replace(/\s+/g, '-').toLowerCase()}`}>Feeling Lucky</Link>
+        <Link to={`/games/${search.replace(/\s+/g, "-").toLowerCase()}`}>
+          Feeling Lucky
+        </Link>
       </SearchBar>
-      <UserPortal style={{ width: "33.33%" }}>
-        <div />
+      <UserPortal>
+        {!Auth.loggedIn() ? (
+          <Link
+            id="login"
+            to="/login"
+            style={{ textDecoration: "none", fontSize: "2rem" }}
+          >
+            Login
+          </Link>
+        ) : (
+          <div>
+            <Link
+              id="logout"
+              to="/"
+              onClick={() => Auth.logout()}
+              style={{ textDecoration: "none", fontSize: "2rem" }}
+            >Logout</Link>
+          </div>
+        )}
       </UserPortal>
     </HeaderContainer>
   );
