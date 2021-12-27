@@ -60,9 +60,6 @@ export function Header() {
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   };
-  const handleDropDown = (e) => {
-    
-  }
 
   return (
     <HeaderContainer>
