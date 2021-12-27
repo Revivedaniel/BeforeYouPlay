@@ -40,13 +40,26 @@ const resolvers = {
           });
           const gameData = response.data[0];
           // release date is the first release date
-          gameData.release_date = gameData.release_dates[0].y;
+          if(gameData.release_dates) {
+            gameData.release_date = gameData.release_dates[0].y;
+          } else {
+            gameData.release_date = -1;
+          }
           // genres is the name of the genre instead of the id and name
-          let genres = gameData.genres.map((genreObj) => {
-            return genreObj.name;
-          });
+          let genres;
+          if(gameData.genres) {
+            genres = gameData.genres.map((genreObj) => {
+              return genreObj.name;
+            });
+          } else {
+            genres = ["No Genres"]
+          }
           // age_rating is the ESRB rating name
-          gameData.age_rating = gameData.age_ratings[0].rating;
+          if(gameData.age_ratings) {
+            gameData.age_rating = gameData.age_ratings[0].rating;
+          } else {
+            gameData.age_rating = -1
+          }
 
           // New game for mongoose
           let newGame = {
@@ -74,6 +87,78 @@ const resolvers = {
         let games = await Game.find({});
 
         return games;
+      } catch (error) {}
+    },
+    searchGame: async (parent, { search }) => {
+      try {
+        // Searching for game
+        let response = await axios({
+          url: "https://api.igdb.com/v4/games",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Client-ID": `${process.env.client_id}`,
+            Authorization: `Bearer ${process.env.token}`,
+          },
+          data: `search "${search}"; limit 10;`,
+        });
+        // mapping the response to be an array of ids
+        let ids = response.data.map((data) => {
+          return data.id;
+        });
+        // create an array of queries using the ids array
+        let searchQuery = ids.map((id, i) => {
+          return `query games "game${i}" {fields age_ratings.rating, cover.image_id, genres.name, name, slug, summary, release_dates.y;where id=${id};};`;
+        });
+        // make axios call with searchQuery.join("")
+        let gamesResponse = await axios({
+          url: "https://api.igdb.com/v4/multiquery",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Client-ID": `${process.env.client_id}`,
+            Authorization: `Bearer ${process.env.token}`,
+          },
+          data: `${searchQuery.join("")}`,
+        });
+        let gameData = gamesResponse.data.map((data) => {
+          let newGame = data.result[0];
+          // console.log("entering the map")
+          // release date is the first release date
+          if (newGame.release_dates) {
+            newGame.release_date = newGame.release_dates[0].y;
+          } else {
+            newGame.release_date = -1;
+          }
+          // genres is the name of the genre instead of the id and name
+          let genres;
+          if (newGame.genres) {
+            genres = newGame.genres.map((genreObj) => {
+              return genreObj.name;
+            });
+          } else {
+            genres = ["No Genres"];
+          }
+          // age_rating is the ESRB rating name
+          if (newGame.age_ratings) {
+            newGame.age_rating = newGame.age_ratings[0].rating;
+          } else {
+            newGame.age_rating = -1;
+          }
+          const output = {
+            title: newGame.name,
+            summary: newGame.summary,
+            cover_id: newGame.cover.image_id,
+            release_year: newGame.release_date,
+            genres: JSON.stringify(genres),
+            age_rating: newGame.age_rating,
+            slug: newGame.slug,
+          };
+          return output;
+        });
+        console.log(gameData)
+
+        return gameData;
       } catch (error) {}
     },
   },

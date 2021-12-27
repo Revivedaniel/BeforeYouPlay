@@ -28,7 +28,8 @@ const typeDefs = gql`
     user: User
     users: [User]
     game(slug: String!): Game
-    games: [Game]
+    games: [Game] 
+    searchGame(search: String!): [Game]
   }
 
   type Mutation {
