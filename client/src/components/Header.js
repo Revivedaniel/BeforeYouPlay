@@ -57,8 +57,7 @@ export function Header() {
 
   // handlers
   const handleInputChange = (e) => {
-    const slug = e.target.value.replace(/\s+/g, '-').toLowerCase();
-    setSearch(slug);
+    setSearch(e.target.value);
   };
 
   return (
@@ -68,8 +67,8 @@ export function Header() {
       </Jumbotron>
       <SearchBar id="search">
         <input type="search" value={search} onChange={handleInputChange} />
-        <Link to={`/search/${search}`}>Search</Link>
-        <Link to={`/games/${search}`}>Feeling Lucky</Link>
+        <Link to={`/search/${encodeURI(search)}`}>Search</Link>
+        <Link to={`/games/${search.replace(/\s+/g, '-').toLowerCase()}`}>Feeling Lucky</Link>
       </SearchBar>
       <UserPortal style={{ width: "33.33%" }}>
         <div />
