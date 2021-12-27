@@ -26,7 +26,6 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    users: [User]
     game(slug: String!): Game
     games: [Game] 
     searchGame(search: String!): [Game]
@@ -34,6 +33,8 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
+    updateUser(username: String, email: String, password: String): User
+    login(email: String!, password: String!): Auth
   }
 `;
 
