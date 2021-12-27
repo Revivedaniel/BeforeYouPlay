@@ -26,7 +26,7 @@ function App() {
           <Routes>
             <Route index path="/" element={<Homepage />} />
             <Route path="/games/:slug" element={<Gamepage />} />
-            <Route path="/search/:slug" element={<Searchpage />} />
+            <Route path="/search/:search" element={<Searchpage />} />
           </Routes>
         </div>
       </Router>
