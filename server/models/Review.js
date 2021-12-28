@@ -3,8 +3,9 @@ const { Schema } = mongoose;
 
 const reviewSchema = new Schema({
     //id, user id, game_id, starts, review_text
-    user_id: {
-        type: Schema.Types.ObjectId, 
+    username: {
+        type: String,
+        require: true, 
     },
     game_id: {
         type: Schema.Types.ObjectId, 
