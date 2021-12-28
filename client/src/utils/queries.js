@@ -23,6 +23,12 @@ export const QUERY_SINGLE_GAME = gql`
       release_year
       genres
       age_rating
+      reviews {
+        _id
+        username
+        stars
+        review_body
+      }
     }
   }
 `;
