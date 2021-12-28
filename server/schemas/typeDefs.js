@@ -14,14 +14,21 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
+    username: String
     email: String
   }
 
   type Auth {
     token: ID
     user: User
+  }
+
+  type Review {
+    _id: ID
+    user_id: ID
+    game_id: ID
+    stars: Int
+    review_body: String
   }
 
   type Query {
@@ -35,6 +42,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
+    addReview(game_id: ID!, stars: Int!, review_body: String!): Review
   }
 `;
 

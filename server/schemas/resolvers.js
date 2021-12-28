@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Game } = require("../models");
 const axios = require("axios");
 const { signToken } = require("../utils/auth");
+const Review = require("../models/Review");
 
 const resolvers = {
   Query: {
@@ -17,7 +18,8 @@ const resolvers = {
     game: async (parent, { slug }) => {
       try {
         //This will return an array so we return game[0] for the first entry
-        let game = await Game.find({ slug: slug });
+        let game = await Game.find({ slug: slug }).populate("reviews");
+        console.log(game);
         //If there is no game with that slug, search IGDB
         if (game.length === 0) {
           let response = await axios({
@@ -32,25 +34,25 @@ const resolvers = {
           });
           const gameData = response.data[0];
           // release date is the first release date
-          if(gameData.release_dates) {
+          if (gameData.release_dates) {
             gameData.release_date = gameData.release_dates[0].y;
           } else {
             gameData.release_date = -1;
           }
           // genres is the name of the genre instead of the id and name
           let genres;
-          if(gameData.genres) {
+          if (gameData.genres) {
             genres = gameData.genres.map((genreObj) => {
               return genreObj.name;
             });
           } else {
-            genres = ["No Genres"]
+            genres = ["No Genres"];
           }
           // age_rating is the ESRB rating name
-          if(gameData.age_ratings) {
+          if (gameData.age_ratings) {
             gameData.age_rating = gameData.age_ratings[0].rating;
           } else {
-            gameData.age_rating = -1
+            gameData.age_rating = -1;
           }
 
           // New game for mongoose
@@ -148,7 +150,7 @@ const resolvers = {
           };
           return output;
         });
-        console.log(gameData)
+        console.log(gameData);
 
         return gameData;
       } catch (error) {}
@@ -164,8 +166,8 @@ const resolvers = {
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true
-        })
+          new: true,
+        });
       }
 
       throw new AuthenticationError("Please, log in first!");
@@ -186,8 +188,25 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
-  }
+    },
+    addReview: async (parent, { game_id, stars, review_body }, context) => {
+      console.log(context)
+      if (context.user) {
+        const review = new Review({
+          user_id: context.user._id,
+          game_id,
+          stars,
+          review_body,
+        });
+
+        await Game.findByIdAndUpdate(game_id, { $push: {reviews: review} })
+        
+        return review;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+  },
 };
 
 module.exports = resolvers;
