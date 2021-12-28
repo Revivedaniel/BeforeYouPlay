@@ -1,21 +1,7 @@
-import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
 
-//import the query here
-import { QUERY_SINGLE_GAME } from "../utils/queries";
 
-export function GameInfo() {
-  const { slug } = useParams();
-
-  const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
-    variables: { slug: slug },
-  });
-
-  const game = data?.game || {};
-
-  if(loading) {
-    return <h1>Loading...</h1>
-  }
+export function GameInfo({ game }) {
+  
   return (
     <>
       <div>
