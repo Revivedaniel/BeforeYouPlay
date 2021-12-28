@@ -6,7 +6,8 @@
         "release_year": 2014,
         "genres": ["puzzle"],
         "age_rating": 8,
-        "slug": "city-mysteries"
+        "slug": "city-mysteries",
+        "reviews": []
     },
     {
         "title": "Matergari: Below Valesia",
@@ -15,6 +16,7 @@
         "release_year": 2021,
         "genres": ["Adventure","Indie"],
         "age_rating": -1,
-        "slug": "matergari-below-valesia"
+        "slug": "matergari-below-valesia",
+        "reviews": []
     }
 ]

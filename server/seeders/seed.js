@@ -9,29 +9,25 @@ db.once('open', async () => {
     // Await seeds
     await User.deleteMany();
     await User.create({
-      firstName: "Daniel",
-      lastName: "Stark",
+      username: "Daniel",
       email: "daniel@testmail.com",
       password: "password12345",
     });
   
     await User.create({
-      firstName: "Maxwell",
-      lastName: "Walin",
+      username: "Maxwell",
       email: "maxwell@testmail.com",
       password: "password12345",
     });
   
     await User.create({
-      firstName: "Jesus",
-      lastName: "Bautista",
+      username: "Jesus",
       email: "jesus@testmail.com",
       password: "password12345",
     });
   
     await User.create({
-      firstName: "Parth",
-      lastName: "Bhatt",
+      username: "Parth",
       email: "parth@testmail.com",
       password: "password12345",
     });
