@@ -18,7 +18,7 @@ const resolvers = {
     game: async (parent, { slug }) => {
       try {
         //This will return an array so we return game[0] for the first entry
-        let game = await Game.find({ slug: slug }).populate("reviews");
+        let game = await Game.find({ slug: slug })
         console.log(game);
         //If there is no game with that slug, search IGDB
         if (game.length === 0) {
@@ -190,10 +190,10 @@ const resolvers = {
       return { token, user };
     },
     addReview: async (parent, { game_id, stars, review_body }, context) => {
-      console.log(context)
+      console.log(context.user)
       if (context.user) {
         const review = new Review({
-          user_id: context.user._id,
+          username: context.user.username,
           game_id,
           stars,
           review_body,
