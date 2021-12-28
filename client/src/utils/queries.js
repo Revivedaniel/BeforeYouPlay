@@ -16,6 +16,7 @@ export const QUERY_ALL_GAMES = gql`
 export const QUERY_SINGLE_GAME = gql`
   query singleGame($slug: String!) {
     game(slug: $slug) {
+      _id
       title
       summary
       cover_id
