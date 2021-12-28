@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ADD_REVIEW } from "../utils/mutations";
 
 export function GameReviews({ game }) {
+  const [reviews, setReviews] = useState(game.reviews)
   const [addReview, { error }] = useMutation(ADD_REVIEW);
   //create state for stars selected
   const [stars, setStars] = useState(0);
@@ -22,19 +23,20 @@ export function GameReviews({ game }) {
   };
 
   const handleSubmit = async (event) => {
-      try {
-          console.log([game._id, Number(stars), review])
-          const mutationResponse = await addReview({
-            variables: {
-                game_id: game._id,
-                stars: Number(stars),
-                review_body: review
-            }
-          });
-          console.log(mutationResponse)
-      } catch (err) {
-          console.log(err)
-      }
+    try {
+      console.log([game._id, Number(stars), review])
+      const mutationResponse = await addReview({
+        variables: {
+          game_id: game._id,
+          stars: Number(stars),
+          review_body: review,
+        },
+      });
+      setReviews([...reviews, mutationResponse.data.addReview])
+      setReview("")
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -61,6 +63,19 @@ export function GameReviews({ game }) {
         </div>
         <textarea value={review} onChange={handleReviewChange} />
         <button onClick={handleSubmit}>Submit</button>
+      </div>
+      <div>
+        <h2>This is the area where reviews render</h2>
+        {reviews.map((review,i) => {
+          return (
+            <div key={i}>
+              <p>{review.username}</p>
+              <p>{review.stars}</p>
+              <p>{review.review_body}</p>
+              <p></p>
+            </div>
+          )
+        })}
       </div>
     </>
   );
