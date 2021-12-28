@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const Review = require('./Review');
 
 const gameSchema = new Schema({
     title: {
@@ -26,7 +27,10 @@ const gameSchema = new Schema({
     },
     slug: {
         type: String,
-    }
+    },
+    reviews: [
+        Review.schema
+    ]
 });
 
 const Game = mongoose.model('Game', gameSchema);
