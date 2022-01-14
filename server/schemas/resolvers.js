@@ -19,7 +19,6 @@ const resolvers = {
       try {
         //This will return an array so we return game[0] for the first entry
         let game = await Game.find({ slug: slug })
-        console.log(game);
         //If there is no game with that slug, search IGDB
         if (game.length === 0) {
           let response = await axios({
@@ -30,9 +29,10 @@ const resolvers = {
               "Client-ID": `${process.env.CLIENT_ID}`,
               Authorization: `Bearer ${process.env.TOKEN}`,
             },
-            data: `fields age_ratings.rating, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
+            data: `fields age_ratings.rating,age_ratings.category, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
           });
           const gameData = response.data[0];
+          console.log(gameData)
           // release date is the first release date
           if (gameData.release_dates) {
             gameData.release_date = gameData.release_dates[0].y;
@@ -50,11 +50,22 @@ const resolvers = {
           }
           // age_rating is the ESRB rating name
           if (gameData.age_ratings) {
-            gameData.age_rating = gameData.age_ratings[0].rating;
+            gameData.age_rating = parseInt(gameData.age_ratings.map((rating) => {
+              if (rating.category == 1) {
+                return rating.rating;
+              }
+            }));
           } else {
             gameData.age_rating = -1;
           }
-
+          
+          if (!gameData.cover) {
+            gameData.cover = {
+              id: -1
+            }
+          }
+          console.log(gameData)
+          
           // New game for mongoose
           let newGame = {
             title: gameData.name,
@@ -78,7 +89,7 @@ const resolvers = {
     },
     games: async () => {
       try {
-        let games = await Game.find({});
+        let games = await Game.find({}).sort({ reviews: -1 });
 
         return games;
       } catch (error) {}
