@@ -21,6 +21,11 @@ const typeDefs = gql`
     reviews: [Review]
   }
 
+  type Games {
+    games: [Game]
+    count: Int
+  }
+
   type User {
     _id: ID
     username: String
@@ -35,7 +40,7 @@ const typeDefs = gql`
   type Query {
     user: User
     game(slug: String!): Game
-    games: [Game]
+    games(page: Int!, perPage: Int!): Games
     searchGame(search: String!): [Game]
   }
 
