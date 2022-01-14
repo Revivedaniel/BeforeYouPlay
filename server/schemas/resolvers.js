@@ -32,7 +32,6 @@ const resolvers = {
             data: `fields age_ratings.rating,age_ratings.category, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
           });
           const gameData = response.data[0];
-          console.log(gameData)
           // release date is the first release date
           if (gameData.release_dates) {
             gameData.release_date = gameData.release_dates[0].y;
@@ -58,13 +57,13 @@ const resolvers = {
           } else {
             gameData.age_rating = -1;
           }
+          console.log(gameData.age_rating)
           
           if (!gameData.cover) {
             gameData.cover = {
               id: -1
             }
           }
-          console.log(gameData)
           
           // New game for mongoose
           let newGame = {
@@ -87,12 +86,15 @@ const resolvers = {
         console.log(error);
       }
     },
-    games: async () => {
+    games: async (parent, { page, perPage }) => {
       try {
-        let games = await Game.find({}).sort({ reviews: -1 });
+        let games = await Game.find({}).sort({ reviews: -1 }).limit(perPage).skip(perPage * (page - 1));
+        let count = await Game.countDocuments();
 
-        return games;
-      } catch (error) {}
+        return {games, count};
+      } catch (error) {
+        console.log(error);
+      }
     },
     searchGame: async (parent, { search }) => {
       try {
@@ -161,7 +163,6 @@ const resolvers = {
           };
           return output;
         });
-        console.log(gameData);
 
         return gameData;
       } catch (error) {}
@@ -201,7 +202,6 @@ const resolvers = {
       return { token, user };
     },
     addReview: async (parent, { game_id, stars, review_body }, context) => {
-      console.log(context.user)
       if (context.user) {
         const review = new Review({
           username: context.user.username,

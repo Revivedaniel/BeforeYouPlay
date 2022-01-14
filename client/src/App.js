@@ -44,6 +44,7 @@ function App() {
             <Route path="/games/:slug" element={<Gamepage />} />
             <Route path="/search/:search" element={<Searchpage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/:page" element={<Homepage />} />
           </Routes>
         </div>
       </Router>

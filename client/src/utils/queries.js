@@ -1,16 +1,21 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_ALL_GAMES = gql`
-  query games {
+  query gamesWithCount($page: Int!, $perPage: Int!) {
+  games(page: $page, perPage: $perPage) {
     games {
       _id
-      title
-      release_year
-      genres
-      cover_id
-      slug
+    title
+    summary
+    cover_id
+    release_year
+    genres
+    age_rating
+    slug
     }
+    count
   }
+}
 `;
 
 export const QUERY_SINGLE_GAME = gql`
