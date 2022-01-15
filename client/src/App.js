@@ -43,6 +43,7 @@ function App() {
             <Route index path="/" element={<Homepage />} />
             <Route path="/games/:slug" element={<Gamepage />} />
             <Route path="/search/:search" element={<Searchpage />} />
+            <Route path="/search/:search/:page" element={<Searchpage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/:page" element={<Homepage />} />
           </Routes>

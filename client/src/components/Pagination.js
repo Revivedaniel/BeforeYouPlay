@@ -12,10 +12,11 @@ export default function Pagination({ page, count, route }) {
 
     return (
         <PaginationStyles>
-            <Link to={route ? `/${route}/${page - 1}` : `/${page - 1}`} aria-disabled={page <= 1}>🠔 Prev</Link>
+            <Link to={`${route || ""}/${page - 1}`} aria-disabled={page * perPage < count} shallow >🠔 Prev</Link>
             <p>Page {page} of {pageCount}</p>
             <p>{count} Items Total</p>
-            <Link to={route ? `/${route}/${page + 1}` : `/${page + 1}`} aria-disabled={page * perPage >= count} >Next 🠖</Link>
+            <Link to={`${route || ""}/${page + 1}`} aria-disabled={page * perPage >= count} shallow >Next 🠖</Link>
         </PaginationStyles>
     )
 }
+{/* <Link to={route ? `${route}/${page + 1}` : `/${page + 1}`} aria-disabled={page * perPage >= count} shallow >Next 🠖</Link> */}

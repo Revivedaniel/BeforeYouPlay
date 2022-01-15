@@ -41,7 +41,7 @@ const typeDefs = gql`
     user: User
     game(slug: String!): Game
     games(page: Int!, perPage: Int!): Games
-    searchGame(search: String!): [Game]
+    searchGame(search: String!, page: Int!): Games
   }
 
   type Mutation {

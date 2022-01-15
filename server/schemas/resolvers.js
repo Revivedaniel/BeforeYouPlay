@@ -18,7 +18,7 @@ const resolvers = {
     game: async (parent, { slug }) => {
       try {
         //This will return an array so we return game[0] for the first entry
-        let game = await Game.find({ slug: slug })
+        let game = await Game.find({ slug: slug });
         //If there is no game with that slug, search IGDB
         if (game.length === 0) {
           let response = await axios({
@@ -32,39 +32,39 @@ const resolvers = {
             data: `fields age_ratings.rating,age_ratings.category, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
           });
           const gameData = response.data[0];
-          // release date is the first release date
           if (gameData.release_dates) {
+            // if there is a release date, get the first entries year
             gameData.release_date = gameData.release_dates[0].y;
           } else {
+            // if there there is no release date, set it to -1
             gameData.release_date = -1;
           }
-          // genres is the name of the genre instead of the id and name
           let genres;
           if (gameData.genres) {
+            // If there are genres, map through and return the name of the genre
             genres = gameData.genres.map((genreObj) => {
               return genreObj.name;
             });
           } else {
+            // If there are no genres, set it to no genres
             genres = ["No Genres"];
           }
           // age_rating is the ESRB rating name
           if (gameData.age_ratings) {
-            gameData.age_rating = parseInt(gameData.age_ratings.map((rating) => {
-              if (rating.category == 1) {
-                return rating.rating;
-              }
-            }));
+            gameData.age_rating = parseInt(
+              gameData.age_ratings.filter((ageObj) => ageObj.category === 1)[0]
+                .rating
+            );
           } else {
             gameData.age_rating = -1;
           }
-          console.log(gameData.age_rating)
-          
+
           if (!gameData.cover) {
             gameData.cover = {
-              id: -1
-            }
+              id: -1,
+            };
           }
-          
+
           // New game for mongoose
           let newGame = {
             title: gameData.name,
@@ -88,16 +88,40 @@ const resolvers = {
     },
     games: async (parent, { page, perPage }) => {
       try {
-        let games = await Game.find({}).sort({ reviews: -1 }).limit(perPage).skip(perPage * (page - 1));
+        let games = await Game.find({})
+          .sort({ reviews: -1 })
+          .limit(perPage)
+          .skip(perPage * (page - 1));
         let count = await Game.countDocuments();
 
-        return {games, count};
+        return { games, count };
       } catch (error) {
         console.log(error);
       }
     },
-    searchGame: async (parent, { search }) => {
+    searchGame: async (parent, { search, page }) => {
       try {
+        console.log(page)
+        // Use the 500 limit search
+        let countResponse = await axios({
+          url: "https://api.igdb.com/v4/games",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Client-ID": `${process.env.client_id}`,
+            Authorization: `Bearer ${process.env.token}`,
+          },
+          data: `search "${search}"; limit 500;`,
+        });
+        // count the responses
+        // assign the count to a variable
+        let count = countResponse.data.length;
+
+        //if count 0, null, or undefined, throw error
+        if (count === 0 || undefined || null) {
+          throw new Error("No games found");
+        }
+
         // Searching for game
         let response = await axios({
           url: "https://api.igdb.com/v4/games",
@@ -107,7 +131,7 @@ const resolvers = {
             "Client-ID": `${process.env.client_id}`,
             Authorization: `Bearer ${process.env.token}`,
           },
-          data: `search "${search}"; limit 10;`,
+          data: `search "${search}"; limit 10; offset ${(page - 1) * 10};`,
         });
         // mapping the response to be an array of ids
         let ids = response.data.map((data) => {
@@ -163,9 +187,10 @@ const resolvers = {
           };
           return output;
         });
-
-        return gameData;
-      } catch (error) {}
+        return {games: gameData, count};
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
   Mutation: {
@@ -210,8 +235,8 @@ const resolvers = {
           review_body,
         });
 
-        await Game.findByIdAndUpdate(game_id, { $push: {reviews: review} })
-        
+        await Game.findByIdAndUpdate(game_id, { $push: { reviews: review } });
+
         return review;
       }
 
