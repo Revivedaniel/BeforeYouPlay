@@ -99,8 +99,29 @@ const resolvers = {
         console.log(error);
       }
     },
-    searchGame: async (parent, { search }) => {
+    searchGame: async (parent, { search, page }) => {
       try {
+        console.log(page)
+        // Use the 500 limit search
+        let countResponse = await axios({
+          url: "https://api.igdb.com/v4/games",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Client-ID": `${process.env.client_id}`,
+            Authorization: `Bearer ${process.env.token}`,
+          },
+          data: `search "${search}"; limit 500;`,
+        });
+        // count the responses
+        // assign the count to a variable
+        let count = countResponse.data.length;
+
+        //if count 0, null, or undefined, throw error
+        if (count === 0 || undefined || null) {
+          throw new Error("No games found");
+        }
+
         // Searching for game
         let response = await axios({
           url: "https://api.igdb.com/v4/games",
@@ -110,7 +131,7 @@ const resolvers = {
             "Client-ID": `${process.env.client_id}`,
             Authorization: `Bearer ${process.env.token}`,
           },
-          data: `search "${search}"; limit 10;`,
+          data: `search "${search}"; limit 10; offset ${(page - 1) * 10};`,
         });
         // mapping the response to be an array of ids
         let ids = response.data.map((data) => {
@@ -166,9 +187,10 @@ const resolvers = {
           };
           return output;
         });
-
-        return gameData;
-      } catch (error) {}
+        return {games: gameData, count};
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
   Mutation: {
