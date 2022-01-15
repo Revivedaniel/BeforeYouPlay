@@ -7,7 +7,7 @@ import { QUERY_ALL_GAMES } from "../utils/queries";
 
 export function Homepage() {
   let { page } = useParams();
-  console.log(page);
+  
   const { loading, data } = useQuery(QUERY_ALL_GAMES, {
     variables: { page: parseInt(page) || 1, perPage: perPage },
   });
