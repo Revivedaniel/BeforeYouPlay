@@ -22,23 +22,23 @@ const Container = styled.div`
     }
   }
 `;
-export default function PlayTime() {
+export default function PlayTime({ playTime }) {
   return (
     <Container>
       <div>
         <span>Main Story</span>
-        <span>8hr</span>
+        <span>{playTime?.averageMainStory ? `${playTime?.averageMainStory}hr` : "-"}</span>
       </div>
       <div>
         <span>
           Main Story +<br />
           Side Missions
         </span>
-        <span>20hr</span>
+        <span>{playTime?.averageMainStoryPlus ? `${playTime?.averageMainStoryPlus}hr` : "-"}</span>
       </div>
       <div>
         <span>Complete</span>
-        <span>8hr</span>
+        <span>{playTime?.averageCompletionist ? `${playTime?.averageCompletionist}hr` : "-"}</span>
       </div>
     </Container>
   );

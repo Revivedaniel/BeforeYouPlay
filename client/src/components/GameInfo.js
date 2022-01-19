@@ -87,15 +87,6 @@ const Summary = styled.div`
 `;
 
 export function GameInfo({ game }) {
-  let titleSize;
-
-  if (game.title.length > 26) {
-    titleSize = {
-      fontSize: "30px",
-    };
-  }
-
-  // if
 
   return (
     <GameInfoContainer id="GameInfoContainer">
@@ -115,7 +106,7 @@ export function GameInfo({ game }) {
         </div>
         <GameData>
           <InfoBody>
-            <PlayTime />
+            <PlayTime playTime={game?.playTime || null}/>
             <AgeRating src={`/images/${game.age_rating}.svg`} />
           </InfoBody>
           <AverageUserRating averageUserRating={game?.averageUserRating || null}/>
