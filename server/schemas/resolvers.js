@@ -101,7 +101,7 @@ const resolvers = {
     },
     searchGame: async (parent, { search, page }) => {
       try {
-        console.log(page)
+        console.log(page);
         // Use the 500 limit search
         let countResponse = await axios({
           url: "https://api.igdb.com/v4/games",
@@ -187,18 +187,22 @@ const resolvers = {
           };
           return output;
         });
-        return {games: gameData, count};
+        return { games: gameData, count };
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
   },
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+      try {
+        const user = await User.create(args);
+        const token = signToken(user);
 
-      return { token, user };
+        return { token, user };
+      } catch (error) {
+        throw new AuthenticationError("Email has already been used");
+      }
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
