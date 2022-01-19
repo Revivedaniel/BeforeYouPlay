@@ -28,7 +28,6 @@ export function Gamepage() {
   }
   return (
     <MainContainer>
-      <h1>This is the Gamepage</h1>
       <GameInfo game={game} />
       <GameReviews game={game} />
     </MainContainer>
