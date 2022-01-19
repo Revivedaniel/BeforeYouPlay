@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import gameRating from "../utils/gameRating";
+import AverageUserRating from "./AverageUserRating";
 import PlayTime from "./PlayTime";
 
 const GameInfoContainer = styled.div`
@@ -72,26 +73,6 @@ const InfoBody = styled.div`
   justify-content: start;
 `;
 
-const AverageUserRating = styled.span`
-  display: flex;
-  height: inherit;
-  align-items: center;
-  span {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 52px;
-    line-height: 61px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
-  span[name="average-user-rating"] {
-    width: 489px;
-    height: 119px;
-  }
-`;
-
 const Summary = styled.div`
   width: 100%;
   font-family: Roboto;
@@ -137,10 +118,7 @@ export function GameInfo({ game }) {
             <PlayTime />
             <AgeRating src={`/images/${game.age_rating}.svg`} />
           </InfoBody>
-          <AverageUserRating>
-            <span name="average-user-rating">Average User Rating</span>
-            <span>9/10</span>
-          </AverageUserRating>
+          <AverageUserRating averageUserRating={game?.averageUserRating || null}/>
         </GameData>
       </UpperInfo>
       <Genres>
