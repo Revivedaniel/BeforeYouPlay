@@ -2,6 +2,7 @@ import styled from "styled-components";
 import gameRating from "../utils/gameRating";
 import AverageUserRating from "./AverageUserRating";
 import PlayTime from "./PlayTime";
+import Summary from "./Summary";
 
 const GameInfoContainer = styled.div`
   width: 70%;
@@ -73,18 +74,6 @@ const InfoBody = styled.div`
   justify-content: start;
 `;
 
-const Summary = styled.div`
-  width: 100%;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 23px;
-  line-height: 27px;
-  display: flex;
-  align-items: flex-start;
-  max-height: 200px;
-  overflow: hidden;
-`;
 
 export function GameInfo({ game }) {
 
@@ -117,7 +106,7 @@ export function GameInfo({ game }) {
           return <p key={i}>{genre}</p>;
         })}
       </Genres>
-      <Summary>{game.summary}</Summary>
+      <Summary summary={game.summary} />
     </GameInfoContainer>
   );
 }
