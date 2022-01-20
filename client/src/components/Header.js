@@ -39,8 +39,23 @@ const SearchBar = styled.span`
   width: 33.33%;
   height: 50px;
   display: flex;
+  align-items: center;
   input {
-    width: 75%;
+    font-size: 14px;
+    line-height: 1;
+    width: 100%;
+    border: none;
+    color: black;
+    transition: margin 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 0 1rem;
+    height: 40px;
+    &:focus,
+    &:active {
+      outline: 1px solid cyan;
+    }
+    &::placeholder {
+      color: black;
+    }
   }
 `;
 
@@ -67,7 +82,12 @@ export function Header() {
         <Link to="/">Before You Play</Link>
       </Jumbotron>
       <SearchBar id="search">
-        <input type="search" value={search} onChange={handleInputChange} />
+        <input
+          type="search"
+          value={search}
+          onChange={handleInputChange}
+          placeholder="Search for a game..."
+        />
         <Link to={`/search/${encodeURI(search)}`}>Search</Link>
         <Link to={`/games/${search.replace(/\s+/g, "-").toLowerCase()}`}>
           Feeling Lucky
@@ -89,7 +109,9 @@ export function Header() {
               to="/"
               onClick={() => Auth.logout()}
               style={{ textDecoration: "none", fontSize: "2rem" }}
-            >Logout</Link>
+            >
+              Logout
+            </Link>
           </div>
         )}
       </UserPortal>
