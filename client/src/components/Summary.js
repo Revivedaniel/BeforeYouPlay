@@ -24,7 +24,6 @@ export default function Summary({ summary = "" }) {
       >
         {summary}
       </Container>
-      <span>Read More</span>
     </>
   );
 }
