@@ -40,6 +40,21 @@ const SearchBar = styled.span`
   height: 50px;
   display: flex;
   align-items: center;
+  a {
+    border-color: var(--ytd-searchbox-legacy-button-hover-border-color);
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;
+    outline: none;
+    border: 1px solid var(--ytd-searchbox-legacy-button-border-color);
+    border-radius: 0px 2px 2px 0px;
+    cursor: pointer;
+    height: 40px;
+    width: 64px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   input {
     font-size: 14px;
     line-height: 1;
@@ -88,9 +103,18 @@ export function Header() {
           onChange={handleInputChange}
           placeholder="Search for a game..."
         />
-        <Link to={`/search/${encodeURI(search)}`}>Search</Link>
+        <Link to={`/search/${encodeURI(search)}`} style={{borderTopRightRadius: "0", borderBottomRightRadius: "0"}}>
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+            style={{pointerEvents: "none", display: "block", width: "50%", height: "50%"}}
+          >
+            <path d="M20.87,20.17l-5.59-5.59C16.35,13.35,17,11.75,17,10c0-3.87-3.13-7-7-7s-7,3.13-7,7s3.13,7,7,7c1.75,0,3.35-0.65,4.58-1.71 l5.59,5.59L20.87,20.17z M10,16c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6S13.31,16,10,16z"></path>
+          </svg>
+        </Link>
         <Link to={`/games/${search.replace(/\s+/g, "-").toLowerCase()}`}>
-          Feeling Lucky
+          777
         </Link>
       </SearchBar>
       <UserPortal>
