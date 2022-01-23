@@ -19,4 +19,3 @@ export default function Pagination({ page, count, route }) {
         </PaginationStyles>
     )
 }
-{/* <Link to={route ? `${route}/${page + 1}` : `/${page + 1}`} aria-disabled={page * perPage >= count} shallow >Next 🠖</Link> */}
