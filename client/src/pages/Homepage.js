@@ -7,7 +7,7 @@ import { QUERY_ALL_GAMES } from "../utils/queries";
 
 export function Homepage() {
   let { page } = useParams();
-  
+
   const { loading, data } = useQuery(QUERY_ALL_GAMES, {
     variables: { page: parseInt(page) || 1, perPage: perPage },
   });
@@ -17,17 +17,13 @@ export function Homepage() {
   } else {
     page = parseInt(page);
   }
-  return (
-    <main>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <Pagination page={page} count={games.count} />
-          <GameList games={games.games} title="Here is the latest games" />
-          <Pagination page={page} count={games.count} />
-        </>
-      )}
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
+    <main style={{display: "flex", justifyContent: "center", flexDirection: "column"}}>
+      <Pagination page={page} count={games.count} />
+      <GameList games={games.games} title="Here is the latest games" />
+      <Pagination page={page} count={games.count} />
     </main>
   );
 }

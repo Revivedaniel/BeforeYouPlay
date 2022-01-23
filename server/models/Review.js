@@ -12,13 +12,14 @@ const reviewSchema = new Schema({
     },
     title: {
         type: String,
+        maxlength: 70,
     },
     stars: {
         type: Number
     },
     review_body: {
         type: String,
-        maxLength: 1000
+        maxLength: 450
     }
 });
 
