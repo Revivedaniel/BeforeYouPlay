@@ -33,11 +33,12 @@ export const LOGIN = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($game_id: ID!, $stars: Int!, $review_body: String!) {
-    addReview(game_id: $game_id, stars: $stars, review_body: $review_body) {
+  mutation addReview($game_id: ID!, $title: String, $stars: Int!, $review_body: String!) {
+    addReview(game_id: $game_id, title: $title, stars: $stars, review_body: $review_body) {
       _id
       username
       game_id
+      title
       stars
       review_body
     }

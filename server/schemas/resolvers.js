@@ -230,11 +230,12 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (parent, { game_id, stars, review_body }, context) => {
+    addReview: async (parent, { game_id, stars, review_body, title }, context) => {
       if (context.user) {
         const review = new Review({
           username: context.user.username,
           game_id,
+          title,
           stars,
           review_body,
         });

@@ -30,6 +30,7 @@ export const QUERY_SINGLE_GAME = gql`
       age_rating
       reviews {
         _id
+        title
         username
         stars
         review_body

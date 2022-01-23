@@ -1,80 +1,44 @@
-import { useMutation } from "@apollo/client";
 import { useState } from "react";
 
-//Import mutation
-import { ADD_REVIEW } from "../utils/mutations";
+import NewReview, { Star } from "./NewReview";
 
 export function GameReviews({ game }) {
-  const [reviews, setReviews] = useState(game.reviews)
-  const [addReview, { error }] = useMutation(ADD_REVIEW);
-  //create state for stars selected
-  const [stars, setStars] = useState(0);
-  //if  stars state is greater than 1, color the stars before it.
-  const handleStars = (event) => {
-    setStars(event.target.dataset.star);
-  };
-  //review input state
-  const [review, setReview] = useState("");
-  const handleReviewChange = (event) => {
-    const { value } = event.target;
-    if (value.length < 1000) {
-      setReview(value);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    try {
-      console.log([game._id, Number(stars), review])
-      const mutationResponse = await addReview({
-        variables: {
-          game_id: game._id,
-          stars: Number(stars),
-          review_body: review,
-        },
-      });
-      setReviews([...reviews, mutationResponse.data.addReview])
-      setReview("")
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const [reviews, setReviews] = useState(game.reviews);
   return (
     <>
       <h1>This is the GameReviews component</h1>
-      <div>
-        <h2>stars{stars}</h2>
-        <div id="stars">
-          <div id="star1" data-star={1} onClick={handleStars}>
-            *
-          </div>
-          <div id="star2" data-star={2} onClick={handleStars}>
-            *
-          </div>
-          <div id="star3" data-star={3} onClick={handleStars}>
-            *
-          </div>
-          <div id="star4" data-star={4} onClick={handleStars}>
-            *
-          </div>
-          <div id="star5" data-star={5} onClick={handleStars}>
-            *
-          </div>
-        </div>
-        <textarea value={review} onChange={handleReviewChange} />
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
+      <NewReview game={game} setReviews={setReviews} reviews={reviews} />
       <div>
         <h2>This is the area where reviews render</h2>
-        {reviews.map((review,i) => {
+        {reviews.map((review, i) => {
+          const starsArr = new Array(review.stars).fill(1);
           return (
             <div key={i}>
-              <p>{review.username}</p>
-              <p>{review.stars}</p>
+              <p>{review.title}</p>
+              <span style={{display: "flex",}}>
+                {starsArr.map((star, i) => {
+                  return (
+                    <Star key={i} id="star1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="#000000"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                      >
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                      </svg>
+                    </Star>
+                  );
+                })}
+                <span>{review.username}</span>
+              </span>
               <p>{review.review_body}</p>
               <p></p>
             </div>
-          )
+          );
         })}
       </div>
     </>

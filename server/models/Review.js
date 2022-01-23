@@ -10,6 +10,9 @@ const reviewSchema = new Schema({
     game_id: {
         type: Schema.Types.ObjectId, 
     },
+    title: {
+        type: String,
+    },
     stars: {
         type: Number
     },
