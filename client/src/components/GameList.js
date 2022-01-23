@@ -32,6 +32,7 @@ const GameInfo = styled.div`
     background-color: white;
     width: 100%;
     height: 8.6vh;
+    align-items: center;
   }
   div {
     width: 100%;
@@ -87,7 +88,10 @@ export function GameList({ games, title, page }) {
               <p>{game.release_year}</p>
               <div>
                 {genres.map((genre, i) => {
-                  return <p key={i}>{genre}</p>;
+                  if (i < 3) {
+                    return <p key={i}>{genre}</p>;
+                  }
+                  return ""
                 })}
               </div>
             </GameInfo>

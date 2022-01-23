@@ -1,80 +1,114 @@
-import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import styled from "styled-components";
 
-//Import mutation
-import { ADD_REVIEW } from "../utils/mutations";
+import NewReview, { Star } from "./NewReview";
+const ReviewCard = styled.div`
+  display: flex;
+  width: 702px;
+  height: 248px;
+  margin-top: 1%;
+  [name="mainReviewContainer"] {
+    width: 75%;
+    background-color: #c4c4c4;
+  }
+  [name="title"] {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    padding-top: 2%;
+  }
+  [name="username"] {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+  }
+  [name="body"] {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 22px;
+    display: flex;
+    align-items: flex-start;
+    margin: 2%;
+    max-height: 167px;
+    overflow: hidden;
+  }
+  [name="stars"] {
+    width: 25%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 124px;
+    line-height: 145px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2%;
+    text-align: center;
+    border: .6rem solid #c4c4c4;
+    border-left: 0;
+  }
+`;
 
 export function GameReviews({ game }) {
-  const [reviews, setReviews] = useState(game.reviews)
-  const [addReview, { error }] = useMutation(ADD_REVIEW);
-  //create state for stars selected
-  const [stars, setStars] = useState(0);
-  //if  stars state is greater than 1, color the stars before it.
-  const handleStars = (event) => {
-    setStars(event.target.dataset.star);
-  };
-  //review input state
-  const [review, setReview] = useState("");
-  const handleReviewChange = (event) => {
-    const { value } = event.target;
-    if (value.length < 1000) {
-      setReview(value);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    try {
-      console.log([game._id, Number(stars), review])
-      const mutationResponse = await addReview({
-        variables: {
-          game_id: game._id,
-          stars: Number(stars),
-          review_body: review,
-        },
-      });
-      setReviews([...reviews, mutationResponse.data.addReview])
-      setReview("")
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const [reviews, setReviews] = useState(game.reviews);
   return (
     <>
       <h1>This is the GameReviews component</h1>
-      <div>
-        <h2>stars{stars}</h2>
-        <div id="stars">
-          <div id="star1" data-star={1} onClick={handleStars}>
-            *
-          </div>
-          <div id="star2" data-star={2} onClick={handleStars}>
-            *
-          </div>
-          <div id="star3" data-star={3} onClick={handleStars}>
-            *
-          </div>
-          <div id="star4" data-star={4} onClick={handleStars}>
-            *
-          </div>
-          <div id="star5" data-star={5} onClick={handleStars}>
-            *
-          </div>
-        </div>
-        <textarea value={review} onChange={handleReviewChange} />
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-      <div>
-        <h2>This is the area where reviews render</h2>
-        {reviews.map((review,i) => {
+      <NewReview game={game} setReviews={setReviews} reviews={reviews} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          width: "80%",
+          flexWrap: "wrap",
+        }}
+      >
+        {reviews.map((review, i) => {
+          let ratingColor;
+          switch (review.stars) {
+            case 1:
+              ratingColor = "#de2d2e";
+              break;
+            case 2:
+              ratingColor = "#e47a2e";
+              break;
+            case 3:
+              ratingColor = "#f6cc30";
+              break;
+            case 4:
+              ratingColor = "#80c02b";
+              break;
+            case 5:
+              ratingColor = "#01ad23";
+              break;
+            default:
+              break;
+          }
           return (
-            <div key={i}>
-              <p>{review.username}</p>
-              <p>{review.stars}</p>
-              <p>{review.review_body}</p>
-              <p></p>
-            </div>
-          )
+            <ReviewCard key={i}>
+              <span name="mainReviewContainer">
+                <p name="title">{review.title}</p>
+                <span name="username">{review.username}</span>
+                <div name="body">{review.review_body}</div>
+              </span>
+              <span name="stars" style={{ backgroundColor: ratingColor }}>
+                {review.stars}
+              </span>
+            </ReviewCard>
+          );
         })}
       </div>
     </>
