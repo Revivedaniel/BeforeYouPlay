@@ -15,7 +15,7 @@
 <h1 align="center">Before You Play</h1>
 
   <p align="center">
-    Before You Play was built from the need for pertanent information about a video game. Have you ever wondered, How long does the main story of [insert game title] take to finish? What are real players saying about this game? Well now we have an answer through Before You Play. 
+    Before You Play was built from the need for pertinent information about a video game. Have you ever wondered, How long does the main story of [insert game title] take to finish? What are real players saying about this game? Well now we have an answer through Before You Play.
     <br />
     <br />
     <a href="#demo">View Demo</a>
