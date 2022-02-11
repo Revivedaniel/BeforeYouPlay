@@ -1,29 +1,21 @@
-import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
-import { GameList } from "../components/GameList";
-import Pagination from "../components/Pagination";
-import { perPage } from "../config";
-import { QUERY_ALL_GAMES } from "../utils/queries";
+import Login from '../components/Login'
+import SignUp from '../components/SignUp'
+import MovieSlider from '../components/MovieSlider'
+import HomePageCenterContent from '../components/HomePageCenterContent'
+import Trailers from '../components/Trailers'
+import LatestNews from '../components/LatestNews'
+import Loading from '../components/Loading'
 
-export function Homepage() {
-  let { page } = useParams();
-
-  const { loading, data } = useQuery(QUERY_ALL_GAMES, {
-    variables: { page: parseInt(page) || 1, perPage: perPage },
-  });
-  const games = data?.games || [];
-  if (page === undefined) {
-    page = 1;
-  } else {
-    page = parseInt(page);
-  }
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
-    <main style={{display: "flex", justifyContent: "center", flexDirection: "column"}}>
-      <Pagination page={page} count={games.count} />
-      <GameList games={games.games} title="Here is the latest games" />
-      <Pagination page={page} count={games.count} />
-    </main>
+export default function Homepage({ games }) {
+  return (
+    <>
+      {/* <Loading /> */}
+      <Login />
+      <SignUp />
+      <MovieSlider games={games} />
+      <HomePageCenterContent />
+      <Trailers />
+      <LatestNews />
+    </>
   );
 }

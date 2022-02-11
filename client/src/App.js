@@ -6,10 +6,11 @@ import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 
 //Components
-import { Header } from "./components/Header";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // pages
-import { Homepage } from "./pages/Homepage";
+import Index from './pages/Index'
 import { Gamepage } from "./pages/Gamepage";
 import { Searchpage } from "./pages/Searchpage";
 import { Login } from "./pages/Login";
@@ -40,14 +41,15 @@ function App() {
         <Header />
         <div id="mainContainer">
           <Routes>
-            <Route index path="/" element={<Homepage />} />
+            <Route index path="/" element={<Index />} />
             <Route path="/games/:slug" element={<Gamepage />} />
             <Route path="/search/:search" element={<Searchpage />} />
             <Route path="/search/:search/:page" element={<Searchpage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/:page" element={<Homepage />} />
+            <Route path="/:page" element={<Index />} />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </ApolloProvider>
   );
