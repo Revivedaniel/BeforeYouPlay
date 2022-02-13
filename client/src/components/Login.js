@@ -1,10 +1,46 @@
-export default function Login({setLogin}) {
+import { useMutation } from "@apollo/client";
+import { inputClasses } from "@mui/material";
+import { useState } from "react";
+import auth from "../utils/auth";
+import { LOGIN } from "../utils/mutations";
+
+export default function Login({ setLogin }) {
   let handleClose = (e) => {
-    e.preventDefault();
-    if(e.target.classList.contains('openform')){
+    if (e.target.classList.contains("openform")) {
+      e.preventDefault();
       setLogin(false);
-  }
-}
+    }
+  };
+
+  // creating loginForm state
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  // Creating login mutation
+  const [login, { error, loading }] = useMutation(LOGIN);
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: {
+          email: inputs.email,
+          password: inputs.password,
+        },
+      });
+      const token = mutationResponse.data.login.token;
+      auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
   return (
     <div className="overlay openform" onClick={handleClose}>
       <div className="login-wrapper" id="login-content">
@@ -13,17 +49,18 @@ export default function Login({setLogin}) {
             x
           </a>
           <h3>Login</h3>
-          <form method="post" action="login.php">
+          <form onSubmit={handleLoginSubmit}>
             <div className="row">
               <label for="username">
-                Username:
+                Email:
                 <input
                   type="text"
-                  name="username"
+                  name="email"
                   id="username"
-                  placeholder="Hugh Jackman"
-                  pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
+                  pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
                   required="required"
+                  value={inputs.email}
+                  onChange={handleLoginChange}
                 />
               </label>
             </div>
@@ -35,13 +72,14 @@ export default function Login({setLogin}) {
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="******"
                   pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                   required="required"
+                 value={inputs.password}
+                  onChange={handleLoginChange}
                 />
               </label>
             </div>
-            <div className="row">
+            {/* <div className="row">
               <div className="remember">
                 <div>
                   <input type="checkbox" name="remember" value="Remember me" />
@@ -49,12 +87,12 @@ export default function Login({setLogin}) {
                 </div>
                 <a href="#">Forget password ?</a>
               </div>
-            </div>
+            </div> */}
             <div className="row">
-              <button type="submit">Login</button>
+              <button type="submit" aria-disabled={loading}>Login</button>
             </div>
           </form>
-          <div className="row">
+          {/* <div className="row">
             <p>Or via social</p>
             <div className="social-btn-2">
               <a className="fb" href="#">
@@ -64,7 +102,7 @@ export default function Login({setLogin}) {
                 <i className="ion-social-twitter"></i>twitter
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

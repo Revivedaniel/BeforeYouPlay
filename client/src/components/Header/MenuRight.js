@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
-export default function MenuRight({setLogin, setSignUp}) {
-  
+export default function MenuRight({ setLogin, setSignUp }) {
   const handleLogin = (e) => {
     e.preventDefault();
     setLogin(true);
-  }
+  };
   return (
     <ul className="nav navbar-nav flex-child-menu menu-right">
       {/* <li className="dropdown first">
@@ -32,9 +31,30 @@ export default function MenuRight({setLogin, setSignUp}) {
       <li>
         <a href="#">Help</a>
       </li> */}
-      <li>
-        <a className="loginLink" onClick={handleLogin}>Login</a>
-      </li>
+      {!Auth.loggedIn() ? (
+        <li>
+          <a className="loginLink" onClick={handleLogin}>
+            Login
+          </a>
+        </li>
+      ) : (
+        <div>
+          <li>
+            <Link
+              style={{
+                position: "relative",
+                display: "block",
+                padding: "10px 15px",
+              }}
+              id="logout"
+              to="/"
+              onClick={() => Auth.logout()}
+            >
+              Logout
+            </Link>
+          </li>
+        </div>
+      )}
       <li className="btn signupLink">
         <a onClick={setSignUp}>sign up</a>
       </li>

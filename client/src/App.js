@@ -13,7 +13,6 @@ import Footer from "./components/Footer";
 import Index from './pages/Index'
 import { Gamepage } from "./pages/Gamepage";
 import { Searchpage } from "./pages/Searchpage";
-import { SignIn } from "./pages/SignIn";
 import Login from "./components/Login";
 import { useState } from "react";
 import Signup from "./components/SignUp";
@@ -56,7 +55,6 @@ function App() {
             <Route path="/games/:slug" element={<Gamepage />} />
             <Route path="/search/:search" element={<Searchpage />} />
             <Route path="/search/:search/:page" element={<Searchpage />} />
-            <Route path="/SignIn" element={<SignIn />} />
             <Route path="/:page" element={<Index />} />
           </Routes>
         </div>
