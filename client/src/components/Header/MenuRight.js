@@ -1,4 +1,12 @@
-export default function MenuRight() {
+import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
+
+export default function MenuRight({setLogin, setSignUp}) {
+  
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLogin(true);
+  }
   return (
     <ul className="nav navbar-nav flex-child-menu menu-right">
       {/* <li className="dropdown first">
@@ -24,11 +32,11 @@ export default function MenuRight() {
       <li>
         <a href="#">Help</a>
       </li> */}
-      <li className="loginLink">
-        <a href="#">LOG In</a>
+      <li>
+        <a className="loginLink" onClick={handleLogin}>Login</a>
       </li>
       <li className="btn signupLink">
-        <a href="#">sign up</a>
+        <a onClick={setSignUp}>sign up</a>
       </li>
     </ul>
   );

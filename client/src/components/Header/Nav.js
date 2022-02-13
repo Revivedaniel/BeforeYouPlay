@@ -2,7 +2,7 @@ import Jumbotron from "./Jumbotron";
 import MenuLeft from "./MenuLeft";
 import MenuRight from "./MenuRight";
 
-export default function Nav() {
+export default function Nav({setLogin, setSignUp}) {
   return (
     <nav className="navbar navbar-default navbar-custom">
       <Jumbotron />
@@ -11,7 +11,7 @@ export default function Nav() {
         id="bs-example-navbar-collapse-1"
       >
         <MenuLeft />
-        <MenuRight />
+        <MenuRight setLogin={setLogin} setSignUp={setSignUp}/>
       </div>
     </nav>
   );
