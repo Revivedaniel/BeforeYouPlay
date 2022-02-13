@@ -1,6 +1,6 @@
 export default function SliderCard({ game }) {
   return (
-    <div className="movie-item" style={{minWidth: "285px", height: "437px"}}>
+    <div className="movie-item" style={{minWidth: "285px", height: "437px", cursor: "pointer"}}>
       <div className="mv-img">
         <a href="#">
           <img
@@ -13,10 +13,32 @@ export default function SliderCard({ game }) {
         </a>
       </div>
       <div className="title-in">
-        <div className="cate">
-          <span className="blue">
-            <a href="#">Sci-fi</a>
+        <div className="cate" style={{display: "flex", flexWrap: "wrap", flexDirection: "column", alignItems: "flex-start", width: "137%"}}>
+          {JSON.parse(game.genres).map((genre, i) => {
+            // if(i === 3) {
+            //   return;
+            // }
+            let color;
+            switch (i) {
+              case 0:
+                color = "blue";
+                break;
+              case 1:
+                color = "yell";
+                break;
+              case 2:
+                color = "orange";
+                break;
+                case 3:
+                  color = "green";
+                  break;
+              default:
+                break;
+            }
+            return <span className={color || "blue"} key={i} >
+            <a href="#">{genre}</a>
           </span>
+          })}
         </div>
         <h6>
           <a href="#">{game.title}</a>
