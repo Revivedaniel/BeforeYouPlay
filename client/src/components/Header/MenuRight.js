@@ -1,7 +1,7 @@
 export default function MenuRight() {
   return (
     <ul className="nav navbar-nav flex-child-menu menu-right">
-      <li className="dropdown first">
+      {/* <li className="dropdown first">
         <a
           className="btn btn-default dropdown-toggle lv1"
           data-toggle="dropdown"
@@ -23,7 +23,7 @@ export default function MenuRight() {
       </li>
       <li>
         <a href="#">Help</a>
-      </li>
+      </li> */}
       <li className="loginLink">
         <a href="#">LOG In</a>
       </li>
