@@ -1,12 +1,12 @@
 import MainCenterContent from './MainCenterContent'
 import MainRightContent from './MainRightContent'
 
-export default function HomePageCenterContent() {
+export default function HomePageCenterContent({ games }) {
   return (
     <div className="movie-items">
         <div className="container">
           <div className="row ipad-width">
-            <MainCenterContent />
+            <MainCenterContent games={games} />
             <MainRightContent />
           </div>
         </div>

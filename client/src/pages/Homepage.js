@@ -10,12 +10,12 @@ export default function Homepage({ games }) {
   return (
     <>
       {/* <Loading /> */}
-      <Login />
-      <SignUp />
+      {/* <Login />
+      <SignUp /> */}
       <MovieSlider games={games} />
-      <HomePageCenterContent />
-      <Trailers />
-      <LatestNews />
+      <HomePageCenterContent games={games} />
+      {/* <Trailers />
+      <LatestNews /> */}
     </>
   );
 }
