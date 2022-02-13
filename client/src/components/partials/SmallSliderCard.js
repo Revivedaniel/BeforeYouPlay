@@ -14,7 +14,7 @@ export default function SmallSliderCard({ game }) {
           />
         </div>
         <div className="hvr-inner">
-          <a href="moviesingle.html">
+          <a href={`/games/${game.slug}`}>
             {" "}
             Read more <i className="ion-android-arrow-dropright"></i>{" "}
           </a>

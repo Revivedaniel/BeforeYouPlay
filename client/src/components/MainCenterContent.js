@@ -2,7 +2,7 @@ import SmallSliderCard from "./partials/SmallSliderCard";
 
 export default function MainCenterContent({ games }) {
   return (
-    <div className="col-md-8">
+    <div className="col-md-12">
       <div className="title-hd">
         <h2>More Games</h2>
         {/* <a href="#" className="viewall">View all <i className="ion-ios-arrow-right"></i></a> */}

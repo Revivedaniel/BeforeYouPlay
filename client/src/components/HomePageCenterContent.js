@@ -7,7 +7,7 @@ export default function HomePageCenterContent({ games }) {
         <div className="container">
           <div className="row ipad-width">
             <MainCenterContent games={games} />
-            <MainRightContent />
+            {/* <MainRightContent /> */}
           </div>
         </div>
     </div>
