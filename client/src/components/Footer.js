@@ -5,11 +5,8 @@ export default function Footer() {
           <div className="flex-parent-ft">
             <div className="flex-child-ft item1">
               <a href="index.html"><img className="logo" src="images/logo1.png" alt="" /></a>
-              <p>5th Avenue st, manhattan<br />
-                New York, NY 10001</p>
-              <p>Call us: <a href="#">(+01) 202 342 6789</a></p>
             </div>
-            <div className="flex-child-ft item2">
+            {/* <div className="flex-child-ft item2">
               <h4>Resources</h4>
               <ul>
                 <li><a href="#">About</a></li>
@@ -44,12 +41,12 @@ export default function Footer() {
                 <input type="text" placeholder="Enter your email..." />
               </form>
               <a href="#" className="btn">Subscribe now <i className="ion-ios-arrow-forward"></i></a>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="ft-copyright">
           <div className="ft-left">
-            <p>© 2017 Blockbuster. All Rights Reserved. Designed by leehari.</p>
+            <p>© 2022 Before You Play. All Rights Reserved.</p>
           </div>
           <div className="backtotop">
             <p><a href="#" id="back-to-top">Back to top  <i className="ion-ios-arrow-thin-up"></i></a></p>
