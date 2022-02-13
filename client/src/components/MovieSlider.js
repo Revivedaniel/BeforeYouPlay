@@ -40,9 +40,8 @@ export default function MovieSlider() {
           <div className="slick-multiItemSlider" style={{ display: "flex" }}>
             {games.map((game, i) => {
               if (i < 4) {
-                return;
+                return <SliderCard game={game} key={game._id} />;
               }
-              return <SliderCard game={game} key={game._id} />;
             })}
           </div>
         </div>
