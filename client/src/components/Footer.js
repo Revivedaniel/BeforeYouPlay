@@ -4,7 +4,7 @@ export default function Footer() {
         <div className="container">
           <div className="flex-parent-ft">
             <div className="flex-child-ft item1">
-              <a href="index.html"><img className="logo" src="images/logo1.png" alt="" /></a>
+              <a href="index.html"><img className="logo" src="/images/logo1.png" alt="" /></a>
             </div>
             {/* <div className="flex-child-ft item2">
               <h4>Resources</h4>

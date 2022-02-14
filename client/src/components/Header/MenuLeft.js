@@ -8,6 +8,7 @@ export default function MenuLeft() {
         <a
           className="btn btn-default dropdown-toggle lv1"
           data-toggle="dropdown"
+          href="/"
         >
           Home
         </a>

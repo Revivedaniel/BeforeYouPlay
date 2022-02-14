@@ -13,10 +13,10 @@ export default function Jumbotron() {
           <span></span>
         </div>
       </div>
-      <a href="index.html">
+      <a href="/">
         <img
           className="logo"
-          src="images/logo1.png"
+          src="/images/logo1.png"
           alt=""
           width="119"
           height="58"
