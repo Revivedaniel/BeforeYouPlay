@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ADD_REVIEW } from "../utils/mutations";
 import styled from "styled-components";
 import Rating from "@mui/material/Rating";
+import { formatMuiErrorMessage } from "@mui/utils";
+import DisplayError from "./ErrorMessage";
 
 const Title = styled.textarea`
   padding: 8px 68px 8px 16px;
@@ -45,6 +47,11 @@ const StarsContainer = styled.div`
   align-self: flex-start;
   p {
     padding-left: 6%;
+    margin-bottom: 0 !important;
+  }
+  label {
+    font-size: 25px !important;
+    margin-bottom: 0 !important;
   }
 `;
 
@@ -52,8 +59,9 @@ const NewReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 50%;
   background-color: #c4c4c4;
+  margin-top: 4%;
   h3 {
     font-family: Roboto;
     font-style: normal;
@@ -86,7 +94,13 @@ export const Star = styled.div`
   }
 `;
 
-export default function NewReview({ game, setReviews, reviews }) {
+export default function NewReview({ game, setReviews, reviews, setReviewModal }) {
+  let handleClose = (e) => {
+    if (e.target.classList.contains("openform")) {
+      e.preventDefault();
+      setReviewModal(false);
+    }
+  };
   const starsArray = ["Terrible", "Bad", "Average", "Good", "Excellent"];
   const [addReview, { error }] = useMutation(ADD_REVIEW);
   // rating word
@@ -110,7 +124,7 @@ export default function NewReview({ game, setReviews, reviews }) {
   const handleReviewTitleChange = (event) => {
     const { value } = event.target;
     if (value.length <= 70) {
-    setReviewTitle(value);
+      setReviewTitle(value);
     }
   };
   const handleSubmit = async (event) => {
@@ -132,61 +146,83 @@ export default function NewReview({ game, setReviews, reviews }) {
     }
   };
   return (
-    <NewReviewContainer>
-      <h3>New Review</h3>
-      <StarsContainer id="stars">
-        <Rating
-          name="simple-controlled"
-          onChange={(event) => {
-            setStars(event.target.value);
-            setRatingWord(starsArray[event.target.value - 1]);
-          }}
-        />
-        {/* {starsArray.map((star) => {
-          return (
-            <Star
-              key={star.star}
-              id="star1"
-              data-star={star.star}
-              data-rating-word={star.word}
-              onClick={handleStars}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
-              >
-                <path d="M0 0h24v24H0z" fill="none"></path>
-                <path name="colorStar" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
-                <path d="M0 0h24v24H0z" fill="none"></path>
-              </svg>
-            </Star>
-            
-          );
-        })} */}
+    <div className="overlay openform" onClick={handleClose}>
+      <div className="login-wrapper" id="login-content">
+        <div className="login-content">
+          <a href="#" className="close">
+            x
+          </a>
+          <h3>New Review</h3>
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <StarsContainer id="stars">
+                <Rating
+                  name="simple-controlled"
+                  onChange={(event) => {
+                    setStars(event.target.value);
+                    setRatingWord(starsArray[event.target.value - 1]);
+                  }}
+                />
 
-        <p>{ratingWord}</p>
-      </StarsContainer>
-      <Title
-        placeholder="Title"
-        rows="1"
-        style={{
-          overflowX: "hidden",
-          overflowWrap: "break-word",
-          height: "39px",
-        }}
-        value={reviewTitle}
-        onChange={handleReviewTitleChange}
-      ></Title>
-      <ReviewBody
-        placeholder="Review Body"
-        value={review}
-        onChange={handleReviewChange}
-      ></ReviewBody>
-      {/* <Title value={reviewTitle} onChange={handleReviewTitleChange}></Title>
-      <textarea value={review} onChange={handleReviewChange} /> */}
-      <button onClick={handleSubmit}>Submit</button>
-    </NewReviewContainer>
+                <p>{ratingWord}</p>
+              </StarsContainer>
+              <label for="title">
+                Title:
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  required="required"
+                />
+              </label>
+            </div>
+
+            <div className="row">
+              <label for="password">
+                Review body:
+                <textarea
+                  value={review}
+                  style={{
+                    fontFamily: "'Dosis', sans-serif",
+                    fontSize: "14px",
+                    color: "#222222",
+                    fontWeight: "bold",
+                    textTransform: "capitalize",
+                    marginTop: "10px",
+                    height: "42px",
+                    border: "1px solid #e1e1e1",
+                    maxHeight: "500px",
+                  }}
+                  onChange={handleReviewChange}
+                />
+              </label>
+            </div>
+            {/* <div className="row">
+            <div className="remember">
+              <div>
+                <input type="checkbox" name="remember" value="Remember me" />
+                <span>Remember me</span>
+              </div>
+              <a href="#">Forget password ?</a>
+            </div>
+          </div> */}
+            <div className="row">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+          {/* <div className="row">
+          <p>Or via social</p>
+          <div className="social-btn-2">
+            <a className="fb" href="#">
+              <i className="ion-social-facebook"></i>Facebook
+            </a>
+            <a className="tw" href="#">
+              <i className="ion-social-twitter"></i>twitter
+            </a>
+          </div>
+        </div> */}
+        </div>
+      </div>
+    </div>
   );
 }

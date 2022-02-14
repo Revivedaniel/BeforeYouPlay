@@ -6377,11 +6377,14 @@ ul {
 .movie-single .sb-it p.tags a:hover {
   color: var(--cta-light);
 }
+.ion-android-star:hover {
+  content: "\f2fc";
+}
 .movie-single .ads {
   margin-left: 30px;
 }
 .movie-single p a {
-  color: #4280bf;
+  color: var(--cta-dark);
 }
 .movie-single p a:hover {
   color: var(--cta-light);

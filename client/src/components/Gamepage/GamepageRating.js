@@ -1,25 +1,25 @@
 export default function GamepageRating() {
   return (
-    <div class="movie-rate">
-      <div class="rate">
-        <i class="ion-android-star"></i>
+    <div className="movie-rate" style={{border: "0"}}>
+      <div className="rate">
+        {/* <i className="ion-android-star"></i>
         <p>
           <span>8.1</span> /10
           <br />
-          <span class="rv">56 Reviews</span>
-        </p>
+          <span className="rv">56 Reviews</span>
+        </p> */}
       </div>
-      <div class="rate-star">
-        <p>Rate This Movie: </p>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star"></i>
-        <i class="ion-ios-star-outline"></i>
+      <div className="rate-star" style={{border: "0"}}>
+        {/* <p>Rate This Movie: </p>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star"></i>
+        <i className="ion-ios-star-outline"></i> */}
       </div>
     </div>
   );
