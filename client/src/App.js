@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 // pages
 import Index from './pages/Index'
-import { Gamepage } from "./pages/Gamepage";
+import Gamepage from "./pages/Gamepage";
 import { Searchpage } from "./pages/Searchpage";
 import Login from "./components/Login";
 import { useState } from "react";
