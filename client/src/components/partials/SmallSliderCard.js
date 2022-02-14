@@ -23,10 +23,10 @@ export default function SmallSliderCard({ game }) {
           <h6>
             <a href="#">{game.title}</a>
           </h6>
-          <p>
+          {/* <p>
             <i className="ion-android-star"></i>
             <span>7.4</span> /10
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

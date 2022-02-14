@@ -66,10 +66,10 @@ export default function SliderCard({ game }) {
               {game.title}
             </p>
           </h6>
-          <p>
+          {/* <p>
             <i className="ion-android-star"></i>
             <span>7.4</span> /10
-          </p>
+          </p> */}
         </div>
       </div>
     </a>
