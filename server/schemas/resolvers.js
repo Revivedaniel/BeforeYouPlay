@@ -26,8 +26,8 @@ const resolvers = {
             method: "POST",
             headers: {
               Accept: "application/json",
-              "Client-ID": `${process.env.CLIENT_ID}`,
-              Authorization: `Bearer ${process.env.TOKEN}`,
+              "Client-ID": `${process.env.client_id}`,
+              Authorization: `Bearer ${process.env.token}`,
             },
             data: `fields age_ratings.rating,age_ratings.category, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
           });
