@@ -6,13 +6,16 @@ import { setContext } from '@apollo/client/link/context';
 import "./App.css";
 
 //Components
-import { Header } from "./components/Header";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // pages
-import { Homepage } from "./pages/Homepage";
-import { Gamepage } from "./pages/Gamepage";
+import Index from './pages/Index'
+import Gamepage from "./pages/Gamepage";
 import { Searchpage } from "./pages/Searchpage";
-import { Login } from "./pages/Login";
+import Login from "./components/Login";
+import { useState } from "react";
+import Signup from "./components/SignUp";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -34,20 +37,28 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [login, setLogin] = useState(false);
+  const [signUp, setSignUp] = useState(false);
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Header />
+        <Header setLogin={setLogin} setSignUp={setSignUp}/>
+        {login && (
+          <Login setLogin={setLogin}/>
+        )}
+        {signUp && (
+          <Signup setSignUp={setSignUp}/>
+        )}
         <div id="mainContainer">
           <Routes>
-            <Route index path="/" element={<Homepage />} />
-            <Route path="/games/:slug" element={<Gamepage />} />
+            <Route index path="/" element={<Index />} />
+            <Route path="/games/:slug" element={<Gamepage setLogin={setLogin}/>} />
             <Route path="/search/:search" element={<Searchpage />} />
             <Route path="/search/:search/:page" element={<Searchpage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/:page" element={<Homepage />} />
+            <Route path="/:page" element={<Index />} />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </ApolloProvider>
   );

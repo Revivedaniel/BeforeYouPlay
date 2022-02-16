@@ -90,8 +90,7 @@ const resolvers = {
       try {
         let games = await Game.find({})
           .sort({ reviews: -1 })
-          .limit(perPage)
-          .skip(perPage * (page - 1));
+          .limit(34)
         let count = await Game.countDocuments();
 
         return { games, count };

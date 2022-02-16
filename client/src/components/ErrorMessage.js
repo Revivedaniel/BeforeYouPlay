@@ -9,7 +9,9 @@ const ErrorStyles = styled.div`
   margin: 2rem 0;
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-left: 5px solid red;
+  width: 98%;
   p {
+    color: var(--primary-dark);
     margin: 0;
     font-weight: 100;
   }
