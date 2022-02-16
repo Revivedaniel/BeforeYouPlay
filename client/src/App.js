@@ -52,7 +52,7 @@ function App() {
         <div id="mainContainer">
           <Routes>
             <Route index path="/" element={<Index />} />
-            <Route path="/games/:slug" element={<Gamepage />} />
+            <Route path="/games/:slug" element={<Gamepage setLogin={setLogin}/>} />
             <Route path="/search/:search" element={<Searchpage />} />
             <Route path="/search/:search/:page" element={<Searchpage />} />
             <Route path="/:page" element={<Index />} />

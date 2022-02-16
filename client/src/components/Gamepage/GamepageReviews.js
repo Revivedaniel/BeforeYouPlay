@@ -5,11 +5,13 @@ import NewReview from "../NewReview";
 import GamepageGameCard from "./GamepageReviewCard";
 
 export default function GamepageReviews({game}) {
+  const [login, setLogin] = useState(false);
   const [reviews, setReviews] = useState(game.reviews);
   const [reviewModal, setReviewModal] = useState(false);
   const handleNewReview = (e) => {
     e.preventDefault();
     setReviewModal(true);
+    setLogin(true);
   }
   return (
     <div id="reviews" classname="tab review">
@@ -33,7 +35,7 @@ export default function GamepageReviews({game}) {
             Write Review
           </a>
           {(reviewModal && auth.loggedIn()) && <NewReview game={game} setReviewModal={setReviewModal}/>}
-          {(reviewModal && !auth.loggedIn()) && <Login />}
+          {(reviewModal && !auth.loggedIn() && login) && <Login setLogin={setLogin} />}
         
         </div>
         <br />

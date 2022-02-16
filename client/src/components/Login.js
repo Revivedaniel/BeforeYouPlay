@@ -51,7 +51,7 @@ export default function Login({ setLogin }) {
           <h3>Login</h3>
           <form onSubmit={handleLoginSubmit}>
             <div className="row">
-              <label for="username">
+              <label htmlFor="username">
                 Email:
                 <input
                   type="text"
@@ -66,7 +66,7 @@ export default function Login({ setLogin }) {
             </div>
 
             <div className="row">
-              <label for="password">
+              <label htmlFor="password">
                 Password:
                 <input
                   type="password"

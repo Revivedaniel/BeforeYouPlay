@@ -10,7 +10,7 @@ import GamepageShareButtons from "../components/Gamepage/GamepageShareButtons";
 import { QUERY_SINGLE_GAME } from "../utils/queries";
 import { useState } from "react";
 
-export default function Gamepage() {
+export default function Gamepage({ setLogin }) {
     const { slug } = useParams();
     const [reviews, setReviews] = useState(false);
     const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
@@ -67,7 +67,7 @@ export default function Gamepage() {
                       </li> */}
                     </ul>
                     <div className="tab-content">
-                      {reviews ? <GamepageReviews game={game}/> : <Gamepageoverview game={game}/>}
+                      {reviews ? <GamepageReviews game={game} setLogin={setLogin}/> : <Gamepageoverview game={game}/>}
                     </div>
                   </div>
                 </div>

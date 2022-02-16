@@ -45,6 +45,8 @@ export const QUERY_SEARCH_GAME = gql`
       games {
         title
         release_year
+        summary
+        age_rating
         genres
         cover_id
         slug
