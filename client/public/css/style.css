@@ -4171,7 +4171,7 @@ ul {
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-.movie-items .movie-item .hvr-inner a {
+.movie-items .movie-item .hvr-inner p {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: var(--primary-font-color);
@@ -4179,7 +4179,7 @@ ul {
   text-transform: uppercase;
   color: #ffffff;
 }
-.movie-items .movie-item .hvr-inner a i {
+.movie-items .movie-item .hvr-inner p i {
   margin-right: 5px;
 }
 .movie-items .movie-item:hover .hvr-inner {
@@ -4375,7 +4375,7 @@ ul {
     margin-left: 0;
   }
 }
-.movie-item-style-1 .hvr-inner a {
+.movie-item-style-1 .hvr-inner p {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: var(--primary-font-color);
@@ -4383,7 +4383,7 @@ ul {
   text-transform: uppercase;
   color: #ffffff;
 }
-.movie-item-style-1 .hvr-inner a i {
+.movie-item-style-1 .hvr-inner p i {
   margin-right: 5px;
 }
 .movie-item-style-1:hover img {
