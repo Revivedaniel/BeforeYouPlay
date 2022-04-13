@@ -10,7 +10,7 @@ export default function MovieSlider({ games }) {
     <div className="slider movie-items">
       <div className="container">
         <div className="row">
-          <div className="social-link">
+          {/* <div className="social-link">
             <p>Follow us: </p>
             <a href="#">
               <i className="ion-social-facebook"></i>
@@ -24,7 +24,7 @@ export default function MovieSlider({ games }) {
             <a href="#">
               <i className="ion-social-youtube"></i>
             </a>
-          </div>
+          </div> */}
           <div className="slick-multiItemSlider" style={{ display: "flex" }}>
             {games.map((game, i) => {
               if (i < 4) {

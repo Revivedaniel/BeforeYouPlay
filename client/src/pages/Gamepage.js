@@ -13,7 +13,7 @@ import { useState } from "react";
 export default function Gamepage({ setLogin }) {
     const { slug } = useParams();
     const [reviews, setReviews] = useState(false);
-    const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
+    const { loading, data, error } = useQuery(QUERY_SINGLE_GAME, {
         variables: { slug: slug },
       });
     
@@ -21,6 +21,9 @@ export default function Gamepage({ setLogin }) {
     
       if (loading) {
         return <h1>Loading...</h1>;
+      }
+      if (error) {
+        return <h1>Error!</h1>;
       }
 
       const handleReviews = (e) => {

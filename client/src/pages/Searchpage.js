@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import { QUERY_SEARCH_GAME } from "../utils/queries";
 import SearchCard from "../components/partials/SearchCard";
+import FourOhFour from "../components/404.js";
 
 const SearchPage = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ const SearchPage = styled.div`
 export function Searchpage() {
   // Get the pathname from router
   const location = useLocation();
-  console.log(location);
   // Get search and page from the pathname
   let { search, page } = useParams();
   if (page === undefined) {
@@ -30,10 +30,20 @@ export function Searchpage() {
   } else {
     page = parseInt(page);
   }
-  const { loading, data } = useQuery(QUERY_SEARCH_GAME, {
+  const { loading, data, error } = useQuery(QUERY_SEARCH_GAME, {
     variables: { search: search, page: page },
   });
   const { games, count } = data?.searchGame || [];
+
+  console.log(games)
+
+  if (error) {
+    return <FourOhFour />
+  }
+  
+  if (games === undefined) {
+    return <FourOhFour />
+  }
 
   return loading ? (
     <div>Loading...</div>
@@ -68,7 +78,7 @@ export function Searchpage() {
                 count={count}
                 route={`/search/${search}`}
               />
-              {games.map((game, i) => {
+              {games?.map((game, i) => {
                 return <SearchCard game={game} key={i} />;
               })}
               
