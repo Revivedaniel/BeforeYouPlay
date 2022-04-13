@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { setContext } from '@apollo/client/link/context';
@@ -37,6 +37,11 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  useEffect(() => {
+    document.title = "Before You Play";
+  })
+
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
   return (
