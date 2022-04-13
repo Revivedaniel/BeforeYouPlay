@@ -4130,7 +4130,7 @@ ul {
     margin-left: 60px;
   }
 }
-.movie-items .movie-item .title-in h6 a {
+.movie-items .movie-item .title-in h6 p {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #ffffff;
@@ -7078,7 +7078,7 @@ p.ceb-single {
 .slider .movie-item .title-in {
   margin-bottom: 45px;
 }
-.slider .movie-item .title-in h6 a {
+.slider .movie-item .title-in h6 p {
   font-size: 18px;
 }
 .slider .movie-item:hover .title-in,
