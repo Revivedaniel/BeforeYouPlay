@@ -5,13 +5,13 @@ export default function MenuLeft() {
         <a href="#page-top"></a>
       </li>
       <li className="dropdown first">
-        <a
+        {/* <a
           className="btn btn-default dropdown-toggle lv1"
           data-toggle="dropdown"
           href="/"
         >
           Home
-        </a>
+        </a> */}
       </li>
       
     </ul>
