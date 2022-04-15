@@ -20,7 +20,15 @@ export default function Gamepage({ setLogin }) {
       const game = data?.game || {};
     
       if (loading) {
-        return <h1>Loading...</h1>;
+        return <>
+        <GamepageHero />
+        <div className="page-single movie-single movie_single">
+          <div className="container">
+            <h3>Loading...</h3>
+            <div style={{height: "800px"}} />
+          </div>
+        </div>
+      </>;
       }
       if (error) {
         return <h1>Error!</h1>;
