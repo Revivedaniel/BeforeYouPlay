@@ -33,9 +33,7 @@ export function Searchpage() {
   const { loading, data, error } = useQuery(QUERY_SEARCH_GAME, {
     variables: { search: search, page: page },
   });
-  const { games, count } = data?.searchGame || [];
-
-  console.log(games);
+  const { games, count } = data?.searchGame || { games: [], count: 1 };
 
   if (error) {
     return <FourOhFour />;
@@ -64,11 +62,11 @@ export function Searchpage() {
           </div>
         </div>
       </div>
-      <div style={{height: "600px"}}className="page-single movie_list">
+      <div style={{ height: "600px" }} className="page-single movie_list">
         <div className="container">
           <div className="row ipad-width2">
             <div className="col-md-8 col-sm-12 col-xs-12">
-              <h1 style={{color: "white"}}>Loading...</h1>
+              <h1 style={{ color: "white" }}>Loading...</h1>
             </div>
           </div>
         </div>
@@ -109,7 +107,21 @@ export function Searchpage() {
               {games?.map((game, i) => {
                 return <SearchCard game={game} key={i} />;
               })}
-
+              {games?.length === 0 ? (
+                <h2
+                  style={{
+                    marginBottom: "30px",
+                    fontFamily: "'Dosis', sans-serif",
+                    fontSize: "36px",
+                    color: "#ffffff",
+                    fontWeight: "700",
+                    textTransform: "uppercase",
+                    marginLeft: "100px"
+                  }}
+                >
+                  No results found for {search}
+                </h2>
+              ) : null}
               <Pagination
                 page={page}
                 count={count}
