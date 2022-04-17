@@ -17,8 +17,40 @@ export default function Index() {
     page = parseInt(page);
   }
   return loading ? (
-    <div>Loading...</div>
+    <>
+      <div className="slider movie-items" style={{height: "717px"}}>
+        <div className="container">
+          <div className="row">
+            {/* <div className="social-link">
+            <p>Follow us: </p>
+            <a href="#">
+              <i className="ion-social-facebook"></i>
+            </a>
+            <a href="#">
+              <i className="ion-social-twitter"></i>
+            </a>
+            <a href="#">
+              <i className="ion-social-googleplus"></i>
+            </a>
+            <a href="#">
+              <i className="ion-social-youtube"></i>
+            </a>
+          </div> */}
+            <div className="slick-multiItemSlider" style={{ display: "flex" }}>
+              <h1>Loading...</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="movie-items">
+        <div className="container">
+          <div className="row ipad-width" style={{height: "600px"}}>
+            Loading...
+          </div>
+        </div>
+      </div>
+    </>
   ) : (
-    <Homepage games={games}/>
-  )
+    <Homepage games={games} />
+  );
 }
