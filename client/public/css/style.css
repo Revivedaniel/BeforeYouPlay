@@ -4130,7 +4130,7 @@ ul {
     margin-left: 60px;
   }
 }
-.movie-items .movie-item .title-in h6 a {
+.movie-items .movie-item .title-in h6 p {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: #ffffff;
@@ -4171,7 +4171,7 @@ ul {
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-.movie-items .movie-item .hvr-inner a {
+.movie-items .movie-item .hvr-inner p {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: var(--primary-font-color);
@@ -4179,7 +4179,7 @@ ul {
   text-transform: uppercase;
   color: #ffffff;
 }
-.movie-items .movie-item .hvr-inner a i {
+.movie-items .movie-item .hvr-inner p i {
   margin-right: 5px;
 }
 .movie-items .movie-item:hover .hvr-inner {
@@ -4375,7 +4375,7 @@ ul {
     margin-left: 0;
   }
 }
-.movie-item-style-1 .hvr-inner a {
+.movie-item-style-1 .hvr-inner p {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   color: var(--primary-font-color);
@@ -4383,7 +4383,7 @@ ul {
   text-transform: uppercase;
   color: #ffffff;
 }
-.movie-item-style-1 .hvr-inner a i {
+.movie-item-style-1 .hvr-inner p i {
   margin-right: 5px;
 }
 .movie-item-style-1:hover img {
@@ -6383,10 +6383,10 @@ ul {
 .movie-single .ads {
   margin-left: 30px;
 }
-.movie-single p a {
+.movie-single div a {
   color: var(--cta-dark);
 }
-.movie-single p a:hover {
+.movie-single div a:hover {
   color: var(--cta-light);
 }
 .movie-single .sticky-sb {
@@ -7078,7 +7078,7 @@ p.ceb-single {
 .slider .movie-item .title-in {
   margin-bottom: 45px;
 }
-.slider .movie-item .title-in h6 a {
+.slider .movie-item .title-in h6 p {
   font-size: 18px;
 }
 .slider .movie-item:hover .title-in,
@@ -7616,10 +7616,10 @@ p.ceb-single {
 .buster-light .movie-single .movie-single-ct .tab.review .mv-user-review-item {
   border-color: #d0dae4;
 }
-.buster-light .movie-single p.time:not(a) {
+.buster-light .movie-single div.time:not(a) {
   color: #9ca9b7;
 }
-.buster-light .movie-single p a:hover {
+.buster-light .movie-single div a:hover {
   color: var(--cta-dark);
 }
 .buster-light .movie-single .sb-it h6 {
@@ -8296,4 +8296,9 @@ footer.full-width-ft .ft-copyright {
   color: #8c9296;
   font-family: 'Dosis', sans-serif;
   font-weight: 700;
+}
+
+/* Custom */
+.page-single-2 {
+  padding-top: 200px;
 }

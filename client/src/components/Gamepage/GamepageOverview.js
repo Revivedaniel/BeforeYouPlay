@@ -1,14 +1,12 @@
 import gameRating from "../../utils/gameRating";
 
 export default function Gamepageoverview({ game }) {
-  console.log(game)
+  console.log(game);
   return (
     <div id="overview" className="tab active">
       <div className="row">
         <div className="col-md-8 col-sm-12 col-xs-12">
-          <p>
-            {game.summary}
-          </p>
+          <p>{game.summary}</p>
           {/* <div className="title-hd-sm">
             <h4>Videos & Photos</h4>
             <a href="#" className="time">
@@ -172,11 +170,21 @@ export default function Gamepageoverview({ game }) {
           </div> */}
           <div className="sb-it">
             <h6>Genres:</h6>
-            <p>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "column",
+              }}
+            >
               {JSON.parse(game.genres).map((genre, i) => {
-                return <a href="#" key={i}>{genre}</a>;
+                return (
+                  <a href="#" key={i}>
+                    {genre}
+                  </a>
+                );
               })}
-            </p>
+            </div>
           </div>
           <div className="sb-it">
             <h6>Release Date:</h6>

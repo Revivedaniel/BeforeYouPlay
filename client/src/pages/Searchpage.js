@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import { QUERY_SEARCH_GAME } from "../utils/queries";
 import SearchCard from "../components/partials/SearchCard";
+import FourOhFour from "../components/404.js";
 
 const SearchPage = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ const SearchPage = styled.div`
 export function Searchpage() {
   // Get the pathname from router
   const location = useLocation();
-  console.log(location);
   // Get search and page from the pathname
   let { search, page } = useParams();
   if (page === undefined) {
@@ -30,13 +30,48 @@ export function Searchpage() {
   } else {
     page = parseInt(page);
   }
-  const { loading, data } = useQuery(QUERY_SEARCH_GAME, {
+  const { loading, data, error } = useQuery(QUERY_SEARCH_GAME, {
     variables: { search: search, page: page },
   });
-  const { games, count } = data?.searchGame || [];
+  const { games, count } = data?.searchGame || { games: [], count: 1 };
+
+  if (error) {
+    return <FourOhFour />;
+  }
 
   return loading ? (
-    <div>Loading...</div>
+    <>
+      <div className="hero common-hero">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="hero-ct">
+                <h1> Search Results - {search}</h1>
+                <ul className="breadcumb">
+                  <li className="active">
+                    <a href="/">Home</a>
+                  </li>
+                  <li>
+                    {" "}
+                    <span className="ion-ios-arrow-right"></span> Search{" "}
+                    {search}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ height: "600px" }} className="page-single movie_list">
+        <div className="container">
+          <div className="row ipad-width2">
+            <div className="col-md-8 col-sm-12 col-xs-12">
+              <h1 style={{ color: "white" }}>Loading...</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   ) : (
     <>
       <div className="hero common-hero">
@@ -51,7 +86,8 @@ export function Searchpage() {
                   </li>
                   <li>
                     {" "}
-                    <span className="ion-ios-arrow-right"></span> Search {search}
+                    <span className="ion-ios-arrow-right"></span> Search{" "}
+                    {search}
                   </li>
                 </ul>
               </div>
@@ -68,11 +104,29 @@ export function Searchpage() {
                 count={count}
                 route={`/search/${search}`}
               />
-              {games.map((game, i) => {
+              {games?.map((game, i) => {
                 return <SearchCard game={game} key={i} />;
               })}
-              
-              <Pagination page={page} count={count} route={`/search/${search}`} />
+              {games?.length === 0 ? (
+                <h2
+                  style={{
+                    marginBottom: "30px",
+                    fontFamily: "'Dosis', sans-serif",
+                    fontSize: "36px",
+                    color: "#ffffff",
+                    fontWeight: "700",
+                    textTransform: "uppercase",
+                    marginLeft: "100px"
+                  }}
+                >
+                  No results found for {search}
+                </h2>
+              ) : null}
+              <Pagination
+                page={page}
+                count={count}
+                route={`/search/${search}`}
+              />
             </div>
 
             {/* <div className="col-md-4 col-sm-12 col-xs-12">
@@ -179,7 +233,6 @@ export function Searchpage() {
           </div>
         </div>
       </div>
-
     </>
   );
 }

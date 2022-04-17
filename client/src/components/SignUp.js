@@ -63,7 +63,6 @@ export default function Signup({ setSignUp }) {
                   type="text"
                   name="username"
                   id="username-2"
-                  placeholder="Username"
                   pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{4,20}$"
                   required="required"
                   value={inputs.username}
