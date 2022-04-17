@@ -9,6 +9,7 @@ import GamepageShareButtons from "../components/Gamepage/GamepageShareButtons";
 //import the query here
 import { QUERY_SINGLE_GAME } from "../utils/queries";
 import { useState } from "react";
+import FourOhFour from "../components/404";
 
 export default function Gamepage({ setLogin }) {
     const { slug } = useParams();
@@ -17,7 +18,9 @@ export default function Gamepage({ setLogin }) {
         variables: { slug: slug },
       });
     
-      const game = data?.game || {};
+      const game = data?.game;
+
+      console.log(game)
     
       if (loading) {
         return <>
@@ -29,9 +32,8 @@ export default function Gamepage({ setLogin }) {
           </div>
         </div>
       </>;
-      }
-      if (error) {
-        return <h1>Error!</h1>;
+      } else if (game === null) {
+        return <FourOhFour />
       }
 
       const handleReviews = (e) => {
