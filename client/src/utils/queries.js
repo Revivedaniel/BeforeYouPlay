@@ -41,17 +41,16 @@ export const QUERY_SINGLE_GAME = gql`
 
 export const QUERY_SEARCH_GAME = gql`
   query searchGame($search: String!, $page: Int!) {
-    searchGame(search: $search, page: $page) {
-      games {
-        title
-        release_year
-        summary
-        age_rating
-        genres
-        cover_id
-        slug
-      }
-      count
+  searchGame(search: $search, page: $page) {
+    games {
+      title
+      release_year
+      summary
+      age_rating
+      image
+      slug
     }
+    count
   }
+}
 `;

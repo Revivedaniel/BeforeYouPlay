@@ -22,8 +22,17 @@ const typeDefs = gql`
     reviews: [Review]
   }
 
+  type GameSearchResults {
+    title: String
+    summary: String
+    image: String
+    release_year: String
+    age_rating: String
+    slug: String
+  }
+
   type Games {
-    games: [Game]
+    games: [GameSearchResults]
     count: Int
   }
 
