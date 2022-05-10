@@ -50,13 +50,13 @@ test("giantBombParsing returns the correct overview", () => {
 test("giantBombParsing returns the correct genres", () => {
   const giantBombData = giantBombParsing(gameData);
 
-  expect(giantBombData.genres).toBe(["Shoot 'Em Up"]);
+  expect(giantBombData.genres).toBe(JSON.stringify(["Shoot 'Em Up"]));
 });
 // test that giantBombParsing returns the correct age ratings
 test("giantBombParsing returns the correct age ratings", () => {
   const giantBombData = giantBombParsing(gameData);
 
-  expect(giantBombData.ageRatings).toBe({ cero: "A", pegi: "12+", oflc: "G" });
+  expect(giantBombData.ageRatings).toBe(JSON.stringify({ CERO: "A", PEGI: "12+", OFLC: "G" }));
 });
 
 // test that if the gameData is missing a title, giantBombParsing returns an object and the title is "No Title"
@@ -65,10 +65,10 @@ test('if the gameData is missing a title, giantBombParsing returns "No Title"', 
 
   expect(giantBombData).toBeInstanceOf(Object);
   expect(giantBombData).toHaveProperty("title");
-  expect(giantBombData.Title).toBe("No Title");
+  expect(giantBombData.title).toBe("No Title");
   // test for cloudinary image later
-  expect(giantBombData.ageRatings).toBe({ cero: "A", pegi: "12+", oflc: "G" });
-  expect(giantBombData.genres).toBe(["Shoot 'Em Up"]);
+  expect(giantBombData.ageRatings).toBe(JSON.stringify({ CERO: "A", PEGI: "12+", OFLC: "G" }));
+  expect(giantBombData.genres).toBe(JSON.stringify(["Shoot 'Em Up"]));
   expect(giantBombData.overview).toBe(
     "<p>Dodonpachi Resurrection ('Dodonpachi Daifukkatsu' in Japan) is a bullet hell shoot 'em up developed by Cave. It was released in Japanese arcades in 2008. An iPhone port with an exclusive iPhone Mode was released in 2010, as was an Xbox 360 port with updated hi-res graphics and a number of extra modes. The Xbox 360 version is set to be brought to Europe by Rising Star Games in November 2011. An Android version is set to be released in October, 2011.</p><p>Dodonpachi Daifukkatsu Black Label for Xbox 360 was released in February 3, 2011 in Japan. This disc release included the Black Label mode released as downloadable content for the original Daifukkatsu port, as well as an exclusive Ketsui-crossover 'Black Label Arrange' mode.</p>"
   );
@@ -82,8 +82,8 @@ test('if the gameData is missing an image, giantBombParsing returns "No Image"',
   expect(giantBombData).toHaveProperty("image");
   expect(giantBombData.image).toBe("No Image");
   expect(giantBombData.title).toBe("DoDonPachi Resurrection");
-  expect(giantBombData.ageRatings).toBe({ cero: "A", pegi: "12+", oflc: "G" });
-  expect(giantBombData.genres).toBe(["Shoot 'Em Up"]);
+  expect(giantBombData.ageRatings).toBe(JSON.stringify({ CERO: "A", PEGI: "12+", OFLC: "G" }));
+  expect(giantBombData.genres).toBe(JSON.stringify(["Shoot 'Em Up"]));
   expect(giantBombData.overview).toBe("<p>Dodonpachi Resurrection ('Dodonpachi Daifukkatsu' in Japan) is a bullet hell shoot 'em up developed by Cave. It was released in Japanese arcades in 2008. An iPhone port with an exclusive iPhone Mode was released in 2010, as was an Xbox 360 port with updated hi-res graphics and a number of extra modes. The Xbox 360 version is set to be brought to Europe by Rising Star Games in November 2011. An Android version is set to be released in October, 2011.</p><p>Dodonpachi Daifukkatsu Black Label for Xbox 360 was released in February 3, 2011 in Japan. This disc release included the Black Label mode released as downloadable content for the original Daifukkatsu port, as well as an exclusive Ketsui-crossover 'Black Label Arrange' mode.</p>");
   expect(giantBombData.releaseYear).toBe("2010");
 });
@@ -96,8 +96,8 @@ test('if the gameData is missing a release year, giantBombParsing returns "No Re
   expect(giantBombData.releaseYear).toBe("No Release Year");
   expect(giantBombData.title).toBe("DoDonPachi Resurrection");
   // test for cloudinary image later
-  expect(giantBombData.genres).toBe(["Shoot 'Em Up"]);
-  expect(giantBombData.ageRatings).toBe({ cero: "A", pegi: "12+", oflc: "G" });
+  expect(giantBombData.genres).toBe(JSON.stringify(["Shoot 'Em Up"]));
+  expect(giantBombData.ageRatings).toBe(JSON.stringify({ CERO: "A", PEGI: "12+", OFLC: "G" }));
   expect(giantBombData.overview).toBe("<p>Dodonpachi Resurrection ('Dodonpachi Daifukkatsu' in Japan) is a bullet hell shoot 'em up developed by Cave. It was released in Japanese arcades in 2008. An iPhone port with an exclusive iPhone Mode was released in 2010, as was an Xbox 360 port with updated hi-res graphics and a number of extra modes. The Xbox 360 version is set to be brought to Europe by Rising Star Games in November 2011. An Android version is set to be released in October, 2011.</p><p>Dodonpachi Daifukkatsu Black Label for Xbox 360 was released in February 3, 2011 in Japan. This disc release included the Black Label mode released as downloadable content for the original Daifukkatsu port, as well as an exclusive Ketsui-crossover 'Black Label Arrange' mode.</p>");
 });
 // test that if the gameData is missing an overview, giantBombParsing returns "No Overview"
@@ -109,8 +109,8 @@ test('if the gameData is missing an overview, giantBombParsing returns "No Overv
     expect(giantBombData.overview).toBe("No Overview");
     expect(giantBombData.title).toBe("DoDonPachi Resurrection");
     // test for cloudinary image later
-    expect(giantBombData.genres).toBe(["Shoot 'Em Up"]);
-    expect(giantBombData.ageRatings).toBe({ cero: "A", pegi: "12+", oflc: "G" });
+    expect(giantBombData.genres).toBe(JSON.stringify(["Shoot 'Em Up"]));
+    expect(giantBombData.ageRatings).toBe(JSON.stringify({ CERO: "A", PEGI: "12+", OFLC: "G" }));
     expect(giantBombData.releaseYear).toBe("2010"); 
 })
 // test that if the gameData is missing genres, giantBombParsing returns an array with an empty string
@@ -122,7 +122,7 @@ test('if the gameData is missing genres, giantBombParsing returns an array with 
     expect(giantBombData.genres).toEqual([""]);
     expect(giantBombData.title).toBe("DoDonPachi Resurrection");
     // test for cloudinary image later
-    expect(giantBombData.ageRatings).toBe({ cero: "A", pegi: "12+", oflc: "G" });
+    expect(giantBombData.ageRatings).toBe(JSON.stringify({ CERO: "A", PEGI: "12+", OFLC: "G" }));
     expect(giantBombData.releaseYear).toBe("2010");
     expect(giantBombData.overview).toBe("<p>Dodonpachi Resurrection ('Dodonpachi Daifukkatsu' in Japan) is a bullet hell shoot 'em up developed by Cave. It was released in Japanese arcades in 2008. An iPhone port with an exclusive iPhone Mode was released in 2010, as was an Xbox 360 port with updated hi-res graphics and a number of extra modes. The Xbox 360 version is set to be brought to Europe by Rising Star Games in November 2011. An Android version is set to be released in October, 2011.</p><p>Dodonpachi Daifukkatsu Black Label for Xbox 360 was released in February 3, 2011 in Japan. This disc release included the Black Label mode released as downloadable content for the original Daifukkatsu port, as well as an exclusive Ketsui-crossover 'Black Label Arrange' mode.</p>");
 })
@@ -132,16 +132,16 @@ test('if the gameData is missing age ratings, giantBombParsing returns an object
 
     expect(giantBombData).toBeInstanceOf(Object);
     expect(giantBombData).toHaveProperty("ageRatings");
-    expect(giantBombData.ageRatings).toEqual({ esrb: "No Age Ratings" });
+    expect(giantBombData.ageRatings).toEqual(JSON.stringify({ ESRB: "No Age Ratings" }));
     expect(giantBombData.title).toBe("DoDonPachi Resurrection");
     // test for cloudinary image later
-    expect(giantBombData.genres).toBe(["Shoot 'Em Up"]);
+    expect(giantBombData.genres).toBe(JSON.stringify(["Shoot 'Em Up"]));
     expect(giantBombData.releaseYear).toBe("2010");
     expect(giantBombData.overview).toBe("<p>Dodonpachi Resurrection ('Dodonpachi Daifukkatsu' in Japan) is a bullet hell shoot 'em up developed by Cave. It was released in Japanese arcades in 2008. An iPhone port with an exclusive iPhone Mode was released in 2010, as was an Xbox 360 port with updated hi-res graphics and a number of extra modes. The Xbox 360 version is set to be brought to Europe by Rising Star Games in November 2011. An Android version is set to be released in October, 2011.</p><p>Dodonpachi Daifukkatsu Black Label for Xbox 360 was released in February 3, 2011 in Japan. This disc release included the Black Label mode released as downloadable content for the original Daifukkatsu port, as well as an exclusive Ketsui-crossover 'Black Label Arrange' mode.</p>");
 })
 // test that extra data is added to the giantBombData object
 test('extra data is added to the giantBombData object', () => {
-    const giantBombData = giantBombData(gameData);
+    const giantBombData = giantBombParsing(gameData);
 
     expect(giantBombData).toBeInstanceOf(Object);
     expect(giantBombData).toHaveProperty("title");
