@@ -22,8 +22,22 @@ const typeDefs = gql`
     reviews: [Review]
   }
 
+  type GameSearchResults {
+    title: String
+    summary: String
+    image: String
+    release_year: String
+    age_rating: String
+    slug: String
+  }
+
   type Games {
     games: [Game]
+    count: Int
+  }
+
+  type Search {
+    games: [GameSearchResults]
     count: Int
   }
 
@@ -42,7 +56,7 @@ const typeDefs = gql`
     user: User
     game(slug: String!): Game
     games(page: Int!, perPage: Int!): Games
-    searchGame(search: String!, page: Int!): Games
+    searchGame(search: String!, page: Int!): Search
   }
 
   type Mutation {

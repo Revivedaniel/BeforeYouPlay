@@ -88,9 +88,7 @@ const resolvers = {
     },
     games: async (parent, { page, perPage }) => {
       try {
-        let games = await Game.find({})
-          .sort({ reviews: -1 })
-          .limit(34)
+        let games = await Game.find({}).sort({ reviews: -1 }).limit(34);
         let count = await Game.countDocuments();
 
         return { games, count };
@@ -100,92 +98,43 @@ const resolvers = {
     },
     searchGame: async (parent, { search, page }) => {
       try {
-        console.log(page);
-        // Use the 500 limit search
-        let countResponse = await axios({
-          url: "https://api.igdb.com/v4/games",
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Client-ID": `${process.env.client_id}`,
-            Authorization: `Bearer ${process.env.token}`,
-          },
-          data: `search "${search}"; limit 500;`,
-        });
-        // count the responses
-        // assign the count to a variable
-        let count = countResponse.data.length;
-
-        //if count 0, null, or undefined, throw error
-        if (count === 0 || undefined || null) {
-          throw new Error("No games found");
-        }
-
-        // Searching for game
+        // search for the search term in the giantbomb api
         let response = await axios({
-          url: "https://api.igdb.com/v4/games",
-          method: "POST",
+          url: `https://www.giantbomb.com/api/search/?api_key=${process.env.GIANTBOMB_API_KEY}&format=json&resources=game&limit=10&page=${page}&query=${search}`,
+          method: "GET",
           headers: {
             Accept: "application/json",
-            "Client-ID": `${process.env.client_id}`,
-            Authorization: `Bearer ${process.env.token}`,
           },
-          data: `search "${search}"; limit 10; offset ${(page - 1) * 10};`,
         });
-        // mapping the response to be an array of ids
-        let ids = response.data.map((data) => {
-          return data.id;
-        });
-        // create an array of queries using the ids array
-        let searchQuery = ids.map((id, i) => {
-          return `query games "game${i}" {fields age_ratings.rating, cover.image_id, genres.name, name, slug, summary, release_dates.y;where id=${id};};`;
-        });
-        // make axios call with searchQuery.join("")
-        let gamesResponse = await axios({
-          url: "https://api.igdb.com/v4/multiquery",
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Client-ID": `${process.env.client_id}`,
-            Authorization: `Bearer ${process.env.token}`,
-          },
-          data: `${searchQuery.join("")}`,
-        });
-        let gameData = gamesResponse.data.map((data) => {
-          let newGame = data.result[0];
-          // console.log("entering the map")
-          // release date is the first release date
-          if (newGame.release_dates) {
-            newGame.release_date = newGame.release_dates[0].y;
-          } else {
-            newGame.release_date = -1;
-          }
-          // genres is the name of the genre instead of the id and name
-          let genres;
-          if (newGame.genres) {
-            genres = newGame.genres.map((genreObj) => {
-              return genreObj.name;
-            });
-          } else {
-            genres = ["No Genres"];
-          }
-          // age_rating is the ESRB rating name
-          if (newGame.age_ratings) {
-            newGame.age_rating = newGame.age_ratings[0].rating;
-          } else {
-            newGame.age_rating = -1;
-          }
+        // if response is empty, return empty
+        if (response.data.results.length === 0) {
+          return { games: [], count: 0 };
+        }
+        // if response is not empty, return the games and set count to the total number of games
+        let games = response.data.results;
+        let count = response.data.number_of_total_results;
+        // for all the games, include image, title, description, rating, releasedate, and genres
+        let gameData = games.map((game) => {
+
+          let gameRating;
+          game?.original_game_rating
+            ? (gameRating = game.original_game_rating[0].name)
+            : (gameRating = "No Rating");
+
+            let releaseYear = game?.original_release_date?.split("-")[0] || "No Release Date";
+
           const output = {
-            title: newGame.name,
-            summary: newGame.summary,
-            cover_id: newGame.cover.image_id,
-            release_year: newGame.release_date,
-            genres: JSON.stringify(genres),
-            age_rating: newGame.age_rating,
-            slug: newGame.slug,
+            title: game?.name || "",
+            summary: game?.deck || "",
+            image: game?.image?.original_url || "",
+            release_year: releaseYear || "",
+            age_rating: gameRating || "",
+            slug: game?.name.replace(/\s+/g, "-") || "",
           };
+
           return output;
         });
+
         return { games: gameData, count };
       } catch (error) {
         console.log(error);
@@ -229,7 +178,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (parent, { game_id, stars, review_body, title }, context) => {
+    addReview: async (
+      parent,
+      { game_id, stars, review_body, title },
+      context
+    ) => {
       if (context.user) {
         const review = new Review({
           username: context.user.username,

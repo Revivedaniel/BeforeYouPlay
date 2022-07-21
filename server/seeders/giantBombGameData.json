@@ -1,0 +1,844 @@
+{
+	"error": "OK",
+	"limit": 1,
+	"offset": 0,
+	"number_of_page_results": 1,
+	"number_of_total_results": 1,
+	"status_code": 1,
+	"results": {
+		"aliases": "DoDonPachi Daifukkatsu Ver 1.5",
+		"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-32344\/",
+		"date_added": "2010-08-15 14:40:05",
+		"date_last_updated": "2021-06-15 11:40:41",
+		"deck": "DoDonPachi Resurrection is a bullet hell shoot 'em up developed by Cave, and the followup to DoDonPachi DaiOuJou.",
+		"description": "<h2>Overview<\/h2><p>Dodonpachi Resurrection (\"Dodonpachi Daifukkatsu\" in Japan) is a bullet hell shoot 'em up developed by <a href=\"\/cave-co-ltd\/3010-329\/\" data-ref-id=\"3010-329\" data-mce-href=\"\/cave-co-ltd\/3010-329\/\">Cave<\/a>. It was released in Japanese arcades in 2008. An iPhone port with an exclusive iPhone Mode was released in 2010, as was an Xbox 360 port with updated hi-res graphics and a number of extra modes. The Xbox 360 version is set to be brought to Europe by <a href=\"\/rising-star-games-ltd\/3010-2189\/\" data-ref-id=\"3010-2189\" data-mce-href=\"\/rising-star-games-ltd\/3010-2189\/\">Rising Star Games<\/a> in November 2011. An Android version is set to be released in October, 2011.<\/p><p><a href=\"\/dodonpachi-daifukkatsu-black-label\/3030-33917\/\" data-ref-id=\"3030-33917\" data-mce-href=\"\/dodonpachi-daifukkatsu-black-label\/3030-33917\/\">Dodonpachi Daifukkatsu Black Label<\/a> for Xbox 360 was released in February 3, 2011 in Japan. This disc release included the Black Label mode released as downloadable content for the original Daifukkatsu port, as well as an exclusive <a href=\"\/ketsui-kizuna-jigoku-tachi\/3030-34237\/\" data-ref-id=\"3030-34237\" data-mce-href=\"\/ketsui-kizuna-jigoku-tachi\/3030-34237\/\">Ketsui<\/a>-crossover \"Black Label Arrange\" mode.<\/p><h2>Story<\/h2><p>Six years after the events of <a href=\"\/dodonpachi-dai-ou-jou\/3030-216\/\" data-ref-id=\"3030-216\" data-mce-href=\"\/dodonpachi-dai-ou-jou\/3030-216\/\">Dodonpachi Daioujou<\/a>, as peace seems to have been restored, space-time anomalies are detected. Colonel Longhena Gottvin, leader of the Donpachi squadron, initially decides to ignore them as there doesn't seem to be any danger. A technician then looks into the matter, and discovers that a virus created by the Elemental Dolls (the artificial human beings that piloted the ships that saved humanity in Daioujou) has infected military computer systems, manipulating them into sending large amounts of equipment to the past via space-time portals. The Dolls have decided to wipe out humanity in the past as punishment for enslaving them.<\/p><p>The Colonel orders a transport ship to jump back to the year 2008, carrying with it three fighter planes to combat the artificial threat. Giant, evolved Dolls, \"Elemental Daughters\", await.<\/p><h2>Systems<\/h2><h3>Fighters:<\/h3><ul><li><b>Do-NX-SF-25B (Type A):<\/b> Struggle Fighter \"Deltasword\" (red): fast movement, narrow shot.<\/li><li><b>Do-NX-AH-16B (Type B):<\/b> Assault Helicopter \"Biaxe\" (green): straight main shot, sub-shot that angles with the ship's movement.<\/li><li><b>Do-NX-FB-72D (Type C):<\/b> Fighting Bomber \"Spearhead\" (blue): slow movement, wide shot.<\/li><\/ul><h3>Styles:<\/h3><ul><li><b>Bomb Style:<\/b> Weapons have normal power. Pressing the B button consumes a bomb in stock. Bomb is recharged by collecting bomb items. Auto-bomb triggers when about to be hit by a bullet\/enemy.<\/li><li><b>Power Style:<\/b> The player can switch between Normal or Boost firing modes by pressing the B button. Boost mode increases fire power, but reduces moving speed. This mode gives you no bombs, but Auto-bomb is still present and is only used when a bomb is collected.<\/li><li><b>Strong Style:<\/b> A combination of Bomb Style and Power Style. Bombs are available and Boost firing mode is active as well.<\/li><\/ul><h3>Boss Characters:<\/h3><ul><li>Element Daughter 01: <b>A.I.<\/b><\/li><li>Element Daughter 02: <b>Next EXY<\/b><\/li><li>Element Daughter 03: <b>PERFECT<\/b><\/li><li>Element Daughter 04: <b>Ray'n<\/b><\/li><li>Element Daughter 05: <b>Shooty<\/b><\/li><\/ul><h3>Hyper counter:<\/h3><p>This can be activated when the hyper counter gauge is full. During activation, the player's attack can destroy enemy bullets until the gauge is depleted. The gauge can be recharged by destroying enemies.<\/p><h3>Counter Laser:<\/h3><p>When using the laser, it can block weak lasers fired from enemies, but not strong lasers if boost mode is not used. When the hyper counter is activated, the player's laser can block both laser types in either shot style.<\/p><h2>Stages<\/h2><p>There are two paths for each stage, with the second one being accessible under certain conditions; if the requirements are met, the bosses from the original <a href=\"\/dodonpachi\/3030-21705\/\" data-ref-id=\"3030-21705\" data-mce-href=\"\/dodonpachi\/3030-21705\/\">DoDonPachi<\/a> will reappear as mid-bosses with upgraded graphics and fiercer attacks. Hibachi (<i>true last boss)<\/i> only appears after completing stage 5 for the second time in an Ura loop and destroying its war-machine form <i>Taisabachi<\/i> (an interesting pun, since the translation is <i>Colonel Bee<\/i> and it's indeed piloted by Gottvin himself), its <i>Hibachi<\/i> core capable of extremely brutal attacks and, a series' first, counterattacks whenever the counter laser is used. As usual, a protective shield is deployed around Hibachi whenever invincibility is granted to the player, in the form of a bomb or hyper activation. For less skilled players, an easier second loop can be accessed meeting less tight requirements (namely collecting 35 hidden bees and not using a continue, or not dying at all regardless of how many bees collected), whereas the Ura loop demands collection of all 45 hidden bees, no deaths and exploding no more than two bombs.<\/p><ul><li>STAGE 1: 2008 in Christian Era Tokyo<\/li><li>STAGE 2: Dividing Road of Fate<\/li><li>STAGE 3: A lot of light that is blinking in the night sky in the shining future<\/li><li>STAGE 4: The world where it darkens and it goes<\/li><li>STAGE 5: It was a battle only for \"did following that future\"<\/li><\/ul><h2>VER 1.5 Changes<\/h2><ul><li>Type-B 'Biaxe' Helicopter<\/li><li>Standard auto Bomb<\/li><li>Balance has been adjusted<\/li><li>Two extra digits on the score counter<\/li><li>Fixed item counter mismatch<\/li><\/ul><h2>XBOX 360 Modes<\/h2><p>The Xbox 360 version was announced at the Cave Festival on August 14. The game is based on Version 1.5 of Dai-Fukkatsu and the graphics will be redone for HD displays. The game will feature Novice and Xbox 360 mode along with two arrange modes. One of the arrange modes will have the enemies attack style switch up based on how you play. The game will have a standard edition ( ¥7,140) and limited editions ( ¥9,240), with the limited edition featuring an arranged soundtrack.<\/p><h2>XBOX 360 Game Modes<\/h2><h3>Ver 1.5<\/h3><p>The changes are listed above.<\/p><h3>Ver L (Arrange A)<\/h3><p>Players are given control of the Type-A ship and Power Style. The Hyper System has been changed to work similarly to Dai Ou Jou, in which the hyper meter is filled, a power-up is spawned. This can be stored up to a max of five stocks. This also affects the shot type as well. In normal mode, bullets hit by the hyper shot is tagged and added to the chain counter. When switched to boost mode, the bullets cancel into stars, but the counter doesn't increase.<\/p><h3>Ver B (Arrange B)<\/h3><p>Levels are played individually and rank carries through each playthrough. All stages are available and take the alternate route. High scores are tracked for each stage and the overall score is the sum total. After a stage is selected, players pick a ship and customization. For instance, customizing the bomb can increase the duration, but the bomb\/hyper meter takes longer to refill. Customizing the laser and hyper adds strength and temporary invincibility sacrificing speed and duration. Simply put, boost rank to produce more bullets, cancel bullets to create hexagon items (using hyper shot), and collect the items to increase score and rank.<\/p><h3>Novice<\/h3><p>In this mode, players are given more bombs and and bullet patterns are simplified. The hidden bees are also visible, so it's easier to identify. Good for beginners to the game.<\/p>",
+		"expected_release_day": null,
+		"expected_release_month": null,
+		"expected_release_quarter": null,
+		"expected_release_year": null,
+		"guid": "3030-32344",
+		"id": 32344,
+		"image": {
+			"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/8\/87790\/2291731-box_ddpr.png",
+			"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_medium\/8\/87790\/2291731-box_ddpr.png",
+			"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/8\/87790\/2291731-box_ddpr.png",
+			"screen_large_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_kubrick\/8\/87790\/2291731-box_ddpr.png",
+			"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/8\/87790\/2291731-box_ddpr.png",
+			"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/8\/87790\/2291731-box_ddpr.png",
+			"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_avatar\/8\/87790\/2291731-box_ddpr.png",
+			"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/8\/87790\/2291731-box_ddpr.png",
+			"original_url": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/8\/87790\/2291731-box_ddpr.png",
+			"image_tags": "All Images,Box Art"
+		},
+		"image_tags": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/images\/3030-32344\/?filter=image_tag:All%20Images",
+				"name": "All Images",
+				"total": 18
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/images\/3030-32344\/?filter=image_tag:Box%20Art",
+				"name": "Box Art",
+				"total": 5
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/images\/3030-32344\/?filter=image_tag:Concept%20Art",
+				"name": "Concept Art",
+				"total": 5
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/images\/3030-32344\/?filter=image_tag:Screenshots",
+				"name": "Screenshots",
+				"total": 6
+			}
+		],
+		"name": "DoDonPachi Resurrection",
+		"number_of_user_reviews": 0,
+		"original_game_rating": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game_rating\/3065-25\/",
+				"id": 25,
+				"name": "CERO: A"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game_rating\/3065-36\/",
+				"id": 36,
+				"name": "PEGI: 12+"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game_rating\/3065-14\/",
+				"id": 14,
+				"name": "OFLC: G"
+			}
+		],
+		"original_release_date": "2010-08-26",
+		"platforms": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-20\/",
+				"id": 20,
+				"name": "Xbox 360",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/xbox-360\/3045-20\/",
+				"abbreviation": "X360"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-84\/",
+				"id": 84,
+				"name": "Arcade",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/arcade\/3045-84\/",
+				"abbreviation": "ARC"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-86\/",
+				"id": 86,
+				"name": "Xbox 360 Games Store",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/xbox-360-games-store\/3045-86\/",
+				"abbreviation": "XBGS"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-94\/",
+				"id": 94,
+				"name": "PC",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/pc\/3045-94\/",
+				"abbreviation": "PC"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-96\/",
+				"id": 96,
+				"name": "iPhone",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/iphone\/3045-96\/",
+				"abbreviation": "IPHN"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-121\/",
+				"id": 121,
+				"name": "iPad",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/ipad\/3045-121\/",
+				"abbreviation": "IPAD"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-123\/",
+				"id": 123,
+				"name": "Android",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/android\/3045-123\/",
+				"abbreviation": "ANDR"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/platform\/3045-157\/",
+				"id": 157,
+				"name": "Nintendo Switch",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/nintendo-switch\/3045-157\/",
+				"abbreviation": "NSW"
+			}
+		],
+		"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/",
+		"images": [
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/16\/166681\/2469050-7592541593-DDP-D.png",
+				"tags": "All Images"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/8\/87790\/2291731-box_ddpr.png",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/8\/87790\/2291731-box_ddpr.png",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/8\/87790\/2291731-box_ddpr.png",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/8\/87790\/2291731-box_ddpr.png",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/8\/87790\/2291731-box_ddpr.png",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/8\/87790\/2291731-box_ddpr.png",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/8\/87790\/2291731-box_ddpr.png",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/8\/87790\/2291731-box_ddpr.png",
+				"tags": "All Images, Box Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/12\/122378\/2003990-dodonpachi_resurrection_final_box_art.jpg",
+				"tags": "All Images"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1713596-605204_177941_front.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1713596-605204_177941_front.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1713596-605204_177941_front.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1713596-605204_177941_front.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1713596-605204_177941_front.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1713596-605204_177941_front.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1713596-605204_177941_front.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1713596-605204_177941_front.jpg",
+				"tags": "All Images, Box Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1713595-605204_177939_front.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1713595-605204_177939_front.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1713595-605204_177939_front.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1713595-605204_177939_front.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1713595-605204_177939_front.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1713595-605204_177939_front.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1713595-605204_177939_front.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1713595-605204_177939_front.jpg",
+				"tags": "All Images, Box Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1713594-605204_177939_back.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1713594-605204_177939_back.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1713594-605204_177939_back.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1713594-605204_177939_back.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1713594-605204_177939_back.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1713594-605204_177939_back.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1713594-605204_177939_back.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1713594-605204_177939_back.jpg",
+				"tags": "All Images, Box Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468398-2132423039_full.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468398-2132423039_full.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468398-2132423039_full.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468398-2132423039_full.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1468398-2132423039_full.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1468398-2132423039_full.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1468398-2132423039_full.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1468398-2132423039_full.jpg",
+				"tags": "All Images, Screenshots"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468397-2132423038_full.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468397-2132423038_full.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468397-2132423038_full.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468397-2132423038_full.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1468397-2132423038_full.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1468397-2132423038_full.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1468397-2132423038_full.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1468397-2132423038_full.jpg",
+				"tags": "All Images, Screenshots"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468396-2132423037_full.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468396-2132423037_full.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468396-2132423037_full.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468396-2132423037_full.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1468396-2132423037_full.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1468396-2132423037_full.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1468396-2132423037_full.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1468396-2132423037_full.jpg",
+				"tags": "All Images, Screenshots"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468395-2132423036_full.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468395-2132423036_full.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468395-2132423036_full.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468395-2132423036_full.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1468395-2132423036_full.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1468395-2132423036_full.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1468395-2132423036_full.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1468395-2132423036_full.jpg",
+				"tags": "All Images, Screenshots"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468394-2132423035_full.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468394-2132423035_full.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468394-2132423035_full.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468394-2132423035_full.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1468394-2132423035_full.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1468394-2132423035_full.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1468394-2132423035_full.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1468394-2132423035_full.jpg",
+				"tags": "All Images, Screenshots"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468393-2132423034_full.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468393-2132423034_full.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1468393-2132423034_full.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1468393-2132423034_full.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1468393-2132423034_full.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1468393-2132423034_full.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1468393-2132423034_full.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1468393-2132423034_full.jpg",
+				"tags": "All Images, Screenshots"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467208-shooty.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467208-shooty.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467208-shooty.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467208-shooty.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1467208-shooty.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1467208-shooty.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1467208-shooty.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1467208-shooty.jpg",
+				"tags": "All Images, Concept Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467207-ray_n.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467207-ray_n.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467207-ray_n.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467207-ray_n.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1467207-ray_n.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1467207-ray_n.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1467207-ray_n.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1467207-ray_n.jpg",
+				"tags": "All Images, Concept Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467206-perfect.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467206-perfect.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467206-perfect.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467206-perfect.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1467206-perfect.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1467206-perfect.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1467206-perfect.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1467206-perfect.jpg",
+				"tags": "All Images, Concept Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467205-next_exy.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467205-next_exy.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467205-next_exy.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467205-next_exy.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1467205-next_exy.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1467205-next_exy.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1467205-next_exy.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1467205-next_exy.jpg",
+				"tags": "All Images, Concept Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467201-a.i.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467201-a.i.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1467201-a.i.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1467201-a.i.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1467201-a.i.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1467201-a.i.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1467201-a.i.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1467201-a.i.jpg",
+				"tags": "All Images, Concept Art"
+			},
+			{
+				"icon_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"medium_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"screen_url": "https:\/\/www.giantbomb.com\/a\/uploads\/screen_medium\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"small_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_avatar\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"super_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_large\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"thumb_url": "https:\/\/www.giantbomb.com\/a\/uploads\/scale_small\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"tiny_url": "https:\/\/www.giantbomb.com\/a\/uploads\/square_mini\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"original": "https:\/\/www.giantbomb.com\/a\/uploads\/original\/0\/1134\/1466969-wj84h9e4zq1b8fc1ogtw8q194ihv271e.jpg",
+				"tags": "All Images, Box Art"
+			}
+		],
+		"videos": [],
+		"characters": null,
+		"concepts": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-189\/",
+				"id": 189,
+				"name": "Original Soundtrack Release",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/original-soundtrack-release\/3015-189\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-321\/",
+				"id": 321,
+				"name": "Bullet Hell",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/bullet-hell\/3015-321\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-372\/",
+				"id": 372,
+				"name": "Game Over",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/game-over\/3015-372\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-635\/",
+				"id": 635,
+				"name": "Continue",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/continue\/3015-635\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-700\/",
+				"id": 700,
+				"name": "Power Up",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/power-up\/3015-700\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-788\/",
+				"id": 788,
+				"name": "Top-Down Perspective",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/top-down-perspective\/3015-788\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1537\/",
+				"id": 1537,
+				"name": "Final Boss",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/final-boss\/3015-1537\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1561\/",
+				"id": 1561,
+				"name": "Boss Pattern",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/boss-pattern\/3015-1561\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1599\/",
+				"id": 1599,
+				"name": "Infinite Ammo",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/infinite-ammo\/3015-1599\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1644\/",
+				"id": 1644,
+				"name": "Greatest Hits",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/greatest-hits\/3015-1644\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1806\/",
+				"id": 1806,
+				"name": "Extra Life",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/extra-life\/3015-1806\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1899\/",
+				"id": 1899,
+				"name": "Vertical Scrolling",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/vertical-scrolling\/3015-1899\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1916\/",
+				"id": 1916,
+				"name": "Hitbox",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/hitbox\/3015-1916\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-2329\/",
+				"id": 2329,
+				"name": "Digital Distribution",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/digital-distribution\/3015-2329\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-2362\/",
+				"id": 2362,
+				"name": "Sexualized Women",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/sexualized-women\/3015-2362\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-5682\/",
+				"id": 5682,
+				"name": "Region Locked",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/region-locked\/3015-5682\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-6117\/",
+				"id": 6117,
+				"name": "Secret Achievements",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/secret-achievements\/3015-6117\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-9992\/",
+				"id": 9992,
+				"name": "Tate Mode",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/tate-mode\/3015-9992\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-10097\/",
+				"id": 10097,
+				"name": "Steam Deck Verified",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/steam-deck-verified\/3015-10097\/"
+			}
+		],
+		"developers": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/company\/3010-329\/",
+				"id": 329,
+				"name": "CAVE Co., Ltd.",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/cave-co-ltd\/3010-329\/"
+			}
+		],
+		"first_appearance_characters": null,
+		"first_appearance_concepts": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-189\/",
+				"id": 189,
+				"name": "Original Soundtrack Release",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/original-soundtrack-release\/3015-189\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-321\/",
+				"id": 321,
+				"name": "Bullet Hell",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/bullet-hell\/3015-321\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-372\/",
+				"id": 372,
+				"name": "Game Over",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/game-over\/3015-372\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-635\/",
+				"id": 635,
+				"name": "Continue",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/continue\/3015-635\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-700\/",
+				"id": 700,
+				"name": "Power Up",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/power-up\/3015-700\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-788\/",
+				"id": 788,
+				"name": "Top-Down Perspective",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/top-down-perspective\/3015-788\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1537\/",
+				"id": 1537,
+				"name": "Final Boss",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/final-boss\/3015-1537\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1561\/",
+				"id": 1561,
+				"name": "Boss Pattern",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/boss-pattern\/3015-1561\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1599\/",
+				"id": 1599,
+				"name": "Infinite Ammo",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/infinite-ammo\/3015-1599\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1644\/",
+				"id": 1644,
+				"name": "Greatest Hits",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/greatest-hits\/3015-1644\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1806\/",
+				"id": 1806,
+				"name": "Extra Life",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/extra-life\/3015-1806\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1899\/",
+				"id": 1899,
+				"name": "Vertical Scrolling",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/vertical-scrolling\/3015-1899\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-1916\/",
+				"id": 1916,
+				"name": "Hitbox",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/hitbox\/3015-1916\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-2329\/",
+				"id": 2329,
+				"name": "Digital Distribution",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/digital-distribution\/3015-2329\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-2362\/",
+				"id": 2362,
+				"name": "Sexualized Women",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/sexualized-women\/3015-2362\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-5682\/",
+				"id": 5682,
+				"name": "Region Locked",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/region-locked\/3015-5682\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-6117\/",
+				"id": 6117,
+				"name": "Secret Achievements",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/secret-achievements\/3015-6117\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-9992\/",
+				"id": 9992,
+				"name": "Tate Mode",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/tate-mode\/3015-9992\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/concept\/3015-10097\/",
+				"id": 10097,
+				"name": "Steam Deck Verified",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/steam-deck-verified\/3015-10097\/"
+			}
+		],
+		"first_appearance_locations": null,
+		"first_appearance_objects": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/object\/3055-991\/",
+				"id": 991,
+				"name": "Bullet",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/bullet\/3055-991\/"
+			}
+		],
+		"first_appearance_people": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/person\/3040-92453\/",
+				"id": 92453,
+				"name": "Manabu Namiki",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/manabu-namiki\/3040-92453\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/person\/3040-101312\/",
+				"id": 101312,
+				"name": "Kenichi Maeyamada",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/kenichi-maeyamada\/3040-101312\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/person\/3040-98509\/",
+				"id": 98509,
+				"name": "Akira Wakabayashi",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/akira-wakabayashi\/3040-98509\/"
+			}
+		],
+		"franchises": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/franchise\/3025-824\/",
+				"id": 824,
+				"name": "DonPachi",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/donpachi\/3025-824\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/franchise\/3025-5128\/",
+				"id": 5128,
+				"name": "Dodonpachi",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi\/3025-5128\/"
+			}
+		],
+		"genres": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/genre\/3060-48\/",
+				"id": 48,
+				"name": "Shoot 'Em Up",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/games\/?wikiSlug=shoot-em-up&wikiTypeId=3060&wikiId=48&genre=48"
+			}
+		],
+		"killed_characters": null,
+		"locations": null,
+		"objects": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/object\/3055-991\/",
+				"id": 991,
+				"name": "Bullet",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/bullet\/3055-991\/"
+			}
+		],
+		"people": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/person\/3040-92453\/",
+				"id": 92453,
+				"name": "Manabu Namiki",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/manabu-namiki\/3040-92453\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/person\/3040-101312\/",
+				"id": 101312,
+				"name": "Kenichi Maeyamada",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/kenichi-maeyamada\/3040-101312\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/person\/3040-98509\/",
+				"id": 98509,
+				"name": "Akira Wakabayashi",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/akira-wakabayashi\/3040-98509\/"
+			}
+		],
+		"publishers": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/publisher\/3010-329\/",
+				"id": 329,
+				"name": "CAVE Co., Ltd.",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/cave-co-ltd\/3010-329\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/publisher\/3010-2189\/",
+				"id": 2189,
+				"name": "Rising Star Games",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/rising-star-games\/3010-2189\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/publisher\/3010-8585\/",
+				"id": 8585,
+				"name": "AMI Co., Ltd.",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/ami-co-ltd\/3010-8585\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/publisher\/3010-9737\/",
+				"id": 9737,
+				"name": "Degica Games",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/degica-games\/3010-9737\/"
+			}
+		],
+		"releases": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-103493\/",
+				"id": 103493,
+				"name": "DoDonPachi Daifukkatsu Ver 1.5",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-103493\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-108347\/",
+				"id": 108347,
+				"name": "DoDonPachi Daiffukatsu Ver 1.5 (Limited Edition)",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-108347\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-113219\/",
+				"id": 113219,
+				"name": "DoDonPachi Resurrection (Deluxe Edition)",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-113219\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-115840\/",
+				"id": 115840,
+				"name": "DoDonPachi Daiffukatsu Ver 1.5 (Platinum Collection)",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-115840\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-116367\/",
+				"id": 116367,
+				"name": "DoDonPachi Resurrection",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-116367\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-116368\/",
+				"id": 116368,
+				"name": "DoDonPachi Resurrection HD",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-116368\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-118049\/",
+				"id": 118049,
+				"name": "DoDonPachi Resurrection (Games on Demand)",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-118049\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-118050\/",
+				"id": 118050,
+				"name": "DoDonPachi Resurrection (Games on Demand)",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-118050\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/release\/3050-149736\/",
+				"id": 149736,
+				"name": "DoDonPachi Resurrection",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/release\/3050-149736\/"
+			}
+		],
+		"dlcs": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/dlc\/3020-2354\/",
+				"id": 2354,
+				"name": "Black Label",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/dlc\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/dlc\/3020-2988\/",
+				"id": 2988,
+				"name": "Ver 1.51",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-resurrection\/3030-32344\/dlc\/"
+			}
+		],
+		"similar_games": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-30001\/",
+				"id": 30001,
+				"name": "Espgaluda II Black Label",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/espgaluda-ii-black-label\/3030-30001\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-30997\/",
+				"id": 30997,
+				"name": "Ketsui: Kizuna Jigoku Tachi Extra",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/ketsui-kizuna-jigoku-tachi-extra\/3030-30997\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-29280\/",
+				"id": 29280,
+				"name": "Mushihime-sama Futari",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/mushihime-sama-futari\/3030-29280\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-26433\/",
+				"id": 26433,
+				"name": "DoDonPachi Dai Ou Jou Black Label EXTRA",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/dodonpachi-dai-ou-jou-black-label-extra\/3030-26433\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-24002\/",
+				"id": 24002,
+				"name": "Raiden IV",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/raiden-iv\/3030-24002\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-33885\/",
+				"id": 33885,
+				"name": "Muchi Muchi Pork!",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/muchi-muchi-pork\/3030-33885\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-34237\/",
+				"id": 34237,
+				"name": "Ketsui: Kizuna Jigoku Tachi",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/ketsui-kizuna-jigoku-tachi\/3030-34237\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-34001\/",
+				"id": 34001,
+				"name": "Crimzon Clover",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/crimzon-clover\/3030-34001\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-34268\/",
+				"id": 34268,
+				"name": "Mushihime-sama Futari Black Label",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/mushihime-sama-futari-black-label\/3030-34268\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-35611\/",
+				"id": 35611,
+				"name": "Jamestown: Legend of the Lost Colony",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/jamestown-legend-of-the-lost-colony\/3030-35611\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-60817\/",
+				"id": 60817,
+				"name": "Aka to Blue",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/aka-to-blue\/3030-60817\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-57497\/",
+				"id": 57497,
+				"name": "Bullet Hell Monday",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/bullet-hell-monday\/3030-57497\/"
+			},
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/game\/3030-84566\/",
+				"id": 84566,
+				"name": "Missile Dancer",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/missile-dancer\/3030-84566\/"
+			}
+		],
+		"themes": [
+			{
+				"api_detail_url": "https:\/\/www.giantbomb.com\/api\/theme\/3032-3\/",
+				"id": 3,
+				"name": "Sci-Fi",
+				"site_detail_url": "https:\/\/www.giantbomb.com\/games\/?wikiSlug=sci-fi&wikiTypeId=3032&wikiId=3&theme=3"
+			}
+		]
+	},
+	"version": "1.0"
+}
