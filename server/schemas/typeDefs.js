@@ -14,12 +14,17 @@ const typeDefs = gql`
     _id: ID
     title: String
     summary: String
-    cover_id: String
+    image_url: String
     release_year: Int
     genres: String
-    age_rating: Int
+    age_ratings: String
     slug: String
     reviews: [Review]
+    custom_datapoints: String
+    platform: String
+    lazy_afternoon_videos: String
+    lazy_afternoon_review: String
+    vgm_link: String
   }
 
   type GameSearchResults {
@@ -27,7 +32,7 @@ const typeDefs = gql`
     summary: String
     image: String
     release_year: String
-    age_rating: String
+    age_ratings: String
     slug: String
   }
 
