@@ -1,7 +1,7 @@
 const { Game } = require("../../models");
 const gameData = require("./gameData.json");
 
-function seedGames() {
+function seedGames(reviews) {
     return new Promise(async function (resolve, reject) {
         // stringify the genres array
     gameData.map((game) => {
@@ -33,10 +33,16 @@ function seedGames() {
         game.platforms = newArr;
         return game;
       });
+      // insert reviews into gameData
+      gameData.map((game) => {
+        game.reviews = reviews;
+        return game;
+      })
   
       await Game.deleteMany();
-      await Game.insertMany(gameData);
-      resolve();
+      const games = await Game.insertMany(gameData);
+      const gameIds = games.map((game) => game._id);
+      resolve(gameIds);
     })
 }
 
