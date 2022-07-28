@@ -21,7 +21,7 @@ const typeDefs = gql`
     slug: String
     reviews: [Review]
     custom_datapoints: String
-    platform: String
+    platforms: String
     lazy_afternoon_videos: String
     lazy_afternoon_review: String
     vgm_link: String

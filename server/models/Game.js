@@ -34,7 +34,7 @@ const gameSchema = new Schema({
     custom_datapoints: {
         type: String,
     },
-    platform: {
+    platforms: {
         type: String
     },
     lazy_afternoon_videos: {
