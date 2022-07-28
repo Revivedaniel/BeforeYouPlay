@@ -1,6 +1,7 @@
 const { Game } = require("../../models");
+const gameData = require("./gameData.json");
 
-function seedGames(gameData) {
+function seedGames() {
     return new Promise(async function (resolve, reject) {
         // stringify the genres array
     gameData.map((game) => {
