@@ -58,7 +58,13 @@ db.once("open", async () => {
       game.custom_datapoints = newObj;
       return game;
     });
-
+    // stringify platforms array
+    gameData.map((game) => {
+      let newArr = JSON.stringify(game.platforms);
+      game.platforms = newArr;
+      return game;
+    });
+    
     console.log(gameData);
 
     await Game.deleteMany();
