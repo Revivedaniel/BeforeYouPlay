@@ -15,7 +15,7 @@ const typeDefs = gql`
     title: String
     summary: String
     image_url: String
-    release_year: Int
+    release_year: String
     genres: String
     age_ratings: String
     slug: String
@@ -59,7 +59,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    game(slug: String!): Game
+    game(slug: String!, title: String!): Game
     games(page: Int!, perPage: Int!): Games
     searchGame(search: String!, page: Int!): Search
   }

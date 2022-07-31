@@ -17,7 +17,7 @@ const gameSchema = new Schema({
         type: String,
     },
     release_year: {
-        type: Number,
+        type: String,
     },
     genres: {
         type: String,

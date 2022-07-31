@@ -3,6 +3,8 @@ const { User, Game } = require("../models");
 const axios = require("axios");
 const { signToken } = require("../utils/auth");
 const Review = require("../models/Review");
+const generateGame = require("../utils/generateGame");
+const { Configuration, OpenAIApi } = require("openai");
 
 const resolvers = {
   Query: {
@@ -15,65 +17,36 @@ const resolvers = {
 
       throw new AuthenticationError("Please, log in first!");
     },
-    game: async (parent, { slug }) => {
+    game: async (parent, { slug, title }) => {
       try {
         //This will return an array so we return game[0] for the first entry
         let game = await Game.find({ slug: slug });
         //If there is no game with that slug, search IGDB
         if (game.length === 0) {
-          let response = await axios({
-            url: "https://api.igdb.com/v4/games",
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Client-ID": `${process.env.client_id}`,
-              Authorization: `Bearer ${process.env.token}`,
-            },
-            data: `fields age_ratings.rating,age_ratings.category, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
+          // initialize openai
+          const configuration = new Configuration({
+            apiKey: process.env.OPENAI_API_KEY,
           });
-          const gameData = response.data[0];
-          if (gameData.release_dates) {
-            // if there is a release date, get the first entries year
-            gameData.release_date = gameData.release_dates[0].y;
-          } else {
-            // if there there is no release date, set it to -1
-            gameData.release_date = -1;
-          }
-          let genres;
-          if (gameData.genres) {
-            // If there are genres, map through and return the name of the genre
-            genres = gameData.genres.map((genreObj) => {
-              return genreObj.name;
-            });
-          } else {
-            // If there are no genres, set it to no genres
-            genres = ["No Genres"];
-          }
-          // age_rating is the ESRB rating name
-          if (gameData.age_ratings) {
-            gameData.age_rating = parseInt(
-              gameData.age_ratings.filter((ageObj) => ageObj.category === 1)[0]
-                .rating
-            );
-          } else {
-            gameData.age_rating = -1;
-          }
+          const openai = new OpenAIApi(configuration);
 
-          if (!gameData.cover) {
-            gameData.cover = {
-              id: -1,
-            };
-          }
+          // generate the gamedata
+          const gameData = await generateGame(openai, title);
 
           // New game for mongoose
           let newGame = {
-            title: gameData.name,
-            summary: gameData.summary,
-            cover_id: gameData.cover.image_id,
-            release_year: gameData.release_date,
-            genres: JSON.stringify(genres),
-            age_rating: gameData.age_rating,
-            slug: gameData.slug,
+            title,
+            summary: gameData.overview,
+            image_url: "",
+            release_year: gameData.releaseDate,
+            genres: gameData.genres,
+            age_ratings: gameData.ageRatings,
+            slug,
+            reviews: [],
+            custom_datapoints: gameData.customDataPoints,
+            platforms: gameData.platforms,
+            lazy_afternoon_videos: "",
+            lazy_afternoon_review: "",
+            vgm_link: "",
           };
           //Creating the game in our database
           game = await Game.create(newGame);
@@ -115,13 +88,13 @@ const resolvers = {
         let count = response.data.number_of_total_results;
         // for all the games, include image, title, description, rating, releasedate, and genres
         let gameData = games.map((game) => {
-
           let gameRating;
           game?.original_game_rating
             ? (gameRating = game.original_game_rating[0].name)
             : (gameRating = "No Rating");
 
-            let releaseYear = game?.original_release_date?.split("-")[0] || "No Release Date";
+          let releaseYear =
+            game?.original_release_date?.split("-")[0] || "No Release Date";
 
           const output = {
             title: game?.name || "",
