@@ -2,7 +2,7 @@ const {
   generateThemes,
   generateAgeRatings,
   generateArtists,
-  generateComposer,
+  generateComposers,
   generateDesigners,
   generateDeveloper,
   generateDirectors,
@@ -35,7 +35,7 @@ function generateGame(openai, game) {
     const designers = await generateDesigners(openai, game);
     const programmers = await generateProgrammers(openai, game);
     const artists = await generateArtists(openai, game);
-    const composer = await generateComposer(openai, game);
+    const composers = await generateComposers(openai, game);
     const themes = await generateThemes(openai, game);
     const gameplayOverview = await generateGameplayOverview(openai, game);
     const relatedGames = await generateRelatedGames(openai, game);
@@ -56,7 +56,7 @@ function generateGame(openai, game) {
         designers,
         programmers,
         artists,
-        composer,
+        composers,
         themes,
         gameplayOverview,
         relatedGames,

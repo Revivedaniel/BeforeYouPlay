@@ -1,7 +1,7 @@
 const generateThemes = require("./generateThemes");
 const generateAgeRatings = require("./generateAgeRatings");
 const generateArtists = require("./generateArtists");
-const generateComposer = require("./generateComposer");
+const generateComposers = require("./generateComposers");
 const generateDesigners = require("./generateDesigners");
 const generateDeveloper = require("./generateDeveloper");
 const generateDirectors = require("./generateDirectors");
@@ -21,7 +21,7 @@ module.exports = {
     generateThemes,
     generateAgeRatings,
     generateArtists,
-    generateComposer,
+    generateComposers,
     generateDesigners,
     generateDeveloper,
     generateDirectors,
