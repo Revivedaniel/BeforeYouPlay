@@ -13,7 +13,7 @@ const gameSchema = new Schema({
         required: true,
         maxLength: 10000
     },
-    cover_id: {
+    image_url: {
         type: String,
     },
     release_year: {
@@ -22,15 +22,30 @@ const gameSchema = new Schema({
     genres: {
         type: String,
     },
-    age_rating: {
-        type: Number
+    age_ratings: {
+        type: String
     },
     slug: {
         type: String,
     },
     reviews: [
         Review.schema
-    ]
+    ],
+    custom_datapoints: {
+        type: String,
+    },
+    platforms: {
+        type: String
+    },
+    lazy_afternoon_videos: {
+        type: String
+    },
+    lazy_afternoon_review: {
+        type: String
+    },
+    vgm_link: {
+        type: String
+    },
 });
 
 const Game = mongoose.model('Game', gameSchema);

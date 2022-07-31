@@ -6,7 +6,7 @@ export default function SearchCard({ game }) {
   return (
     <div className="movie-item-style-2">
       <img
-        src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+        src={game.image}
         alt={`${game.title} cover art`}
         style={{ cursor: "pointer" }}
         onClick={() => {
@@ -31,13 +31,13 @@ export default function SearchCard({ game }) {
             ...
           </p>
         )}
-        <p className="run-time">ESRB: {gameRating(game.age_rating)}{" "}
+        <p className="run-time">{game.age_rating}{" "}
           <span>Release: {game.release_year}</span>
         </p>
         <div>
-          {JSON.parse(game.genres).map((genre, i) => {
+          {/* {JSON.parse(game.genres).map((genre, i) => {
             return <p>{genre}</p>;
-          })}
+          })} */}
         </div>
       </div>
     </div>
