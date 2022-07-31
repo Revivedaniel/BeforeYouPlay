@@ -19,8 +19,8 @@ export const QUERY_ALL_GAMES = gql`
 `;
 
 export const QUERY_SINGLE_GAME = gql`
-  query singleGame($slug: String!) {
-    game(slug: $slug) {
+  query singleGame($slug: String!, $title: String!) {
+    game(slug: $slug, title: $title) {
       _id
       title
       summary
