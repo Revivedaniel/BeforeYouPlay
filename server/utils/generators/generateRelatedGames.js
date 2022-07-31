@@ -4,11 +4,11 @@ function generateRelatedGames(openai, game) {
 
     const prompt = `What are some related video games to the video game The Legend of Zelda: Majora's Mask?
 
-      The Legend of Zelda: Ocarina of Time, The Legend of Zelda: A Link to the Past, The Legend of Zelda: The Wind Waker, The Legend of Zelda: Twilight Princess, The Legend of Zelda: Skyward Sword
+      The Legend of Zelda: Ocarina of Time,The Legend of Zelda: A Link to the Past,The Legend of Zelda: The Wind Waker,The Legend of Zelda: Twilight Princess,The Legend of Zelda: Skyward Sword
       
       What are some related video games to the video game Mega Man Battle Network?
       
-      Mega Man Zero, Mega Man ZX, Mega Man Star Force, Mega Man Legends, Mega Man X
+      Mega Man Zero,Mega Man ZX,Mega Man Star Force,Mega Man Legends, Mega Man X
       
       What are some related video games to the video game ${capitalizedGame}?`;
 
@@ -19,7 +19,7 @@ function generateRelatedGames(openai, game) {
       max_tokens: 2048,
     });
 
-    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, ''));
+    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, '').split(','));
   });
 }
 module.exports = generateRelatedGames;

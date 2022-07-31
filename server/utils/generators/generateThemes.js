@@ -4,11 +4,11 @@ function generateThemes(openai, game) {
 
     const prompt = `What are the themes of the video game The Legend of Zelda: Majora's Mask?
 
-      time, death, rebirth
+      time,death,rebirth
       
       What are the themes of the video game Mega Man Battle Network?
       
-      friendship, family, responsibility
+      friendship,family,responsibility
       
       What are the themes of the video game ${capitalizedGame}?`;
 
@@ -19,7 +19,7 @@ function generateThemes(openai, game) {
       max_tokens: 2048,
     });
 
-    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, ''));
+    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, '').split(','));
   });
 }
 module.exports = generateThemes;

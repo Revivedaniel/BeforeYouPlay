@@ -8,7 +8,7 @@ function generategameModes(openai, game) {
       
       What game modes does the video game Mega Man Battle Network?
       
-      Single-player, Multiplayer
+      Single-player,Multiplayer
       
       What game modes does the video game ${capitalizedGame}?`;
 
@@ -19,7 +19,7 @@ function generategameModes(openai, game) {
       max_tokens: 2048,
     });
 
-    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, ''));
+    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, '').split(','));
   });
 }
 module.exports = generategameModes;
