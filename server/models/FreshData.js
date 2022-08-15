@@ -27,7 +27,7 @@ const freshDataSchema = new Schema({
         type: Number,
     },
     votes_total: {
-        type: String,
+        type: Number,
     },
     manually_typed: {
         type: Boolean,
