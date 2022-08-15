@@ -169,8 +169,7 @@ const resolvers = {
       throw new AuthenticationError("Please, log in first!");
     },
     rateDataPoint: async (parent, { slug, title, vote }, context) => {
-      // if (context.user) {
-      if (true) {
+      if (context.user) {
         // Find the game via the slug
         let game = await Game.find({ slug: slug });
         if (game.length === 0) {
