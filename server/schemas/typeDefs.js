@@ -5,9 +5,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     game_id: ID
-    title: String
     stars: Int
-    review_body: String
   }
 
   type Game {

@@ -155,16 +155,14 @@ const resolvers = {
     },
     addReview: async (
       parent,
-      { game_id, stars, review_body, title },
+      { game_id, stars },
       context
     ) => {
       if (context.user) {
         const review = new Review({
           username: context.user.username,
           game_id,
-          title,
           stars,
-          review_body,
         });
 
         await Game.findByIdAndUpdate(game_id, { $push: { reviews: review } });
