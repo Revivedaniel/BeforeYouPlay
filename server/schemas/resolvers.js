@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Game } = require("../models");
+const { User, Game, FreshData } = require("../models");
 const axios = require("axios");
 const { signToken } = require("../utils/auth");
 const Review = require("../models/Review");
@@ -153,11 +153,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (
-      parent,
-      { game_id, stars },
-      context
-    ) => {
+    addReview: async (parent, { game_id, stars }, context) => {
       if (context.user) {
         const review = new Review({
           username: context.user.username,
@@ -168,6 +164,51 @@ const resolvers = {
         await Game.findByIdAndUpdate(game_id, { $push: { reviews: review } });
 
         return review;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    rateDataPoint: async (parent, { slug, title, vote }, context) => {
+      // if (context.user) {
+      if (true) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        let freshData;
+        // Find the FreshData entry via game ID and title
+        // if the vote is positive, add 1 to the positive count
+        if (vote > 0) {
+          freshData = await FreshData.findOneAndUpdate(
+            {
+              game_id: game[0]._id,
+              data_title: title,
+            },
+            { $inc: { up_votes: 1, votes_total: 1 } },
+            { new: true }
+          );
+        }
+        // Find the FreshData entry via game ID and title
+        // if the vote is negative, add 1 to the negative count and subtract 1 from votes_total
+        if (vote < 0) {
+          freshData = await FreshData.findOneAndUpdate(
+            {
+              game_id: game[0]._id,
+              data_title: title,
+            },
+            { $inc: { down_votes: 1, votes_total: -1 } },
+            { new: true }
+          );
+        }
+        // Find the FreshData entry via game ID and title
+        // if the vote is zero, null, or NaN, throw error for invalid vote
+        if (vote === 0 || vote === null || isNaN(vote)) {
+          throw new Error("Invalid vote");
+        }
+        // Return the freshData entry
+        return freshData;
       }
 
       throw new AuthenticationError("Please, log in first!");
