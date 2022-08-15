@@ -5,6 +5,7 @@ const { signToken } = require("../utils/auth");
 const Review = require("../models/Review");
 const generateGame = require("../utils/generateGame");
 const { Configuration, OpenAIApi } = require("openai");
+const createFreshData = require("../utils/createFreshData");
 
 const resolvers = {
   Query: {
@@ -50,6 +51,7 @@ const resolvers = {
           };
           //Creating the game in our database
           game = await Game.create(newGame);
+          createFreshData(game);
           //Returning the new game
           return game;
         } else {
