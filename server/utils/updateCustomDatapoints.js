@@ -12,7 +12,6 @@ function updateCustomDatapoints(
   }
   if (dataType === "GameTeam") {
     custom_datapoints.gameTeam[datapointTitle] = newData;
-    console.log(custom_datapoints);
     return JSON.stringify(custom_datapoints);
   }
   custom_datapoints[datapointTitle] = newData;
