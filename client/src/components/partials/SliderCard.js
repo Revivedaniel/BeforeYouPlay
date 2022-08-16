@@ -7,7 +7,7 @@ export default function SliderCard({ game }) {
       >
         <div className="mv-img">
           <img
-            src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+            src={game.image_url}
             alt={`${game.title} cover art`}
             width="285"
             height="437"

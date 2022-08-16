@@ -80,7 +80,7 @@ export function GameList({ games, title, page }) {
         return (
           <Link key={i} to={`/games/${game.slug}`} style={linkStyle}>
             <GameImage
-              src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+              src={game.image_url}
               alt={`${game.title} cover art`}
             />
             <GameInfo>

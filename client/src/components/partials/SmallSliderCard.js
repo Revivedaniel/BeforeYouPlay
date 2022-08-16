@@ -9,7 +9,7 @@ export default function SmallSliderCard({ game }) {
       <div className="movie-item" style={{ width: "162px", height: "216px" }}>
         <div className="mv-img">
           <img
-            src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+            src={game.image_url}
             alt={`${game.title} cover art`}
             width="162"
             height="216"
