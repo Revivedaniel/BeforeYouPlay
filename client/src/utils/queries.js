@@ -50,7 +50,7 @@ export const QUERY_SEARCH_GAME = gql`
         title
         release_year
         summary
-        age_rating
+        age_ratings
         image
         slug
       }
