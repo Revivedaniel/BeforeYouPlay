@@ -44,6 +44,7 @@ function App() {
 
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
+  const [gameTitle, setGameTitle] = useState('');
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -56,11 +57,11 @@ function App() {
         )}
         <div id="mainContainer">
           <Routes>
-            <Route index path="/" element={<Index />} />
-            <Route path="/games/:slug" element={<Gamepage setLogin={setLogin}/>} />
-            <Route path="/search/:search" element={<Searchpage />} />
-            <Route path="/search/:search/:page" element={<Searchpage />} />
-            <Route path="/:page" element={<Index />} />
+            <Route index path="/" element={<Index gameTitle={gameTitle} setGameTitle={setGameTitle}/>} />
+            <Route path="/games/:slug" element={<Gamepage setLogin={setLogin} gameTitle={gameTitle} setGameTitle={setGameTitle}/>} />
+            <Route path="/search/:search" element={<Searchpage gameTitle={gameTitle} setGameTitle={setGameTitle} />} />
+            <Route path="/search/:search/:page" element={<Searchpage gameTitle={gameTitle} setGameTitle={setGameTitle} />} />
+            <Route path="/:page" element={<Index gameTitle={gameTitle} setGameTitle={setGameTitle}/>} />
           </Routes>
         </div>
         <Footer />
