@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import gameRating from "../../utils/gameRating";
 
-export default function SearchCard({ game }) {
+export default function SearchCard({ game, setGameTitle }) {
+  const handleGameSelect = (e) => {
+    e.preventDefault();
+    setGameTitle(game.title);
+    window.location.href = `/games/${game.slug}`;
+  }
   console.log(game);
   return (
     <div className="movie-item-style-2">
@@ -15,7 +20,7 @@ export default function SearchCard({ game }) {
       />
       <div className="mv-item-infor">
         <h6>
-          <a href={`/games/${game.slug}`}>
+          <a href="/" onClick={handleGameSelect}>
             {game.title} <span>({game.release_year})</span>
           </a>
         </h6>
