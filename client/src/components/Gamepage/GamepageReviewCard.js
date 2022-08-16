@@ -14,7 +14,7 @@ export default function GamepageGameCard({ review }) {
             })}            
           </div>
           <p classname="time">
-            by <a href="#"> {review.username}</a>
+            by {review.username}
           </p>
         </div>
       </div>
