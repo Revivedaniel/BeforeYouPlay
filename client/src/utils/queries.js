@@ -7,10 +7,10 @@ export const QUERY_ALL_GAMES = gql`
         _id
         title
         summary
-        cover_id
+        image_url
         release_year
         genres
-        age_rating
+        age_ratings
         slug
       }
       count
