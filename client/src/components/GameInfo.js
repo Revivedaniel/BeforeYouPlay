@@ -89,7 +89,7 @@ export function GameInfo({ game }) {
       <UpperInfo>
         <div>
           <GameCover
-            src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+            src={game.image_url}
             alt={`${game.title} cover art`}
           />
         </div>
