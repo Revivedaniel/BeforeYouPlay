@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import gameRating from "../../utils/gameRating";
-
 export default function SearchCard({ game, setGameTitle }) {
   const handleGameSelect = (e) => {
     e.preventDefault();

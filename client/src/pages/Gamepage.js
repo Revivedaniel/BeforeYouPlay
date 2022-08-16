@@ -14,7 +14,7 @@ import FourOhFour from "../components/404";
 export default function Gamepage({ setLogin, gameTitle, setGameTitle }) {
     const { slug } = useParams();
     const [reviews, setReviews] = useState(false);
-    const { loading, data, error } = useQuery(QUERY_SINGLE_GAME, {
+    const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
         variables: { slug: slug, title: gameTitle },
       });
     
@@ -64,10 +64,10 @@ export default function Gamepage({ setLogin, gameTitle, setGameTitle }) {
                   <div className="tabs">
                     <ul className="tab-links tabs-mv">
                       <li className={reviews ? "" : "active"} style={{cursor: "pointer"}}>
-                        <a onClick={handleOverview}>Overview</a>
+                        <a href="/" onClick={handleOverview}>Overview</a>
                       </li>
                       <li className={reviews ? "active" : ""} style={{cursor: "pointer"}}>
-                        <a onClick={handleReviews}> Reviews</a>
+                        <a href="/" onClick={handleReviews}> Reviews</a>
                       </li>
                       {/* <li>
                         <a href="#cast"> Cast & Crew </a>

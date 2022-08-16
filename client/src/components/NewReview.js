@@ -45,7 +45,7 @@ export default function NewReview({ game, setReviews, reviews, setReviewModal })
     }
   };
   const starsArray = ["Terrible", "Bad", "Average", "Good", "Excellent"];
-  const [addReview, { error }] = useMutation(ADD_REVIEW);
+  const [addReview] = useMutation(ADD_REVIEW);
   // rating word
   const [ratingWord, setRatingWord] = useState("");
   //review input state

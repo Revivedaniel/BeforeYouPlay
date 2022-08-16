@@ -33,7 +33,7 @@ export default function MenuRight({ setLogin, setSignUp }) {
       </li> */}
       {!Auth.loggedIn() ? (
         <li>
-          <a className="loginLink" onClick={handleLogin}>
+          <a href="/" className="loginLink" onClick={handleLogin}>
             Login
           </a>
         </li>
@@ -56,7 +56,7 @@ export default function MenuRight({ setLogin, setSignUp }) {
         </div>
       )}
       <li className="btn signupLink">
-        <a onClick={setSignUp}>sign up</a>
+        <a href="/" onClick={setSignUp}>sign up</a>
       </li>
     </ul>
   );

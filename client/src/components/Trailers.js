@@ -6,7 +6,7 @@ export default function Trailers() {
             <div className="col-md-12">
               <div className="title-hd">
                 <h2>in theater</h2>
-                <a href="#" className="viewall">View all <i className="ion-ios-arrow-right"></i></a>
+                <a href="/" onClick={function(e) { e.preventDefault();}} className="viewall">View all <i className="ion-ios-arrow-right"></i></a>
               </div>
               <div className="videos">
                 <div className="slider-for-2 video-ft">
@@ -34,7 +34,7 @@ export default function Trailers() {
                 <div className="slider-nav-2 thumb-ft">
                   <div className="item">
                     <div className="trailer-img">
-                      <img src="images/uploads/trailer7.jpg" alt="photo by Barn Images" width="4096" height="2737" />
+                      <img src="images/uploads/trailer7.jpg" alt="trailer7" width="4096" height="2737" />
                     </div>
                     <div className="trailer-infor">
                       <h4 className="desc">Wonder Woman</h4>
@@ -43,7 +43,7 @@ export default function Trailers() {
                   </div>
                   <div className="item">
                     <div className="trailer-img">
-                      <img src="images/uploads/trailer2.jpg" alt="photo by Barn Images" width="350" height="200" />
+                      <img src="images/uploads/trailer2.jpg" alt="trailer2" width="350" height="200" />
                     </div>
                     <div className="trailer-infor">
                       <h4 className="desc">Oblivion: Official Teaser Trailer</h4>
@@ -52,7 +52,7 @@ export default function Trailers() {
                   </div>
                   <div className="item">
                     <div className="trailer-img">
-                      <img src="images/uploads/trailer6.jpg" alt="photo by Joshua Earle" />
+                      <img src="images/uploads/trailer6.jpg" alt="trailer6" />
                     </div>
                     <div className="trailer-infor">
                       <h4 className="desc">Exclusive Interview:  Skull Island</h4>
@@ -61,7 +61,7 @@ export default function Trailers() {
                   </div>
                   <div className="item">
                     <div className="trailer-img">
-                      <img src="images/uploads/trailer3.png" alt="photo by Alexander Dimitrov" width="100" height="56" />
+                      <img src="images/uploads/trailer3.png" alt="trailer3" width="100" height="56" />
                     </div>
                     <div className="trailer-infor">
                       <h4 className="desc">Logan: Director James Mangold Interview</h4>
@@ -70,7 +70,7 @@ export default function Trailers() {
                   </div>
                   <div className="item">
                     <div className="trailer-img">
-                      <img src="images/uploads/trailer4.png" alt="photo by Wojciech Szaturski" width="100" height="56" />
+                      <img src="images/uploads/trailer4.png" alt="trailer4" width="100" height="56" />
                     </div>
                     <div className="trailer-infor">
                       <h4 className="desc">Beauty and the Beast: Official Teaser Trailer 2</h4>
@@ -79,7 +79,7 @@ export default function Trailers() {
                   </div>
                   <div className="item">
                     <div className="trailer-img">
-                      <img src="images/uploads/trailer5.jpg" alt="photo by Wojciech Szaturski" width="360" height="189" />
+                      <img src="images/uploads/trailer5.jpg" alt="trailer5" width="360" height="189" />
                     </div>
                     <div className="trailer-infor">
                       <h4 className="desc">Fast&Furious 8</h4>

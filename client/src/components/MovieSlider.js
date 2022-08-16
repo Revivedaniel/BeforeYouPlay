@@ -1,7 +1,3 @@
-import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
-import { perPage } from "../config";
-import { QUERY_ALL_GAMES } from "../utils/queries";
 import SliderCard from "./partials/SliderCard";
 
 export default function MovieSlider({ games, setGameTitle }) {
@@ -30,6 +26,7 @@ export default function MovieSlider({ games, setGameTitle }) {
               if (i < 4) {
                 return <SliderCard game={game} setGameTitle={setGameTitle} key={game._id} />;
               }
+              return null;
             })}
           </div>
         </div>
