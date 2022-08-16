@@ -5,7 +5,6 @@ export default function GamepageGameCard({ review }) {
       <div classname="user-infor">
         <img src="images/uploads/userava1.jpg" alt="" />
         <div>
-          <h3>{review.title}</h3>
           <div
             className="no-star"
             style={{ color: "#f5b50a", fontSize: "var(--font-color-light)" }}
@@ -19,7 +18,6 @@ export default function GamepageGameCard({ review }) {
           </p>
         </div>
       </div>
-      <p>{review.review_body}</p>
     </div>
   );
 }
