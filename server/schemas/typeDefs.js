@@ -82,6 +82,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addReview(game_id: ID!, title: String, stars: Int!, review_body: String!): Review
     rateDataPoint(slug: String!, title: String!, vote: Int!): FreshData
+    updateDataPoint(slug: String!, title: String!, update: String!, dataType: String!): FreshData
   }
 `;
 
