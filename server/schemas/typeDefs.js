@@ -71,7 +71,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    game(slug: String!, title: String!): Game
+    game(slug: String!, title: String!, gameImage: String): Game
     games(page: Int!, perPage: Int!): Games
     searchGame(search: String!, page: Int!): Search
     getDataPointsByRating: [FreshData]

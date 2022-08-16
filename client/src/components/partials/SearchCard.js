@@ -1,8 +1,12 @@
-export default function SearchCard({ game, setGameTitle }) {
+import { useNavigate } from "react-router-dom";
+
+export default function SearchCard({ game, setGameTitle, setGameImage }) {
+  let navigate = useNavigate();
   const handleGameSelect = (e) => {
     e.preventDefault();
     setGameTitle(game.title);
-    window.location.href = `/games/${game.slug}`;
+    setGameImage(game.image);
+    navigate(`/games/${game.slug}`);
   }
   console.log(game);
   return (
@@ -11,9 +15,7 @@ export default function SearchCard({ game, setGameTitle }) {
         src={game.image}
         alt={`${game.title} cover art`}
         style={{ cursor: "pointer" }}
-        onClick={() => {
-          window.location.href = `/games/${game.slug}`;
-        }}
+        onClick={handleGameSelect}
       />
       <div className="mv-item-infor">
         <h6>

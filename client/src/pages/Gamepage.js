@@ -11,11 +11,12 @@ import { QUERY_SINGLE_GAME } from "../utils/queries";
 import { useState } from "react";
 import FourOhFour from "../components/404";
 
-export default function Gamepage({ setLogin, gameTitle, setGameTitle }) {
+export default function Gamepage({ setLogin, gameTitle, gameImage }) {
+  console.log(gameTitle);
     const { slug } = useParams();
     const [reviews, setReviews] = useState(false);
     const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
-        variables: { slug: slug, title: gameTitle },
+        variables: { slug: slug, title: gameTitle, gameImage: gameImage },
       });
     
       const game = data?.game;

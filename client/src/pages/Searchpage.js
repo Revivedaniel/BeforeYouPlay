@@ -7,7 +7,7 @@ import SearchCard from "../components/partials/SearchCard";
 import FourOhFour from "../components/404.js";
 
 
-export function Searchpage({ gameTitle, setGameTitle }) {
+export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
   // Get search and page from the pathname
   let { search, page } = useParams();
   if (page === undefined) {
@@ -90,7 +90,7 @@ export function Searchpage({ gameTitle, setGameTitle }) {
                 route={`/search/${search}`}
               />
               {games?.map((game, i) => {
-                return <SearchCard game={game} setGameTitle={setGameTitle} key={i} />;
+                return <SearchCard game={game} setGameTitle={setGameTitle} setGameImage={setGameImage} key={i} />;
               })}
               {games?.length === 0 ? (
                 <h2

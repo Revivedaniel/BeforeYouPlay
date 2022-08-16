@@ -19,7 +19,7 @@ const resolvers = {
 
       throw new AuthenticationError("Please, log in first!");
     },
-    game: async (parent, { slug, title }) => {
+    game: async (parent, { slug, title, gameImage = "" }) => {
       try {
         //This will return an array so we return game[0] for the first entry
         let game = await Game.find({ slug: slug });
@@ -38,7 +38,7 @@ const resolvers = {
           let newGame = {
             title,
             summary: gameData.overview,
-            image_url: "",
+            image_url: gameImage,
             release_year: gameData.releaseDate,
             genres: gameData.genres,
             age_ratings: gameData.ageRatings,
