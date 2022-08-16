@@ -1,10 +1,12 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Game } = require("../models");
+const { User, Game, FreshData } = require("../models");
 const axios = require("axios");
 const { signToken } = require("../utils/auth");
 const Review = require("../models/Review");
 const generateGame = require("../utils/generateGame");
 const { Configuration, OpenAIApi } = require("openai");
+const createFreshData = require("../utils/createFreshData");
+const updateCustomDatapoints = require("../utils/updateCustomDatapoints");
 
 const resolvers = {
   Query: {
@@ -50,6 +52,7 @@ const resolvers = {
           };
           //Creating the game in our database
           game = await Game.create(newGame);
+          createFreshData(game);
           //Returning the new game
           return game;
         } else {
@@ -113,6 +116,17 @@ const resolvers = {
         console.log(error);
       }
     },
+    getDataPointsByRating: async () => {
+      // TODO: Make this query admin only
+      // TODO: Add pagination
+      try {
+        // find all datapoints and sort them from lowest to highest votes_total
+        let dataPoints = await FreshData.find({}).sort({ votes_total: 1 });
+        return dataPoints;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -151,23 +165,164 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (
-      parent,
-      { game_id, stars, review_body, title },
-      context
-    ) => {
+    addReview: async (parent, { game_id, stars }, context) => {
       if (context.user) {
         const review = new Review({
           username: context.user.username,
           game_id,
-          title,
           stars,
-          review_body,
         });
 
         await Game.findByIdAndUpdate(game_id, { $push: { reviews: review } });
 
         return review;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    rateDataPoint: async (parent, { slug, title, vote }, context) => {
+      if (context.user) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        let freshData;
+        // Find the FreshData entry via game ID and title
+        // if the vote is positive, add 1 to the positive count
+        if (vote > 0) {
+          freshData = await FreshData.findOneAndUpdate(
+            {
+              game_id: game[0]._id,
+              data_title: title,
+            },
+            { $inc: { up_votes: 1, votes_total: 1 } },
+            { new: true }
+          );
+        }
+        // Find the FreshData entry via game ID and title
+        // if the vote is negative, add 1 to the negative count and subtract 1 from votes_total
+        if (vote < 0) {
+          freshData = await FreshData.findOneAndUpdate(
+            {
+              game_id: game[0]._id,
+              data_title: title,
+            },
+            { $inc: { down_votes: 1, votes_total: -1 } },
+            { new: true }
+          );
+        }
+        // Find the FreshData entry via game ID and title
+        // if the vote is zero, null, or NaN, throw error for invalid vote
+        if (vote === 0 || vote === null || isNaN(vote)) {
+          throw new Error("Invalid vote");
+        }
+        // Return the freshData entry
+        return freshData;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    updateDataPoint: async (
+      parent,
+      { slug, title, update, dataType },
+      context
+    ) => {
+      // TODO: make this resolver only accessable for admins
+
+      if (context.user) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        // Find the FreshData entry via game ID and title
+        // Update the data field
+        // change manually_typed to true
+        // add 1 to admin_approvals
+        if (typeof update !== "string") {
+          throw new Error("Invalid update");
+        }
+        let freshData = await FreshData.findOneAndUpdate(
+          {
+            game_id: game[0]._id,
+            data_title: title,
+          },
+          {
+            $set: { data: update, manually_typed: true },
+            $inc: { admin_approvals: 1 },
+          },
+          { new: true }
+        );
+
+        // if the dataType is Custom, add the data to the custom_datapoints field
+        if (dataType === "Custom" || dataType === "GameTeam") {
+          const updatedCustomDatapoints = updateCustomDatapoints(
+            game[0].custom_datapoints,
+            title,
+            update,
+            dataType
+          );
+          await Game.findByIdAndUpdate(game[0]._id, {
+            $set: { custom_datapoints: updatedCustomDatapoints },
+          });
+        } else {
+          // if the dataType is Standard, add the data to the game using title as the field name and update as the value
+          await Game.findByIdAndUpdate(game[0]._id, { [title]: update });
+        }
+        // Return the freshData entry
+        return freshData;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    deleteDataPoint: async (
+      parent,
+      { slug, title, dataType },
+      context
+    ) => {
+      // TODO: make this resolver only accessable for admins
+
+      if (context.user) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        // Find the FreshData entry via game ID and title
+        // Update the data field to be null
+        let freshData = await FreshData.findOneAndUpdate(
+          {
+            game_id: game[0]._id,
+            data_title: title,
+          },
+          {
+            $set: { data: null, manually_typed: true },
+            $inc: { admin_approvals: 1 },
+          },
+          { new: true }
+        );
+
+        // if the dataType is Custom, add the data to the custom_datapoints field
+        if (dataType === "Custom" || dataType === "GameTeam") {
+          const updatedCustomDatapoints = updateCustomDatapoints(
+            game[0].custom_datapoints,
+            title,
+            null,
+            dataType
+          );
+          await Game.findByIdAndUpdate(game[0]._id, {
+            $set: { custom_datapoints: updatedCustomDatapoints },
+          });
+        } else {
+          // if the dataType is Standard, add the data to the game using title as the field name and update as the value
+          await Game.findByIdAndUpdate(game[0]._id, { [title]: null });
+        }
+        // Return the freshData entry
+        return freshData;
       }
 
       throw new AuthenticationError("Please, log in first!");

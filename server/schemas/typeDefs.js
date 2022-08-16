@@ -5,9 +5,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     game_id: ID
-    title: String
     stars: Int
-    review_body: String
   }
 
   type Game {
@@ -25,6 +23,20 @@ const typeDefs = gql`
     lazy_afternoon_videos: String
     lazy_afternoon_review: String
     vgm_link: String
+  }
+
+  type FreshData {
+    _id: ID
+    game_id: ID
+    created_at: String
+    up_votes: Int
+    down_votes: Int
+    potentially_outdated: Boolean
+    data: String
+    data_title: String
+    admin_approvals: Int
+    votes_total: Int
+    manually_typed: Boolean
   }
 
   type GameSearchResults {
@@ -62,6 +74,7 @@ const typeDefs = gql`
     game(slug: String!, title: String!): Game
     games(page: Int!, perPage: Int!): Games
     searchGame(search: String!, page: Int!): Search
+    getDataPointsByRating: [FreshData]
   }
 
   type Mutation {
@@ -69,6 +82,9 @@ const typeDefs = gql`
     updateUser(username: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
     addReview(game_id: ID!, title: String, stars: Int!, review_body: String!): Review
+    rateDataPoint(slug: String!, title: String!, vote: Int!): FreshData
+    updateDataPoint(slug: String!, title: String!, update: String!, dataType: String!): FreshData
+    deleteDataPoint(slug: String!, title: String!, dataType: String!): FreshData
   }
 `;
 
