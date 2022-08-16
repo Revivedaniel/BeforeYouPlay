@@ -116,6 +116,17 @@ const resolvers = {
         console.log(error);
       }
     },
+    getDataPointsByRating: async () => {
+      // TODO: Make this query admin only
+      // TODO: Add pagination
+      try {
+        // find all datapoints and sort them from lowest to highest votes_total
+        let dataPoints = await FreshData.find({}).sort({ votes_total: 1 });
+        return dataPoints;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -274,8 +285,7 @@ const resolvers = {
     ) => {
       // TODO: make this resolver only accessable for admins
 
-      // if (context.user) {
-        if (true) {
+      if (context.user) {
         // Find the game via the slug
         let game = await Game.find({ slug: slug });
         if (game.length === 0) {

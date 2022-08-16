@@ -74,6 +74,7 @@ const typeDefs = gql`
     game(slug: String!, title: String!): Game
     games(page: Int!, perPage: Int!): Games
     searchGame(search: String!, page: Int!): Search
+    getDataPointsByRating: [FreshData]
   }
 
   type Mutation {
