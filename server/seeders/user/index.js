@@ -6,19 +6,19 @@ function seedUsers() {
     await User.create({
       username: "Daniel",
       email: "daniel@testmail.com",
-      password: "password12345",
+      password: "Password12345",
     });
 
     await User.create({
       username: "Tyler",
       email: "tyler@testmail.com",
-      password: "password12345",
+      password: "Password12345",
     });
 
     await User.create({
       username: "Jesus",
       email: "jesus@testmail.com",
-      password: "password12345",
+      password: "Password12345",
     });
     resolve();
   });
