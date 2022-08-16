@@ -31,10 +31,8 @@ export const QUERY_SINGLE_GAME = gql`
       slug
       reviews {
         _id
-        title
         username
         stars
-        review_body
       }
       custom_datapoints
       platforms
