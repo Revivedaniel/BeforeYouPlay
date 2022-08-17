@@ -1,6 +1,11 @@
-export default function SliderCard({ game }) {
+export default function SliderCard({ game, setGameTitle }) {
+  const handleGameSelect = (e) => {
+    e.preventDefault();
+    setGameTitle(game.title);
+    window.location.href = `/games/${game.slug}`;
+  }
   return (
-    <a href={`/games/${game.slug}`}>
+    <a href="/" onClick={handleGameSelect}>
       <div
         className="movie-item"
         style={{ minWidth: "285px", height: "437px", cursor: "pointer" }}

@@ -1,10 +1,6 @@
-import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
-import { perPage } from "../config";
-import { QUERY_ALL_GAMES } from "../utils/queries";
 import SliderCard from "./partials/SliderCard";
 
-export default function MovieSlider({ games }) {
+export default function MovieSlider({ games, setGameTitle }) {
   
   return (
     <div className="slider movie-items">
@@ -28,8 +24,9 @@ export default function MovieSlider({ games }) {
           <div className="slick-multiItemSlider" style={{ display: "flex" }}>
             {games.map((game, i) => {
               if (i < 4) {
-                return <SliderCard game={game} key={game._id} />;
+                return <SliderCard game={game} setGameTitle={setGameTitle} key={game._id} />;
               }
+              return null;
             })}
           </div>
         </div>

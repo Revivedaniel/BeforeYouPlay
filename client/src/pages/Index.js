@@ -4,7 +4,7 @@ import { perPage } from "../config";
 import { QUERY_ALL_GAMES } from "../utils/queries";
 import Homepage from "./Homepage";
 
-export default function Index() {
+export default function Index({ gameTitle, setGameTitle }) {
   let { page } = useParams();
 
   const { loading, data } = useQuery(QUERY_ALL_GAMES, {
@@ -51,6 +51,6 @@ export default function Index() {
       </div>
     </>
   ) : (
-    <Homepage games={games} />
+    <Homepage games={games} setGameTitle={setGameTitle} />
   );
 }

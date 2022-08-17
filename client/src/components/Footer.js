@@ -49,7 +49,7 @@ export default function Footer() {
             <p>© 2022 Before You Play. All Rights Reserved.</p>
           </div>
           <div className="backtotop">
-            <p><a href="#" id="back-to-top">Back to top  <i className="ion-ios-arrow-thin-up"></i></a></p>
+            <p><a href="/" id="back-to-top">Back to top  <i className="ion-ios-arrow-thin-up"></i></a></p>
           </div>
         </div>
       </footer>

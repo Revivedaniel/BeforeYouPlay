@@ -11,11 +11,12 @@ import { QUERY_SINGLE_GAME } from "../utils/queries";
 import { useState } from "react";
 import FourOhFour from "../components/404";
 
-export default function Gamepage({ setLogin }) {
+export default function Gamepage({ setLogin, gameTitle, gameImage }) {
+  console.log(gameTitle);
     const { slug } = useParams();
     const [reviews, setReviews] = useState(false);
-    const { loading, data, error } = useQuery(QUERY_SINGLE_GAME, {
-        variables: { slug: slug },
+    const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
+        variables: { slug: slug, title: gameTitle, gameImage: gameImage },
       });
     
       const game = data?.game;
@@ -64,10 +65,10 @@ export default function Gamepage({ setLogin }) {
                   <div className="tabs">
                     <ul className="tab-links tabs-mv">
                       <li className={reviews ? "" : "active"} style={{cursor: "pointer"}}>
-                        <a onClick={handleOverview}>Overview</a>
+                        <a href="/" onClick={handleOverview}>Overview</a>
                       </li>
                       <li className={reviews ? "active" : ""} style={{cursor: "pointer"}}>
-                        <a onClick={handleReviews}> Reviews</a>
+                        <a href="/" onClick={handleReviews}> Reviews</a>
                       </li>
                       {/* <li>
                         <a href="#cast"> Cast & Crew </a>

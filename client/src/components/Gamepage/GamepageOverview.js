@@ -179,7 +179,7 @@ export default function Gamepageoverview({ game }) {
             >
               {JSON.parse(game.genres).map((genre, i) => {
                 return (
-                  <a href="#" key={i}>
+                  <a href="/" key={i} onClick={function(e) { e.preventDefault();}}>
                     {genre}
                   </a>
                 );

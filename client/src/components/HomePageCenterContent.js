@@ -1,5 +1,4 @@
 import MainCenterContent from './MainCenterContent'
-import MainRightContent from './MainRightContent'
 
 export default function HomePageCenterContent({ games }) {
   return (

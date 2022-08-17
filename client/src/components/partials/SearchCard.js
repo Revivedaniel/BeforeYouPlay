@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
-import gameRating from "../../utils/gameRating";
+import { useNavigate } from "react-router-dom";
 
-export default function SearchCard({ game }) {
+export default function SearchCard({ game, setGameTitle, setGameImage }) {
+  let navigate = useNavigate();
+  const handleGameSelect = (e) => {
+    e.preventDefault();
+    setGameTitle(game.title);
+    setGameImage(game.image);
+    navigate(`/games/${game.slug}`);
+  }
   console.log(game);
   return (
     <div className="movie-item-style-2">
@@ -9,13 +15,11 @@ export default function SearchCard({ game }) {
         src={game.image}
         alt={`${game.title} cover art`}
         style={{ cursor: "pointer" }}
-        onClick={() => {
-          window.location.href = `/games/${game.slug}`;
-        }}
+        onClick={handleGameSelect}
       />
       <div className="mv-item-infor">
         <h6>
-          <a href={`/games/${game.slug}`}>
+          <a href="/" onClick={handleGameSelect}>
             {game.title} <span>({game.release_year})</span>
           </a>
         </h6>

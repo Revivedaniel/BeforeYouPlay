@@ -1,11 +1,10 @@
 // Import useEffect from React.
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PaginationStyles from "./styles/PaginationStyles";
 import { perPage } from "../config";
 
 export default function Pagination({ page, count, route }) {
-  const [firstPage, setFirstPage] = useState(page <= 1);
+  const [firstPage] = useState(page <= 1);
   useEffect(() => {
     document.title = `Games Page ${page}`;
   });
@@ -39,7 +38,7 @@ export default function Pagination({ page, count, route }) {
             </a>
           );
         })}
-        <a href="#">
+        <a href="/" onClick={function(e) { e.preventDefault();}}>
           <Link
             to={`${route || ""}/${page + 1}`}
             aria-disabled={page * perPage >= count}

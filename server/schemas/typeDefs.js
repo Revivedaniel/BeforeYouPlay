@@ -71,7 +71,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    game(slug: String!, title: String!): Game
+    game(slug: String!, title: String!, gameImage: String): Game
     games(page: Int!, perPage: Int!): Games
     searchGame(search: String!, page: Int!): Search
     getDataPointsByRating: [FreshData]
@@ -81,7 +81,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
-    addReview(game_id: ID!, title: String, stars: Int!, review_body: String!): Review
+    addReview(game_id: ID!, stars: Int!): Review
     rateDataPoint(slug: String!, title: String!, vote: Int!): FreshData
     updateDataPoint(slug: String!, title: String!, update: String!, dataType: String!): FreshData
     deleteDataPoint(slug: String!, title: String!, dataType: String!): FreshData
