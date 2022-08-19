@@ -11,6 +11,7 @@ import { QUERY_SINGLE_GAME } from "../utils/queries";
 import { useState } from "react";
 import FourOhFour from "../components/404";
 import GamepageGameTeam from "../components/Gamepage/GamepageGameTeam";
+import RelatedGames from "../components/Gamepage/RelatedGames";
 
 export default function Gamepage({ setLogin, gameTitle, gameImage }) {
   const [customDataPoints, setCustomDataPoints] = useState(null);
@@ -18,6 +19,7 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
   const [overview, setOverview] = useState(true);
   const [reviews, setReviews] = useState(false);
   const [gameTeam, setGameTeam] = useState(false);
+  const [relatedGames, setRelatedGames] = useState(false);
   const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
     variables: { slug: slug, title: gameTitle, gameImage: gameImage },
     onCompleted: (data) => {
@@ -48,18 +50,28 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
     setGameTeam(true);
     setReviews(false);
     setOverview(false);
+    setRelatedGames(false)
   };
   const handleReviews = (e) => {
     e.preventDefault();
     setReviews(true);
     setGameTeam(false);
     setOverview(false);
+    setRelatedGames(false)
   };
   const handleOverview = (e) => {
     e.preventDefault();
     setOverview(true);
     setReviews(false);
     setGameTeam(false);
+    setRelatedGames(false)
+  };
+  const handleRelatedGames = (e) => {
+    e.preventDefault();
+    setOverview(false);
+    setReviews(false);
+    setGameTeam(false);
+    setRelatedGames(true)
   };
   return (
     <>
@@ -108,17 +120,20 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                       </li>
                       {/* <li>
                         <a href="#media"> Media</a>
-                      </li>
-                      <li>
-                        <a href="#moviesrelated"> Related Movies</a>
                       </li> */}
+                      <li
+                        className={relatedGames ? "active" : ""}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <a href="/" onClick={handleRelatedGames}> Related Games</a>
+                      </li>
                     </ul>
                     <div className="tab-content">
                       {reviews ? (
                         <GamepageReviews game={game} setLogin={setLogin} />
                       ) : gameTeam ? (
                         <GamepageGameTeam game={game} />
-                      ) : (
+                      ) : relatedGames ? <RelatedGames game={game} customDataPoints={customDataPoints} />: (
                         <Gamepageoverview game={game} customDataPoints={customDataPoints} />
                       )}
                     </div>
