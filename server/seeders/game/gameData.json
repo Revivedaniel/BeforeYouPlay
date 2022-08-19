@@ -50,11 +50,7 @@
             "gameModes": [
                 "single player"
             ],
-            "timeToBeat": {
-                "low": 10,
-                "median": 15,
-                "high": 20
-            },
+            "timeToBeat": "30 Hours",
             "themes": [
                 "time",
                 "death",
@@ -128,11 +124,7 @@
                 "single player",
                 "multiplayer"
             ],
-            "timeToBeat": {
-                "low": 10,
-                "median": 11,
-                "high": 12
-            },
+            "timeToBeat": "30 Hours",
             "themes": [
                 "good vs. evil",
                 "friendship",
