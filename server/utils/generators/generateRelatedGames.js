@@ -1,3 +1,6 @@
+const axios = require("axios");
+const { Game } = require("../../models");
+
 function generateRelatedGames(openai, game) {
   return new Promise(async (resolve, reject) => {
     const capitalizedGame = game[0].toUpperCase() + game.slice(1).toLowerCase();
@@ -19,7 +22,23 @@ function generateRelatedGames(openai, game) {
       max_tokens: 2048,
     });
 
-    resolve(completion.data.choices[0].text.trim().replace(/^\s+|\s+$/g, '').split(','));
+    let relatedGames = completion.data.choices[0].text
+      .trim()
+      .replace(/^\s+|\s+$/g, "")
+      .split(",");
+
+    for (let i = 0; i < relatedGames.length; i++) {
+      let game = await Game.find({ title: relatedGames[i] });
+      if (game.length !== 0) {
+        relatedGames[i] = {
+          title: game[0].title,
+          image: game[0].image_url,
+          slug: game[0].slug,
+        };
+      }
+    }
+
+    resolve(relatedGames);
   });
 }
 module.exports = generateRelatedGames;
