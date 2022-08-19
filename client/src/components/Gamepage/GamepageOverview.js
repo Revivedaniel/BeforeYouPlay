@@ -1,9 +1,7 @@
 import gameRating from "../../utils/gameRating";
 
-export default function Gamepageoverview({
-  game,
-  customDataPoints,
-}) {
+export default function Gamepageoverview({ game, customDataPoints }) {
+  console.log(customDataPoints)
   const handleDefault = (e) => {
     e.preventDefault();
   };
@@ -11,6 +9,9 @@ export default function Gamepageoverview({
     <div id="overview" className="tab active">
       <div className="row">
         <div className="col-md-8 col-sm-12 col-xs-12">
+          <div className="title-hd-sm" style={{marginTop: "0"}}>
+            <h4>Summary</h4>
+          </div>
           <p>{game.summary}</p>
           {/* <div className="title-hd-sm">
             <h4>Videos & Photos</h4>
@@ -114,43 +115,12 @@ export default function Gamepageoverview({
               <p>... James Rhodes/ War Machine</p>
             </div>
           </div> */}
-          {/* <div className="title-hd-sm">
-            <h4>User reviews</h4>
-            <a href="#" className="time">
-              See All 56 Reviews <i className="ion-ios-arrow-right"></i>
-            </a>
+          <div className="title-hd-sm">
+            <h4>Gameplay Overview</h4>
           </div>
-          <div className="mv-user-review-item">
-            <h3>Best Marvel movie in my opinion</h3>
-            <div className="no-star">
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star"></i>
-              <i className="ion-android-star last"></i>
-            </div>
-            <p className="time">
-              17 December 2016 by <a href="#"> hawaiipierson</a>
-            </p>
-            <p>
-              This is by far one of my favorite movies from the MCU. The
-              introduction of new Characters both good and bad also makes the
-              movie more exciting. giving the characters more of a back story
-              can also help audiences relate more to different characters
-              better, and it connects a bond between the audience and actors or
-              characters. Having seen the movie three times does not bother me
-              here as it is as thrilling and exciting every time I am watching
-              it. In other words, the movie is by far better than previous
-              movies (and I do love everything Marvel), the plotting is splendid
-              they really do out do themselves in each film, there are no
-              problems watching it more than once.
-            </p>
-          </div> */}
+          { customDataPoints ? <div className="mv-user-review-item">
+            <p>{customDataPoints.gameplayOverview}</p>
+          </div> : null}
         </div>
         <div className="col-md-4 col-xs-12 col-sm-12">
           {/* <div className="sb-it">
