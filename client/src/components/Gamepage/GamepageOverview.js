@@ -87,13 +87,23 @@ export default function Gamepageoverview({ game, customDataPoints }) {
         </div>
         <div className="col-md-4 col-xs-12 col-sm-12">
           <div className="sb-it">
+            <h6>Platforms: </h6>
+            <p style={{ display: "flex", flexFlow: "column wrap" }}>
+              {game
+                ? JSON.parse(game.platforms).map((platform) => {
+                    return <span key={platform}>{platform}</span>;
+                  })
+                : null}
+            </p>
+          </div>
+          <div className="sb-it">
             <h6>Game Modes: </h6>
-            <p style={{display: "flex", flexFlow: "column wrap"}}>
-            {customDataPoints ? customDataPoints.gameModes.map((mode, i) => {
-              return (
-                <span key={i}>{mode}</span>
-              )
-            }) : null}
+            <p style={{ display: "flex", flexFlow: "column wrap" }}>
+              {customDataPoints
+                ? customDataPoints.gameModes.map((mode, i) => {
+                    return <span key={i}>{mode}</span>;
+                  })
+                : null}
             </p>
           </div>
           <div className="sb-it">
