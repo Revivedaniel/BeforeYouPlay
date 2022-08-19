@@ -1,7 +1,12 @@
 import gameRating from "../../utils/gameRating";
 
-export default function Gamepageoverview({ game }) {
-  console.log(game);
+export default function Gamepageoverview({
+  game,
+  customDataPoints,
+}) {
+  const handleDefault = (e) => {
+    e.preventDefault();
+  };
   return (
     <div id="overview" className="tab active">
       <div className="row">
@@ -179,7 +184,7 @@ export default function Gamepageoverview({ game }) {
             >
               {JSON.parse(game.genres).map((genre, i) => {
                 return (
-                  <a href="/" key={i} onClick={function(e) { e.preventDefault();}}>
+                  <a href="/" key={i} onClick={handleDefault}>
                     {genre}
                   </a>
                 );
@@ -198,26 +203,22 @@ export default function Gamepageoverview({ game }) {
             <h6>Age Rating:</h6>
             <p>{gameRating(game.age_rating)}</p>
           </div>
-          {/* <div className="sb-it">
-            <h6>Plot Keywords:</h6>
-            <p className="tags">
-              <span className="time">
-                <a href="#">superhero</a>
-              </span>
-              <span className="time">
-                <a href="#">marvel universe</a>
-              </span>
-              <span className="time">
-                <a href="#">comic</a>
-              </span>
-              <span className="time">
-                <a href="#">blockbuster</a>
-              </span>
-              <span className="time">
-                <a href="#">final battle</a>
-              </span>
-            </p>
-          </div> */}
+          <div className="sb-it">
+            <h6>Themes:</h6>
+            {customDataPoints ? (
+              <p className="tags">
+                {customDataPoints.themes.map((theme, i) => {
+                  return (
+                    <span className="time" key={i}>
+                      <a href="/" onClick={handleDefault}>
+                        {theme}
+                      </a>
+                    </span>
+                  );
+                })}
+              </p>
+            ) : null}
+          </div>
           <div className="ads">
             <img src="images/uploads/ads1.png" alt="" />
           </div>
