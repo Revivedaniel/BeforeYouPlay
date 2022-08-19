@@ -95,7 +95,7 @@ export default function Gamepageoverview({ game, customDataPoints }) {
                   key={i}
                   className="img-lightbox"
                   data-fancybox-group="gallery"
-                  href={relatedGame?.slug ? `/game/${relatedGame.slug}` : `/search/${relatedGame}`}
+                  href={relatedGame?.slug ? `/games/${relatedGame.slug}` : `/search/${relatedGame}`}
                   style={{ marginBottom: "5%", display: "flex", flexDirection: "column", alignItems: "center" }}
                 >
                   <h4>
@@ -108,15 +108,6 @@ export default function Gamepageoverview({ game, customDataPoints }) {
                 </a>
               );
             }) : null}
-            <div className="vd-it">
-              <img className="vd-img" src="images/uploads/image4.jpg" alt="" />
-              <a
-                className="fancybox-media hvr-grow"
-                href="https://www.youtube.com/embed/o-0hcF97wy0"
-              >
-                <img src="images/uploads/play-vd.png" alt="" />
-              </a>
-            </div>
           </div>
         </div>
         <div className="col-md-4 col-xs-12 col-sm-12">
