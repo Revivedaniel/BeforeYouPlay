@@ -1,7 +1,6 @@
 import gameRating from "../../utils/gameRating";
 
 export default function Gamepageoverview({ game, customDataPoints }) {
-  console.log(customDataPoints)
   const handleDefault = (e) => {
     e.preventDefault();
   };
@@ -83,32 +82,7 @@ export default function Gamepageoverview({ game, customDataPoints }) {
           { customDataPoints ? <div className="mv-user-review-item">
             <p>{customDataPoints.gameplayOverview}</p>
           </div> : null}
-          <div className="title-hd-sm">
-            <h4>Related Games</h4>
-          </div>
-          <div className="mvsingle-item ov-item">
-            { customDataPoints ? 
-            customDataPoints.relatedGames.map((relatedGame, i) => {
-              console.log(game)
-              return (
-                <a
-                  key={i}
-                  className="img-lightbox"
-                  data-fancybox-group="gallery"
-                  href={relatedGame?.slug ? `/games/${relatedGame.slug}` : `/search/${relatedGame}`}
-                  style={{ marginBottom: "5%", display: "flex", flexDirection: "column", alignItems: "center" }}
-                >
-                  <h4>
-                    {relatedGame?.title ? relatedGame.title : relatedGame}
-                  </h4>
-                  {
-                    RegExp(/^https.+/gm).test(relatedGame.image) ? <img src={relatedGame.image} alt={relatedGame.title} style={{width: "100px"}}/> : <div style={{width: "100px", height: "100px"}}></div>
-                  }
-
-                </a>
-              );
-            }) : null}
-          </div>
+          
         </div>
         <div className="col-md-4 col-xs-12 col-sm-12">
           {/* <div className="sb-it">
