@@ -8,7 +8,7 @@ export default function Gamepageoverview({ game, customDataPoints }) {
     <div id="overview" className="tab active">
       <div className="row">
         <div className="col-md-8 col-sm-12 col-xs-12">
-          <div className="title-hd-sm" style={{marginTop: "0"}}>
+          <div className="title-hd-sm" style={{ marginTop: "0" }}>
             <h4>Summary</h4>
           </div>
           <p>{game.summary}</p>
@@ -79,32 +79,27 @@ export default function Gamepageoverview({ game, customDataPoints }) {
           <div className="title-hd-sm">
             <h4>Gameplay Overview</h4>
           </div>
-          { customDataPoints ? <div className="mv-user-review-item">
-            <p>{customDataPoints.gameplayOverview}</p>
-          </div> : null}
-          
+          {customDataPoints ? (
+            <div className="mv-user-review-item">
+              <p>{customDataPoints.gameplayOverview}</p>
+            </div>
+          ) : null}
         </div>
         <div className="col-md-4 col-xs-12 col-sm-12">
-          {/* <div className="sb-it">
-            <h6>Director: </h6>
-            <p>
-            <a href="#">Joss Whedon</a>
+          <div className="sb-it">
+            <h6>Game Modes: </h6>
+            <p style={{display: "flex", flexFlow: "column wrap"}}>
+            {customDataPoints ? customDataPoints.gameModes.map((mode, i) => {
+              return (
+                <span key={i}>{mode}</span>
+              )
+            }) : null}
             </p>
-            </div>
-            <div className="sb-it">
-            <h6>Writer: </h6>
-            <p>
-            <a href="#">Joss Whedon,</a> <a href="#">Stan Lee</a>
-            </p>
-            </div>
-            <div className="sb-it">
-            <h6>Stars: </h6>
-            <p>
-            <a href="#">Robert Downey Jr,</a> <a href="#">Chris Evans,</a>{" "}
-            <a href="#">Mark Ruffalo,</a>
-            <a href="#"> Scarlett Johansson</a>
-            </p>
-          </div> */}
+          </div>
+          <div className="sb-it">
+            <h6>How Long To Beat: </h6>
+            {customDataPoints ? <p>{customDataPoints.howLongToBeat}</p> : null}
+          </div>
           <div className="sb-it">
             <h6>Genres:</h6>
             <div
