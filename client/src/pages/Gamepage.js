@@ -13,51 +13,54 @@ import FourOhFour from "../components/404";
 import GamepageGameTeam from "../components/Gamepage/GamepageGameTeam";
 
 export default function Gamepage({ setLogin, gameTitle, gameImage }) {
-  console.log(gameTitle);
-    const { slug } = useParams();
-    const [overview, setOverview] = useState(true);
-    const [reviews, setReviews] = useState(false);
-    const [gameTeam, setGameTeam] = useState(false);
-    const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
-        variables: { slug: slug, title: gameTitle, gameImage: gameImage },
-      });
-    
-      const game = data?.game;
+  const [customDataPoints, setCustomDataPoints] = useState(null);
+  const { slug } = useParams();
+  const [overview, setOverview] = useState(true);
+  const [reviews, setReviews] = useState(false);
+  const [gameTeam, setGameTeam] = useState(false);
+  const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
+    variables: { slug: slug, title: gameTitle, gameImage: gameImage },
+    onCompleted: (data) => {
+      setCustomDataPoints(JSON.parse(data.game.custom_datapoints));
+    }
+  });
 
-      console.log(game)
-    
-      if (loading) {
-        return <>
+  const game = data?.game;
+
+  if (loading) {
+    return (
+      <>
         <GamepageHero />
         <div className="page-single movie-single movie_single">
           <div className="container">
             <h3>Loading...</h3>
-            <div style={{height: "800px"}} />
+            <div style={{ height: "800px" }} />
           </div>
         </div>
-      </>;
-      } else if (game === null) {
-        return <FourOhFour />
-      }
+      </>
+    );
+  } else if (game === null) {
+    return <FourOhFour />;
+  }
 
-      const handleGameTeam = (e) => {
-        e.preventDefault();
-        setGameTeam(true);
-        setReviews(false);
-        setOverview(false);
-      }
-      const handleReviews = (e) => {
-        e.preventDefault();
-        setReviews(true);
-        setGameTeam(false);
-        setOverview(false);
-      }
-      const handleOverview = (e) => {
-        e.preventDefault();
-        setOverview(true);
-        setReviews(false);
-        setGameTeam(false);
-      }
+  const handleGameTeam = (e) => {
+    e.preventDefault();
+    setGameTeam(true);
+    setReviews(false);
+    setOverview(false);
+  };
+  const handleReviews = (e) => {
+    e.preventDefault();
+    setReviews(true);
+    setGameTeam(false);
+    setOverview(false);
+  };
+  const handleOverview = (e) => {
+    e.preventDefault();
+    setOverview(true);
+    setReviews(false);
+    setGameTeam(false);
+  };
   return (
     <>
       <GamepageHero />
@@ -65,7 +68,7 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
         <div className="container">
           <div className="row ipad-width2">
             <div className="col-md-4 col-sm-12 col-xs-12">
-              <GamepageGameCard game={game}/>
+              <GamepageGameCard game={game} />
             </div>
             <div className="col-md-8 col-sm-12 col-xs-12">
               <div className="movie-single-ct main-content">
@@ -77,14 +80,31 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                 <div className="movie-tabs">
                   <div className="tabs">
                     <ul className="tab-links tabs-mv">
-                      <li className={overview ? "active" : ""} style={{cursor: "pointer"}}>
-                        <a href="/" onClick={handleOverview}>Overview</a>
+                      <li
+                        className={overview ? "active" : ""}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <a href="/" onClick={handleOverview}>
+                          Overview
+                        </a>
                       </li>
-                      <li className={reviews ? "active" : ""} style={{cursor: "pointer"}}>
-                        <a href="/" onClick={handleReviews}> Reviews</a>
+                      <li
+                        className={reviews ? "active" : ""}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <a href="/" onClick={handleReviews}>
+                          {" "}
+                          Reviews
+                        </a>
                       </li>
-                      <li className={gameTeam ? "active" : ""} style={{cursor: "pointer"}}>
-                        <a href="/" onClick={handleGameTeam}> Credits </a>
+                      <li
+                        className={gameTeam ? "active" : ""}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <a href="/" onClick={handleGameTeam}>
+                          {" "}
+                          Credits{" "}
+                        </a>
                       </li>
                       {/* <li>
                         <a href="#media"> Media</a>
@@ -94,7 +114,13 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                       </li> */}
                     </ul>
                     <div className="tab-content">
-                      {reviews ? <GamepageReviews game={game} setLogin={setLogin}/> : gameTeam ? <GamepageGameTeam game={game} /> : <Gamepageoverview game={game}/>}
+                      {reviews ? (
+                        <GamepageReviews game={game} setLogin={setLogin} />
+                      ) : gameTeam ? (
+                        <GamepageGameTeam game={game} />
+                      ) : (
+                        <Gamepageoverview game={game} customDataPoints={customDataPoints} />
+                      )}
                     </div>
                   </div>
                 </div>
