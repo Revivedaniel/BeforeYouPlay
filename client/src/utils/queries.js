@@ -39,6 +39,7 @@ export const QUERY_SINGLE_GAME = gql`
       lazy_afternoon_videos
       lazy_afternoon_review
       vgm_link
+      needs_editing
     }
   }
 `;
