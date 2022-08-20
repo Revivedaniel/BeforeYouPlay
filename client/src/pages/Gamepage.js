@@ -12,6 +12,8 @@ import { useState } from "react";
 import FourOhFour from "../components/404";
 import GamepageGameTeam from "../components/Gamepage/GamepageGameTeam";
 import RelatedGames from "../components/Gamepage/RelatedGames";
+import auth from "../utils/auth";
+import RateData from "../components/Gamepage/RateData";
 
 export default function Gamepage({ setLogin, gameTitle, gameImage }) {
   const [customDataPoints, setCustomDataPoints] = useState(null);
@@ -20,11 +22,12 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
   const [reviews, setReviews] = useState(false);
   const [gameTeam, setGameTeam] = useState(false);
   const [relatedGames, setRelatedGames] = useState(false);
+  const [rateData, setRateData] = useState(null);
   const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
     variables: { slug: slug, title: gameTitle, gameImage: gameImage },
     onCompleted: (data) => {
       setCustomDataPoints(JSON.parse(data.game.custom_datapoints));
-    }
+    },
   });
 
   const game = data?.game;
@@ -50,31 +53,38 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
     setGameTeam(true);
     setReviews(false);
     setOverview(false);
-    setRelatedGames(false)
+    setRelatedGames(false);
   };
   const handleReviews = (e) => {
     e.preventDefault();
     setReviews(true);
     setGameTeam(false);
     setOverview(false);
-    setRelatedGames(false)
+    setRelatedGames(false);
   };
   const handleOverview = (e) => {
     e.preventDefault();
     setOverview(true);
     setReviews(false);
     setGameTeam(false);
-    setRelatedGames(false)
+    setRelatedGames(false);
   };
   const handleRelatedGames = (e) => {
     e.preventDefault();
     setOverview(false);
     setReviews(false);
     setGameTeam(false);
-    setRelatedGames(true)
+    setRelatedGames(true);
   };
+
+  const handleNeedsEditing = (e) => {
+    e.preventDefault();
+    setRateData(true);
+  }
+
   return (
     <>
+    {rateData ? <RateData /> : null}
       <GamepageHero />
       <div className="page-single movie-single movie_single">
         <div className="container">
@@ -85,7 +95,22 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
             <div className="col-md-8 col-sm-12 col-xs-12">
               <div className="movie-single-ct main-content">
                 <h1 className="bd-hd">
-                  {game.title} <span>{game.release_year}</span>
+                  {game.title} <span>{game.release_year}</span>{" "}
+                  {auth.loggedIn() ? game?.needs_editing ? (
+                    <a href="/" onClick={handleNeedsEditing}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-wrench-adjustable-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M6.705 8.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm-6.202-4.751 1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2a7.031 7.031 0 0 1-2.949-2.951ZM12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z" />
+                      </svg>
+                    </a>
+                  ): null : null}
                 </h1>
                 <GamepageShareButtons />
                 <GamepageRating />
@@ -125,7 +150,10 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                         className={relatedGames ? "active" : ""}
                         style={{ cursor: "pointer" }}
                       >
-                        <a href="/" onClick={handleRelatedGames}> Related Games</a>
+                        <a href="/" onClick={handleRelatedGames}>
+                          {" "}
+                          Related Games
+                        </a>
                       </li>
                     </ul>
                     <div className="tab-content">
@@ -133,8 +161,16 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                         <GamepageReviews game={game} setLogin={setLogin} />
                       ) : gameTeam ? (
                         <GamepageGameTeam game={game} />
-                      ) : relatedGames ? <RelatedGames game={game} customDataPoints={customDataPoints} />: (
-                        <Gamepageoverview game={game} customDataPoints={customDataPoints} />
+                      ) : relatedGames ? (
+                        <RelatedGames
+                          game={game}
+                          customDataPoints={customDataPoints}
+                        />
+                      ) : (
+                        <Gamepageoverview
+                          game={game}
+                          customDataPoints={customDataPoints}
+                        />
                       )}
                     </div>
                   </div>
