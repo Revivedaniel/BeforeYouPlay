@@ -84,7 +84,7 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
 
   return (
     <>
-    {rateData ? <RateData /> : null}
+    {rateData ? <RateData setRateData={setRateData} /> : null}
       <GamepageHero />
       <div className="page-single movie-single movie_single">
         <div className="container">
