@@ -84,7 +84,7 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
 
   return (
     <>
-    {rateData ? <RateData setRateData={setRateData} /> : null}
+    {rateData ? <RateData setRateData={setRateData} gameSlug={game.slug}/> : null}
       <GamepageHero />
       <div className="page-single movie-single movie_single">
         <div className="container">
@@ -103,7 +103,7 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                         width="16"
                         height="16"
                         fill="currentColor"
-                        class="bi bi-wrench-adjustable-circle-fill"
+                        className="bi bi-wrench-adjustable-circle-fill"
                         viewBox="0 0 16 16"
                       >
                         <path d="M6.705 8.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z" />

@@ -1,8 +1,14 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { RATE_DATAPOINT } from "../../utils/mutations";
 
-export default function RateData({ setRateData }) {
+export default function RateData({ gameSlug, setRateData }) {
   const [rating, setRating] = useState(null);
   const [info, setInfo] = useState(false);
+  const [inputs, setInputs] = useState({
+    slug: gameSlug,
+    title: ""
+  });
 
   const handleUp = (e) => {
     e.preventDefault();
@@ -19,6 +25,31 @@ export default function RateData({ setRateData }) {
   const handleLeave = (e) => {
     e.preventDefault();
     setInfo(false);
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const [rateData, { loading }] = useMutation(RATE_DATAPOINT);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await rateData({
+        variables: {
+          slug: inputs.slug,
+          title: inputs.title,
+          vote: rating,
+        }
+      });
+      setRateData(false);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -83,9 +114,9 @@ export default function RateData({ setRateData }) {
           </h3>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="row">
-              <label htmlFor="username">
+              <label htmlFor="title">
                 Datapoint:
-                <select name="pets" id="pet-select">
+                <select name="title" id="title" onChange={handleChange}>
                   <option value="">--Please choose an option--</option>
                   <option value="game title">Game Title</option>
                   <option value="sum">Summary</option>
@@ -205,8 +236,8 @@ export default function RateData({ setRateData }) {
                 </span>
               </div>
             </div>
-            <div className="row" style={{ marginTop: "20px" }}>
-              <button type="submit" aria-disabled={false}>
+            <div className="row" aria-disabled={loading} style={{ marginTop: "20px" }}>
+              <button onClick={handleSubmit} aria-disabled={false}>
                 Submit
               </button>
             </div>
