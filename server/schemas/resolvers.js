@@ -7,6 +7,7 @@ const generateGame = require("../utils/generateGame");
 const { Configuration, OpenAIApi } = require("openai");
 const createFreshData = require("../utils/createFreshData");
 const updateCustomDatapoints = require("../utils/updateCustomDatapoints");
+const filterTitle = require("../utils/filterTitle");
 
 const resolvers = {
   Query: {
@@ -49,6 +50,7 @@ const resolvers = {
             lazy_afternoon_videos: "",
             lazy_afternoon_review: "",
             vgm_link: "",
+            needs_editing: true,
           };
           //Creating the game in our database
           game = await Game.create(newGame);
@@ -187,6 +189,8 @@ const resolvers = {
         if (game.length === 0) {
           throw new Error("Game not found");
         }
+
+        title = filterTitle(title);
 
         let freshData;
         // Find the FreshData entry via game ID and title
