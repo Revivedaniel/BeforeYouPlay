@@ -23,6 +23,7 @@ const typeDefs = gql`
     lazy_afternoon_videos: String
     lazy_afternoon_review: String
     vgm_link: String
+    needs_editing: Boolean
   }
 
   type FreshData {
