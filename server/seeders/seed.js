@@ -2,6 +2,7 @@ const db = require("../config/connection");
 const seedGames = require("./game");
 const createReviews = require("./review");
 const seedUsers = require("./user");
+const seedFreshData = require("./freshData");
 
 db.once("open", async () => {
   try {
@@ -12,6 +13,8 @@ db.once("open", async () => {
     const reviews = await createReviews();
     // Games
     await seedGames(reviews);
+    // FreshData
+    await seedFreshData();
 
     console.log("all done!");
     process.exit(0);

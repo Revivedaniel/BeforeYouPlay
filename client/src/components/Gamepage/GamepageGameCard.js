@@ -1,7 +1,7 @@
 export default function GamepageGameCard({ game }) {
   return (
     <div class="movie-img sticky-sb">
-      <img src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+      <img src={game.image_url}
             alt={`${game.title} cover art`} />
       {/* <div class="movie-btn">
         <div class="btn-transform transform-vertical red">

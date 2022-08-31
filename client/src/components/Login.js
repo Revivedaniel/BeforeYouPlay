@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import { inputClasses } from "@mui/material";
 import { useState } from "react";
 import auth from "../utils/auth";
 import { LOGIN } from "../utils/mutations";
@@ -18,7 +17,7 @@ export default function Login({ setLogin }) {
     password: "",
   });
   // Creating login mutation
-  const [login, { error, loading }] = useMutation(LOGIN);
+  const [login, { loading }] = useMutation(LOGIN);
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -45,7 +44,7 @@ export default function Login({ setLogin }) {
     <div className="overlay openform" onClick={handleClose}>
       <div className="login-wrapper" id="login-content">
         <div className="login-content">
-          <a href="#" className="close">
+          <a href="/" onClick={function(e) { e.preventDefault();}} className="close">
             x
           </a>
           <h3>Login</h3>

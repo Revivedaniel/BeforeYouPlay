@@ -7,10 +7,10 @@ export const QUERY_ALL_GAMES = gql`
         _id
         title
         summary
-        cover_id
+        image_url
         release_year
         genres
-        age_rating
+        age_ratings
         slug
       }
       count
@@ -19,38 +19,43 @@ export const QUERY_ALL_GAMES = gql`
 `;
 
 export const QUERY_SINGLE_GAME = gql`
-  query singleGame($slug: String!) {
-    game(slug: $slug) {
+  query singleGame($slug: String!, $title: String!, $gameImage: String) {
+    game(slug: $slug, title: $title, gameImage: $gameImage) {
       _id
       title
       summary
-      cover_id
+      image_url
       release_year
       genres
-      age_rating
+      age_ratings
+      slug
       reviews {
         _id
-        title
         username
         stars
-        review_body
       }
+      custom_datapoints
+      platforms
+      lazy_afternoon_videos
+      lazy_afternoon_review
+      vgm_link
+      needs_editing
     }
   }
 `;
 
 export const QUERY_SEARCH_GAME = gql`
   query searchGame($search: String!, $page: Int!) {
-  searchGame(search: $search, page: $page) {
-    games {
-      title
-      release_year
-      summary
-      age_rating
-      image
-      slug
+    searchGame(search: $search, page: $page) {
+      games {
+        title
+        release_year
+        summary
+        age_ratings
+        image
+        slug
+      }
+      count
     }
-    count
   }
-}
 `;

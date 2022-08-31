@@ -6,7 +6,7 @@ import GamepageGameCard from "./GamepageReviewCard";
 
 export default function GamepageReviews({game}) {
   const [login, setLogin] = useState(false);
-  const [reviews, setReviews] = useState(game.reviews);
+  const [reviews] = useState(game.reviews);
   const [reviewModal, setReviewModal] = useState(false);
   const handleNewReview = (e) => {
     e.preventDefault();
@@ -31,6 +31,7 @@ export default function GamepageReviews({game}) {
               borderRadius: "5px",
               cursor: "pointer",
             }}
+            href="/"
           >
             Write Review
           </a>

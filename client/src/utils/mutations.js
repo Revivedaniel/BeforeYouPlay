@@ -33,14 +33,22 @@ export const LOGIN = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview($game_id: ID!, $title: String, $stars: Int!, $review_body: String!) {
-    addReview(game_id: $game_id, title: $title, stars: $stars, review_body: $review_body) {
+  mutation addReview($game_id: ID!, $stars: Int!) {
+    addReview(game_id: $game_id, stars: $stars) {
       _id
       username
       game_id
-      title
       stars
-      review_body
+    }
+  }
+`;
+
+export const RATE_DATAPOINT = gql`
+  mutation rateDataPoint($slug: String!, $title: String!, $vote: Int!) {
+    rateDataPoint(slug: $slug, title: $title, vote: $vote) {
+      up_votes
+      down_votes
+      votes_total
     }
   }
 `;

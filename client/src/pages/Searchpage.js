@@ -1,28 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GameList } from "../components/GameList";
 import Pagination from "../components/Pagination";
-import { perPage } from "../config";
-import styled from "styled-components";
-import { useLocation } from "react-router-dom";
 
 import { QUERY_SEARCH_GAME } from "../utils/queries";
 import SearchCard from "../components/partials/SearchCard";
 import FourOhFour from "../components/404.js";
 
-const SearchPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h2 {
-    font-size: 2rem;
-    margin-top: 2rem;
-  }
-`;
 
-export function Searchpage() {
-  // Get the pathname from router
-  const location = useLocation();
+export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
   // Get search and page from the pathname
   let { search, page } = useParams();
   if (page === undefined) {
@@ -105,7 +90,7 @@ export function Searchpage() {
                 route={`/search/${search}`}
               />
               {games?.map((game, i) => {
-                return <SearchCard game={game} key={i} />;
+                return <SearchCard game={game} setGameTitle={setGameTitle} setGameImage={setGameImage} key={i} />;
               })}
               {games?.length === 0 ? (
                 <h2

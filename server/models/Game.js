@@ -17,7 +17,7 @@ const gameSchema = new Schema({
         type: String,
     },
     release_year: {
-        type: Number,
+        type: String,
     },
     genres: {
         type: String,
@@ -46,6 +46,9 @@ const gameSchema = new Schema({
     vgm_link: {
         type: String
     },
+    needs_editing: {
+        type: Boolean,
+    }
 });
 
 const Game = mongoose.model('Game', gameSchema);

@@ -1,13 +1,18 @@
-export default function SliderCard({ game }) {
+export default function SliderCard({ game, setGameTitle }) {
+  const handleGameSelect = (e) => {
+    e.preventDefault();
+    setGameTitle(game.title);
+    window.location.href = `/games/${game.slug}`;
+  }
   return (
-    <a href={`/games/${game.slug}`}>
+    <a href="/" onClick={handleGameSelect}>
       <div
         className="movie-item"
         style={{ minWidth: "285px", height: "437px", cursor: "pointer" }}
       >
         <div className="mv-img">
           <img
-            src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover_id}.jpg`}
+            src={game.image_url}
             alt={`${game.title} cover art`}
             width="285"
             height="437"

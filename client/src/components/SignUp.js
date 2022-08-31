@@ -18,7 +18,7 @@ export default function Signup({ setSignUp }) {
     username: "",
   });
   // Creating addUser mutation
-  const [addUser, {error, loading}] = useMutation(ADD_USER);
+  const [addUser, {loading}] = useMutation(ADD_USER);
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
@@ -51,7 +51,7 @@ export default function Signup({ setSignUp }) {
     <div className="overlay openform" onClick={handleClose}>
       <div className="login-wrapper" id="signup-content">
         <div className="login-content">
-          <a href="#" className="close">
+          <a href="/" onClick={function(e) { e.preventDefault();}} className="close">
             x
           </a>
           <h3>sign up</h3>

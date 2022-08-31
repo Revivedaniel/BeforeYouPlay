@@ -45,26 +45,23 @@
                     "Toru Minegishi",
                     "Hajime Wakai"
                 ],
-                "themes": [
-                    "time",
-                    "death",
-                    "loss"
-                ],
-                "gameplayOverview": "The Legend of Zelda: Majora's Mask is a video game for the Nintendo 64 console. The game is set in the land of Termina, where the player controls the protagonist, Link. Link must stop the moon from crashing into the planet by using the Ocarina of Time to travel back in time. The game features a three-day cycle, in which Link must complete tasks and solve puzzles. The game also features a number of side quests, which are not required to complete the game, but can provide rewards.",
-                "relatedGames": [
-                    "The Legend of Zelda: Ocarina of Time",
-                    "The Legend of Zelda: The Wind Waker",
-                    "The Legend of Zelda: Twilight Princess"
-                ],
-                "gameModes": [
-                    "single player"
-                ],
-                "timeToBeat": {
-                    "low": 10,
-                    "median": 15,
-                    "high": 20
-                }
-            }
+                "publisher": "Nintendo"
+            },
+            "gameModes": [
+                "single player"
+            ],
+            "timeToBeat": "30 Hours",
+            "themes": [
+                "time",
+                "death",
+                "loss"
+            ],
+            "gameplayOverview": "The Legend of Zelda: Majora's Mask is a video game for the Nintendo 64 console. The game is set in the land of Termina, where the player controls the protagonist, Link. Link must stop the moon from crashing into the planet by using the Ocarina of Time to travel back in time. The game features a three-day cycle, in which Link must complete tasks and solve puzzles. The game also features a number of side quests, which are not required to complete the game, but can provide rewards.",
+            "relatedGames": [
+                "The Legend of Zelda: Ocarina of Time",
+                "The Legend of Zelda: The Wind Waker",
+                "The Legend of Zelda: Twilight Princess"
+            ]
         },
         "platforms": [
             "Nintendo 64"
@@ -121,32 +118,29 @@
                 "composers": [
                     "Yasuaki Fujita"
                 ],
-                "themes": [
-                    "good vs. evil",
-                    "friendship",
-                    "teamwork"
-                ],
-                "gameplayOverview": "In the Mega Man Battle Network video game, players take control of the titular character Mega Man as he navigates a 3D world. The game is played from an isometric perspective, and Mega Man can move freely around the environment. Mega Man can interact with various objects in the environment, and he can also battle enemies using his 'Battle Chips'. Battle Chips are special items that can be used in battle to give Mega Man an advantage. When battling enemies, players must use strategy and timing to defeat them.",
-                "relatedGames": [
-                    "Mega Man Zero",
-                    "Mega Man ZX",
-                    "Mega Man Legends",
-                    "Mega Man Battle Network 2",
-                    "Mega Man Battle Network 3",
-                    "Mega Man Battle Network 4",
-                    "Mega Man Battle Network 5",
-                    "Mega Man Battle Network 6"
-                ],
-                "gameModes": [
-                    "single player",
-                    "multiplayer"
-                ],
-                "timeToBeat": {
-                    "low": 10,
-                    "median": 11,
-                    "high": 12
-                }
-            }
+                "publisher": "Capcom"
+            },
+            "gameModes": [
+                "single player",
+                "multiplayer"
+            ],
+            "timeToBeat": "30 Hours",
+            "themes": [
+                "good vs. evil",
+                "friendship",
+                "teamwork"
+            ],
+            "gameplayOverview": "In the Mega Man Battle Network video game, players take control of the titular character Mega Man as he navigates a 3D world. The game is played from an isometric perspective, and Mega Man can move freely around the environment. Mega Man can interact with various objects in the environment, and he can also battle enemies using his 'Battle Chips'. Battle Chips are special items that can be used in battle to give Mega Man an advantage. When battling enemies, players must use strategy and timing to defeat them.",
+            "relatedGames": [
+                "Mega Man Zero",
+                "Mega Man ZX",
+                "Mega Man Legends",
+                "Mega Man Battle Network 2",
+                "Mega Man Battle Network 3",
+                "Mega Man Battle Network 4",
+                "Mega Man Battle Network 5",
+                "Mega Man Battle Network 6"
+            ]
         },
         "platforms": [
             "Game Boy Advance",

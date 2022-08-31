@@ -20,7 +20,7 @@ export default function MainCenterContent({ games }) {
               <div className="slick-multiItem" style={{flexWrap: "wrap", flexDirection: "row"}}>
                 {games.map((game, i) => {
                   if(i < 4) {
-                    return;
+                    return null;
                   } else {
                     return <SmallSliderCard game={game} key={i}/>;
                   }

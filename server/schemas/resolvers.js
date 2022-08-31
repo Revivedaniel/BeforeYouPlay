@@ -1,8 +1,13 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Game } = require("../models");
+const { User, Game, FreshData } = require("../models");
 const axios = require("axios");
 const { signToken } = require("../utils/auth");
 const Review = require("../models/Review");
+const generateGame = require("../utils/generateGame");
+const { Configuration, OpenAIApi } = require("openai");
+const createFreshData = require("../utils/createFreshData");
+const updateCustomDatapoints = require("../utils/updateCustomDatapoints");
+const filterTitle = require("../utils/filterTitle");
 
 const resolvers = {
   Query: {
@@ -15,68 +20,41 @@ const resolvers = {
 
       throw new AuthenticationError("Please, log in first!");
     },
-    game: async (parent, { slug }) => {
+    game: async (parent, { slug, title, gameImage = "" }) => {
       try {
         //This will return an array so we return game[0] for the first entry
         let game = await Game.find({ slug: slug });
         //If there is no game with that slug, search IGDB
         if (game.length === 0) {
-          let response = await axios({
-            url: "https://api.igdb.com/v4/games",
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Client-ID": `${process.env.client_id}`,
-              Authorization: `Bearer ${process.env.token}`,
-            },
-            data: `fields age_ratings.rating,age_ratings.category, cover.image_id, genres.name, name, slug, summary, release_dates.y; where slug = "${slug}";`,
+          // initialize openai
+          const configuration = new Configuration({
+            apiKey: process.env.OPENAI_API_KEY,
           });
-          const gameData = response.data[0];
-          if (gameData.release_dates) {
-            // if there is a release date, get the first entries year
-            gameData.release_date = gameData.release_dates[0].y;
-          } else {
-            // if there there is no release date, set it to -1
-            gameData.release_date = -1;
-          }
-          let genres;
-          if (gameData.genres) {
-            // If there are genres, map through and return the name of the genre
-            genres = gameData.genres.map((genreObj) => {
-              return genreObj.name;
-            });
-          } else {
-            // If there are no genres, set it to no genres
-            genres = ["No Genres"];
-          }
-          // age_rating is the ESRB rating name
-          if (gameData.age_ratings) {
-            gameData.age_rating = parseInt(
-              gameData.age_ratings.filter((ageObj) => ageObj.category === 1)[0]
-                .rating
-            );
-          } else {
-            gameData.age_rating = -1;
-          }
+          const openai = new OpenAIApi(configuration);
 
-          if (!gameData.cover) {
-            gameData.cover = {
-              id: -1,
-            };
-          }
+          // generate the gamedata
+          const gameData = await generateGame(openai, title);
 
           // New game for mongoose
           let newGame = {
-            title: gameData.name,
-            summary: gameData.summary,
-            cover_id: gameData.cover.image_id,
-            release_year: gameData.release_date,
-            genres: JSON.stringify(genres),
-            age_rating: gameData.age_rating,
-            slug: gameData.slug,
+            title,
+            summary: gameData.overview,
+            image_url: gameImage,
+            release_year: gameData.releaseDate,
+            genres: gameData.genres,
+            age_ratings: gameData.ageRatings,
+            slug,
+            reviews: [],
+            custom_datapoints: gameData.customDataPoints,
+            platforms: gameData.platforms,
+            lazy_afternoon_videos: "",
+            lazy_afternoon_review: "",
+            vgm_link: "",
+            needs_editing: true,
           };
           //Creating the game in our database
           game = await Game.create(newGame);
+          createFreshData(game);
           //Returning the new game
           return game;
         } else {
@@ -115,13 +93,13 @@ const resolvers = {
         let count = response.data.number_of_total_results;
         // for all the games, include image, title, description, rating, releasedate, and genres
         let gameData = games.map((game) => {
-
           let gameRating;
           game?.original_game_rating
             ? (gameRating = game.original_game_rating[0].name)
             : (gameRating = "No Rating");
 
-            let releaseYear = game?.original_release_date?.split("-")[0] || "No Release Date";
+          let releaseYear =
+            game?.original_release_date?.split("-")[0] || "No Release Date";
 
           const output = {
             title: game?.name || "",
@@ -140,6 +118,17 @@ const resolvers = {
         console.log(error);
       }
     },
+    getDataPointsByRating: async () => {
+      // TODO: Make this query admin only
+      // TODO: Add pagination
+      try {
+        // find all datapoints and sort them from lowest to highest votes_total
+        let dataPoints = await FreshData.find({}).sort({ votes_total: 1 });
+        return dataPoints;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -178,23 +167,166 @@ const resolvers = {
 
       return { token, user };
     },
-    addReview: async (
-      parent,
-      { game_id, stars, review_body, title },
-      context
-    ) => {
+    addReview: async (parent, { game_id, stars }, context) => {
       if (context.user) {
         const review = new Review({
           username: context.user.username,
           game_id,
-          title,
           stars,
-          review_body,
         });
 
         await Game.findByIdAndUpdate(game_id, { $push: { reviews: review } });
 
         return review;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    rateDataPoint: async (parent, { slug, title, vote }, context) => {
+      if (context.user) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        title = filterTitle(title);
+
+        let freshData;
+        // Find the FreshData entry via game ID and title
+        // if the vote is positive, add 1 to the positive count
+        if (vote > 0) {
+          freshData = await FreshData.findOneAndUpdate(
+            {
+              game_id: game[0]._id,
+              data_title: title,
+            },
+            { $inc: { up_votes: 1, votes_total: 1 } },
+            { new: true }
+          );
+        }
+        // Find the FreshData entry via game ID and title
+        // if the vote is negative, add 1 to the negative count and subtract 1 from votes_total
+        if (vote < 0) {
+          freshData = await FreshData.findOneAndUpdate(
+            {
+              game_id: game[0]._id,
+              data_title: title,
+            },
+            { $inc: { down_votes: 1, votes_total: -1 } },
+            { new: true }
+          );
+        }
+        // Find the FreshData entry via game ID and title
+        // if the vote is zero, null, or NaN, throw error for invalid vote
+        if (vote === 0 || vote === null || isNaN(vote)) {
+          throw new Error("Invalid vote");
+        }
+        // Return the freshData entry
+        return freshData;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    updateDataPoint: async (
+      parent,
+      { slug, title, update, dataType },
+      context
+    ) => {
+      // TODO: make this resolver only accessable for admins
+
+      if (context.user) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        // Find the FreshData entry via game ID and title
+        // Update the data field
+        // change manually_typed to true
+        // add 1 to admin_approvals
+        if (typeof update !== "string") {
+          throw new Error("Invalid update");
+        }
+        let freshData = await FreshData.findOneAndUpdate(
+          {
+            game_id: game[0]._id,
+            data_title: title,
+          },
+          {
+            $set: { data: update, manually_typed: true },
+            $inc: { admin_approvals: 1 },
+          },
+          { new: true }
+        );
+
+        // if the dataType is Custom, add the data to the custom_datapoints field
+        if (dataType === "Custom" || dataType === "GameTeam") {
+          const updatedCustomDatapoints = updateCustomDatapoints(
+            game[0].custom_datapoints,
+            title,
+            update,
+            dataType
+          );
+          await Game.findByIdAndUpdate(game[0]._id, {
+            $set: { custom_datapoints: updatedCustomDatapoints },
+          });
+        } else {
+          // if the dataType is Standard, add the data to the game using title as the field name and update as the value
+          await Game.findByIdAndUpdate(game[0]._id, { [title]: update });
+        }
+        // Return the freshData entry
+        return freshData;
+      }
+
+      throw new AuthenticationError("Please, log in first!");
+    },
+    deleteDataPoint: async (
+      parent,
+      { slug, title, dataType },
+      context
+    ) => {
+      // TODO: make this resolver only accessable for admins
+
+      if (context.user) {
+        // Find the game via the slug
+        let game = await Game.find({ slug: slug });
+        if (game.length === 0) {
+          throw new Error("Game not found");
+        }
+
+        // Find the FreshData entry via game ID and title
+        // Update the data field to be null
+        let freshData = await FreshData.findOneAndUpdate(
+          {
+            game_id: game[0]._id,
+            data_title: title,
+          },
+          {
+            $set: { data: null, manually_typed: true },
+            $inc: { admin_approvals: 1 },
+          },
+          { new: true }
+        );
+
+        // if the dataType is Custom, add the data to the custom_datapoints field
+        if (dataType === "Custom" || dataType === "GameTeam") {
+          const updatedCustomDatapoints = updateCustomDatapoints(
+            game[0].custom_datapoints,
+            title,
+            null,
+            dataType
+          );
+          await Game.findByIdAndUpdate(game[0]._id, {
+            $set: { custom_datapoints: updatedCustomDatapoints },
+          });
+        } else {
+          // if the dataType is Standard, add the data to the game using title as the field name and update as the value
+          await Game.findByIdAndUpdate(game[0]._id, { [title]: null });
+        }
+        // Return the freshData entry
+        return freshData;
       }
 
       throw new AuthenticationError("Please, log in first!");

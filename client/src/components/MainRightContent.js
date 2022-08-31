@@ -8,34 +8,34 @@ export default function MainRightContent() {
                 <div className="celebrities">
                   <h4 className="sb-title">Spotlight Celebrities</h4>
                   <div className="celeb-item">
-                    <a href="#"><img src="images/uploads/ava1.jpg" alt="" width="70" height="70" /></a>
+                    <a href="/" onClick={function(e) { e.preventDefault();}}><img src="images/uploads/ava1.jpg" alt="" width="70" height="70" /></a>
                     <div className="celeb-author">
-                      <h6><a href="#">Samuel N. Jack</a></h6>
+                      <h6><a href="/" onClick={function(e) { e.preventDefault();}}>Samuel N. Jack</a></h6>
                       <span>Actor</span>
                     </div>
                   </div>
                   <div className="celeb-item">
-                    <a href="#"><img src="images/uploads/ava2.jpg" alt="" width="70" height="70" /></a>
+                    <a href="/" onClick={function(e) { e.preventDefault();}}><img src="images/uploads/ava2.jpg" alt="" width="70" height="70" /></a>
                     <div className="celeb-author">
-                      <h6><a href="#">Benjamin Carroll</a></h6>
+                      <h6><a href="/" onClick={function(e) { e.preventDefault();}}>Benjamin Carroll</a></h6>
                       <span>Actor</span>
                     </div>
                   </div>
                   <div className="celeb-item">
-                    <a href="#"><img src="images/uploads/ava3.jpg" alt="" width="70" height="70" /></a>
+                    <a href="/" onClick={function(e) { e.preventDefault();}}><img src="images/uploads/ava3.jpg" alt="" width="70" height="70" /></a>
                     <div className="celeb-author">
-                      <h6><a href="#">Beverly Griffin</a></h6>
+                      <h6><a href="/" onClick={function(e) { e.preventDefault();}}>Beverly Griffin</a></h6>
                       <span>Actor</span>
                     </div>
                   </div>
                   <div className="celeb-item">
-                    <a href="#"><img src="images/uploads/ava4.jpg" alt="" width="70" height="70" /></a>
+                    <a href="/" onClick={function(e) { e.preventDefault();}}><img src="images/uploads/ava4.jpg" alt="" width="70" height="70" /></a>
                     <div className="celeb-author">
-                      <h6><a href="#">Justin Weaver</a></h6>
+                      <h6><a href="/" onClick={function(e) { e.preventDefault();}}>Justin Weaver</a></h6>
                       <span>Actor</span>
                     </div>
                   </div>
-                  <a href="#" className="btn">See all celebrities<i className="ion-ios-arrow-right"></i></a>
+                  <a href="/" onClick={function(e) { e.preventDefault();}} className="btn">See all celebrities<i className="ion-ios-arrow-right"></i></a>
                 </div>
               </div>
             </div>
