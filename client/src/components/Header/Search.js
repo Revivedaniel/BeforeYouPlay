@@ -18,9 +18,9 @@ export default function Search() {
 
   return (
     <div className="top-search">
-      <select>
+      {/* <select>
         <option value="united">Video Games</option>
-      </select>
+      </select> */}
       <input
         type="search"
         value={search}
