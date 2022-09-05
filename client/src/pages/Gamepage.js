@@ -112,8 +112,13 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                     </a>
                   ): null : null}
                 </h1>
-                <GamepageShareButtons />
-                <GamepageRating />
+                {window.innerWidth > 991 ? (
+                  <GamepageShareButtons />
+                  ) : null}
+                {window.innerWidth > 991 ? (
+                  <GamepageRating />
+                  ) : null}
+                
                 <div className="movie-tabs">
                   <div className="tabs">
                     <ul className="tab-links tabs-mv" id="relatedGamesList" style={{display: "flex"}}>
