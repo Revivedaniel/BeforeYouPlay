@@ -14,6 +14,7 @@ import GamepageGameTeam from "../components/Gamepage/GamepageGameTeam";
 import RelatedGames from "../components/Gamepage/RelatedGames";
 import auth from "../utils/auth";
 import RateData from "../components/Gamepage/RateData";
+import { Box, CircularProgress } from "@mui/material";
 
 export default function Gamepage({ setLogin, gameTitle, gameImage }) {
   const [customDataPoints, setCustomDataPoints] = useState(null);
@@ -38,7 +39,9 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
         <GamepageHero />
         <div className="page-single movie-single movie_single">
           <div className="container">
-            <h3>Loading...</h3>
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
             <div style={{ height: "800px" }} />
           </div>
         </div>
@@ -112,11 +115,16 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                     </a>
                   ): null : null}
                 </h1>
-                <GamepageShareButtons />
-                <GamepageRating />
+                {window.innerWidth > 991 ? (
+                  <GamepageShareButtons />
+                  ) : null}
+                {window.innerWidth > 991 ? (
+                  <GamepageRating />
+                  ) : null}
+                
                 <div className="movie-tabs">
                   <div className="tabs">
-                    <ul className="tab-links tabs-mv">
+                    <ul className="tab-links tabs-mv" id="relatedGamesList" style={{display: "flex"}}>
                       <li
                         className={overview ? "active" : ""}
                         style={{ cursor: "pointer" }}
