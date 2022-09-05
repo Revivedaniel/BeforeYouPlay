@@ -47,7 +47,7 @@ const resolvers = {
             reviews: [],
             custom_datapoints: gameData.customDataPoints,
             platforms: gameData.platforms,
-            lazy_afternoon_videos: "",
+            lazy_afternoon_videos: JSON.stringify([]),
             lazy_afternoon_review: "",
             vgm_link: "",
             needs_editing: true,
@@ -114,17 +114,6 @@ const resolvers = {
         });
 
         return { games: gameData, count };
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    getDataPointsByRating: async () => {
-      // TODO: Make this query admin only
-      // TODO: Add pagination
-      try {
-        // find all datapoints and sort them from lowest to highest votes_total
-        let dataPoints = await FreshData.find({}).sort({ votes_total: 1 });
-        return dataPoints;
       } catch (error) {
         console.log(error);
       }
