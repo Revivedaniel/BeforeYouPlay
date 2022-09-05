@@ -16,7 +16,7 @@ export default function RelatedGames({ game, customDataPoints }) {
                   style={{ marginBottom: "5%", display: "flex", flexDirection: "column", alignItems: "center" }}
                   >
                 {
-                  RegExp(/^https.+/gm).test(relatedGame.image) ? <img src={relatedGame.image} alt={relatedGame.title} style={{width: "100px"}}/> : <div style={{width: "100px", height: "100px", marginRight: "30px"}}></div>
+                  RegExp(/^https.+/gm).test(relatedGame.image) ? <img src={relatedGame.image} alt={relatedGame.title} style={{width: "100px"}}/> : <img src="https://placekitten.com/100/130" alt={relatedGame.title} style={{width: "100px"}}/>
                 }
                 </a>
               <div class="mv-item-infor">
