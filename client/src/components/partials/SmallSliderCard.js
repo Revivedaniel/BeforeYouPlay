@@ -7,19 +7,19 @@ export default function SmallSliderCard({ game }) {
       style={{ width: "162px", margin: "0 1% 2%", height: "216px" }}
     >
       <div className="movie-item" style={{ width: "162px", height: "216px" }}>
-        <div className="mv-img">
-          <img
-            src={game.image_url}
-            alt={`${game.title} cover art`}
-            width="162"
-            height="216"
-          />
-        </div>
         <Link
           to={{
             pathname: `/games/${game.slug}`,
           }}
         >
+          <div className="mv-img">
+            <img
+              src={game.image_url}
+              alt={`${game.title} cover art`}
+              width="162"
+              height="216"
+            />
+          </div>
           <div className="hvr-inner">
             <p>
               {" "}

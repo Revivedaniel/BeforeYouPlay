@@ -11,8 +11,9 @@ export const homepageProps = {
   slidesPerView: "auto",
   spaceBetween: 30,
   freeMode: true,
+  navigation: true,
   loop: true,
-  modules: [FreeMode],
+  modules: [FreeMode, Navigation],
   breakpoints: {
     // when window width is >= 320px
     320: {
@@ -26,7 +27,9 @@ export const homepageProps = {
     },
     // when window width is >= 640px
     640: {
+      freeMode: true,
       spaceBetween: 40
     }
-  }
+  },
+  updateOnWindowResize: true,
 };
