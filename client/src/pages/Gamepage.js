@@ -116,7 +116,7 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
                 <GamepageRating />
                 <div className="movie-tabs">
                   <div className="tabs">
-                    <ul className="tab-links tabs-mv">
+                    <ul className="tab-links tabs-mv" id="relatedGamesList" style={{display: "flex"}}>
                       <li
                         className={overview ? "active" : ""}
                         style={{ cursor: "pointer" }}
