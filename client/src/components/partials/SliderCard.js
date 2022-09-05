@@ -8,7 +8,8 @@ export default function SliderCard({ game, setGameTitle }) {
     <a href="/" onClick={handleGameSelect}>
       <div
         className="movie-item"
-        style={{ minWidth: "285px", height: "437px", cursor: "pointer" }}
+        // style={{ minWidth: "285px", height: "437px", cursor: "pointer", margin: "0" }}
+        style={{ minWidth: "285px", cursor: "pointer", margin: "0" }}
       >
         <div className="mv-img">
           <img
@@ -16,7 +17,8 @@ export default function SliderCard({ game, setGameTitle }) {
             alt={`${game.title} cover art`}
             width="285"
             height="437"
-            style={{ width: "285px", height: "437px" }}
+            // style={{ width: "285px", height: "437px" }}
+            style={{ width: "285px" }}
           />
         </div>
         <div className="title-in">

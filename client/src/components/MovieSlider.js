@@ -1,7 +1,12 @@
 import SliderCard from "./partials/SliderCard";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { homepageProps } from "../sliderProps";
+
+// Import Swiper styles
+import "swiper/swiper-bundle.css";
+
 export default function MovieSlider({ games, setGameTitle }) {
-  
   return (
     <div className="slider movie-items">
       <div className="container">
@@ -21,14 +26,32 @@ export default function MovieSlider({ games, setGameTitle }) {
               <i className="ion-social-youtube"></i>
             </a>
           </div> */}
-          <div className="slick-multiItemSlider" style={{ display: "flex" }}>
+          {/* <div className="slick-multiItemSlider" style={{ display: "flex" }}>
             {games.map((game, i) => {
               if (i < 4) {
                 return <SliderCard game={game} setGameTitle={setGameTitle} key={game._id} />;
               }
               return null;
             })}
-          </div>
+          </div> */}
+          <Swiper
+          { ...homepageProps }
+            className="mySwiper"
+          >
+            {games.map((game, i) => {
+              if (i < 10) {
+                return (
+                <SwiperSlide style={{width: "fit-content"}}>
+                  <SliderCard
+                    game={game}
+                    setGameTitle={setGameTitle}
+                    key={game._id}
+                  />
+                </SwiperSlide>);
+              }
+              return null;
+            })}
+          </Swiper>
         </div>
       </div>
     </div>
