@@ -14,14 +14,14 @@ export default function RelatedGames({ game, customDataPoints }) {
                   className="img-lightbox"
                   href={relatedGame?.slug ? `/games/${relatedGame.slug}` : `/search/${relatedGame}`}
                   style={{ marginBottom: "5%", display: "flex", flexDirection: "column", alignItems: "center" }}
-                >
+                  >
                 {
-                    RegExp(/^https.+/gm).test(relatedGame.image) ? <img src={relatedGame.image} alt={relatedGame.title} style={{width: "100px"}}/> : <div style={{width: "100px", height: "100px", marginRight: "30px"}}></div>
+                  RegExp(/^https.+/gm).test(relatedGame.image) ? <img src={relatedGame.image} alt={relatedGame.title} style={{width: "100px"}}/> : <div style={{width: "100px", height: "100px", marginRight: "30px"}}></div>
                 }
                 </a>
               <div class="mv-item-infor">
                 <h6>
-                  <a href="/" onClick={(e) => e.preventDefault()}>
+                  <a href={relatedGame?.slug ? `/games/${relatedGame.slug}` : `/search/${relatedGame}`}>
                   {relatedGame?.title ? relatedGame.title : relatedGame}
                   </a>
                 </h6>   
