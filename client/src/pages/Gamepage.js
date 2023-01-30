@@ -39,8 +39,12 @@ export default function Gamepage({ setLogin, gameTitle, gameImage }) {
         <GamepageHero />
         <div className="page-single movie-single movie_single">
           <div className="container">
-            <Box sx={{ display: "flex" }}>
-              <CircularProgress />
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <div style={{zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <h2 style={{color: "var(--primary-font-color)"}}>Congratulations! You found a new game!</h2>
+                <h2 style={{color: "var(--primary-font-color)"}}>The data for {gameTitle} is being generated. Please wait...</h2>
+                <CircularProgress />
+              </div>
             </Box>
             <div style={{ height: "800px" }} />
           </div>

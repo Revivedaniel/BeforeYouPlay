@@ -66,8 +66,7 @@ const resolvers = {
     },
     games: async (parent, { page, perPage }) => {
       try {
-        // let games = await Game.find({}).sort({ reviews: -1 }).limit(34);
-        let games = await Game.find({});
+        let games = await Game.find({}).sort({ _id: -1 }).limit(34);
         let count = await Game.countDocuments();
 
         return { games, count };
