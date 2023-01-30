@@ -4044,7 +4044,7 @@ ul {
 .bd-hd span {
   font-family: 'Dosis', sans-serif;
   font-size: 24px;
-  color: #4f5b68;
+  color: var(--cta-dark);
   font-weight: 300;
   text-transform: uppercase;
 }
@@ -6271,6 +6271,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  color: var(--cta-dark);
 }
 .movie-single .movie-single-ct .mvcast-item .cast-it .cast-left h4 {
   font-family: 'Dosis', sans-serif;

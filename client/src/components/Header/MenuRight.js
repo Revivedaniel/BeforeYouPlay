@@ -6,6 +6,10 @@ export default function MenuRight({ setLogin, setSignUp }) {
     e.preventDefault();
     setLogin(true);
   };
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    setSignUp(true);
+  };
   return (
     <ul className="nav navbar-nav flex-child-menu menu-right">
       {/* <li className="dropdown first">
@@ -32,19 +36,36 @@ export default function MenuRight({ setLogin, setSignUp }) {
         <a href="#">Help</a>
       </li> */}
       {!Auth.loggedIn() ? (
-        <li>
-          <a href="/" className="loginLink" onClick={handleLogin}>
-            Login
-          </a>
-        </li>
+        <>
+          <li className="btn" >
+            <a href="/" className="loginLink" onClick={handleLogin} style={{
+                position: "relative",
+                display: "block",
+                padding: "10px 15px",
+                color: "var(--cta-dark)",
+                backgroundColor: "var(--primary-dark)"
+              }}>
+              Login
+            </a>
+          </li>
+          <li className="btn signupLink">
+            <a href="/" onClick={handleSignUp} style={{
+                position: "relative",
+                display: "block",
+                padding: "10px 15px",
+                color: "var(--primary-dark)"
+              }}>sign up</a>
+          </li>
+        </>
       ) : (
         <div>
-          <li>
+          <li className="btn signupLink">
             <Link
               style={{
                 position: "relative",
                 display: "block",
                 padding: "10px 15px",
+                color: "var(--primary-dark)"
               }}
               id="logout"
               to="/"
@@ -55,9 +76,6 @@ export default function MenuRight({ setLogin, setSignUp }) {
           </li>
         </div>
       )}
-      <li className="btn signupLink">
-        <a href="/" onClick={setSignUp}>sign up</a>
-      </li>
     </ul>
   );
 }

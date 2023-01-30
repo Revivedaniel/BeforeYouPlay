@@ -4,8 +4,7 @@ export default function GamepageGameTeam({ game }) {
   return (
     <div id="cast" classname="tab cast">
       <div class="row">
-        <h3>Credits for</h3>
-        <h2>{game.title}</h2>
+        <h3 style={{color: "var(--primary-font-color)"}}>Credits for {game.title}</h3>
         {Object.entries(gameTeam).map(([key, value]) => {
           let multiple = false;
           if (typeof value == "object") {
@@ -14,7 +13,7 @@ export default function GamepageGameTeam({ game }) {
           return (
             <>
               <div class="title-hd-sm">
-                <h4>{key}</h4>
+                <h4 style={{color: "var(--primary-font-color)"}}>{key}</h4>
               </div>
               {multiple ? (
                 value.map((member, i) => {
@@ -24,7 +23,7 @@ export default function GamepageGameTeam({ game }) {
                       <div class="mvcast-item">
                         <div class="cast-it">
                           <div class="cast-left">
-                            <a href="/">{member}</a>
+                          {member}
                           </div>
                           <p>... {key} Team</p>
                         </div>
@@ -36,7 +35,7 @@ export default function GamepageGameTeam({ game }) {
                 <div class="mvcast-item">
                   <div class="cast-it">
                     <div class="cast-left">
-                      <a href="/">{value}</a>
+                    {value}
                     </div>
                     <p>... {key} Team</p>
                   </div>
