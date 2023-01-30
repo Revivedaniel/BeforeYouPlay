@@ -15,7 +15,7 @@
 <h1 align="center">Before You Play</h1>
 
   <p align="center">
-    Before You Play was built from the need for pertinent information about a video game. Have you ever wondered, How long does the main story of [insert game title] take to finish? What are real players saying about this game? Well now we have an answer through Before You Play.
+    I built Before You Play from an idea I had to provide a spoiler free look into a Video Game before you play it. I wanted to know the themes, game play style and how long It takes to beat the game. These data points plus more are available for any video game you can think of on Before You Play! This solution leverages AI to generate data for its database and has a data point rating system. The DPRS (Data Point Rating System) allows users to rate the data on a game's page. Every piece of data you see on the game page has it's own rating in the backend. As users downvote and upvote data, the admins will be able to make manual changes to the data point to make them more accurate. Eventually having all the data for a video game be completely accurate and up to date.
     <br />
     <br />
     <a href="#demo">View Demo</a>
@@ -45,12 +45,10 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -59,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Before You Play Screen Shot](./images/homePageScreenShot.PNG)](https://beforeyouplay.herokuapp.com/)
+[![Before You Play Screen Shot](./images/homePageScreenShotV0.5.PNG)](https://beforeyouplay.herokuapp.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -75,12 +73,13 @@
 * [Apollo](https://www.apollographql.com/)
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
 * [Axios](https://www.npmjs.com/package/axios)
+* [OpenAI](https://openai.com/)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Demo
-![DemoVideo](./images/BeforeYouPlayDemo.gif)
+![DemoVideo](./images/BeforeYouPlayDemoV0.5.gif)
 
 
 
@@ -123,9 +122,9 @@ npm and Node.js are required to run a local copy of this project.
 <!-- ROADMAP -->
 ## Roadmap
 
-- [] Lots of style cleanup
-- [] Bug catching and cleaning
-- [] User profiles
+- Completely overhault styling.
+- Update auth
+- Continue making AI data more accurate 
 
 See the [open issues](https://github.com/Revivedaniel/BeforeYouPlay/issues) for a full list of proposed features (and known issues).
 
@@ -163,9 +162,9 @@ Distributed under the GPL-2.0 License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Daniel Stark - daniel@danielstark.dev
+Daniel Stark - contact@danielstark.dev
 
-Project Link: [https://github.com/Revivedaniel/BeforeYouPlay](https://github.com/Revivedaniel/BeforeYouPlay)
+<!-- Project Link: [https://github.com/Revivedaniel/BeforeYouPlay](https://github.com/Revivedaniel/BeforeYouPlay) -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
