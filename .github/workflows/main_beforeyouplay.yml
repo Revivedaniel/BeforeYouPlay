@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'BeforeYouPlay'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5F51A067932E4AABA947CF9BCDCFCE4B }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PACKAGE_PATH }}
           package: .
