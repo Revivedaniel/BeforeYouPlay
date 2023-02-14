@@ -14,7 +14,6 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         let user = await User.findById(context.user._id);
-
         return user;
       }
 
@@ -22,20 +21,18 @@ const resolvers = {
     },
     game: async (parent, { slug, title, gameImage = "" }) => {
       try {
-        //This will return an array so we return game[0] for the first entry
         let game = await Game.find({ slug: slug });
-        //If there is no game with that slug, search IGDB
+        
+        // If the game does not exist in the DB, generate it with OpenAI
         if (game.length === 0) {
-          // initialize openai
           const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY,
           });
+
           const openai = new OpenAIApi(configuration);
 
-          // generate the gamedata
           const gameData = await generateGame(openai, title);
 
-          // New game for mongoose
           let newGame = {
             title,
             summary: gameData.overview,
@@ -52,10 +49,10 @@ const resolvers = {
             vgm_link: "",
             needs_editing: true,
           };
-          //Creating the game in our database
+
           game = await Game.create(newGame);
+          
           createFreshData(game);
-          //Returning the new game
           return game;
         } else {
           return game[0];
