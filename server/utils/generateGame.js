@@ -69,7 +69,7 @@ function generateGame(openai, game) {
       releaseDate,
       ageRatings,
       customDataPoints: JSON.stringify({
-        gameTeam: {
+        gameTeam: JSON.stringify({
           developer,
           directors,
           producers,
@@ -78,7 +78,7 @@ function generateGame(openai, game) {
           artists,
           composers,
           publisher,
-        },
+        }),
         gameModes,
         howLongToBeat,
         themes,
