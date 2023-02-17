@@ -1,5 +1,5 @@
 export default function GamepageGameTeam({ game }) {
-  const gameTeam = JSON.parse(game.custom_datapoints).gameTeam;
+  const gameTeam = JSON.parse(JSON.parse(game.custom_datapoints).gameTeam);
 
   return (
     <div id="cast" classname="tab cast">
@@ -17,10 +17,8 @@ export default function GamepageGameTeam({ game }) {
               </div>
               {multiple ? (
                 value.map((member, i) => {
-                  console.log(member);
                   return (
-                    <>
-                      <div class="mvcast-item">
+                      <div class="mvcast-item" key={i}>
                         <div class="cast-it">
                           <div class="cast-left">
                           {member}
@@ -28,7 +26,6 @@ export default function GamepageGameTeam({ game }) {
                           <p>... {key} Team</p>
                         </div>
                       </div>
-                    </>
                   );
                 })
               ) : (
