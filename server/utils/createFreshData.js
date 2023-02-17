@@ -35,14 +35,14 @@ function createFreshData(game) {
     for (let key in freshDataObj) {
       // if the key is gameTeam, then add each element in the gameTeam object to freshData
       if (key === "gameTeam") {
-        for (let key2 in freshDataObj[key]) {
+        for (let key2 in JSON.parse(freshDataObj[key])) {
           freshData.push({
             game_id: game._id,
             created_at: new Date(),
             up_votes: 0,
             down_votes: 0,
             potentially_outdated: false,
-            data: JSON.stringify(freshDataObj[key][key2]),
+            data: JSON.stringify(JSON.parse(freshDataObj[key])[key2]),
             data_title: key2,
             admin_approvals: 0,
             votes_total: 0,
