@@ -39,9 +39,9 @@ export default function MovieSlider({ games, setGameTitle }) {
             className="mySwiper"
           >
             {games.map((game, i) => {
-              if (i < 10) {
+              if (i < 6) {
                 return (
-                <SwiperSlide style={{width: "fit-content"}}>
+                <SwiperSlide style={{width: "fit-content"}} key={i}>
                   <SliderCard
                     game={game}
                     setGameTitle={setGameTitle}
