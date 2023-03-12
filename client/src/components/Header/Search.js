@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import Box from "@mui/material/Box";
+import SearchIcon from "@mui/icons-material/Search";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 export default function Search() {
   const [search, setSearch] = useState("");
@@ -55,20 +63,30 @@ export default function Search() {
           onKeyPress={handleKeypress}
         />
       </div>
-      { results && (
+      {results && (
         <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        <List>
-          {results.map((result) => {
-            return (
-              <ListItem key={result.id} disablePadding>
-                <ListItemButton component="a" href={`/search/${encodeURI(result.title)}/1`}>
-                  <ListItemText primary={result.title} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
-      </Box>
+          <List>
+            {results.map((result) => {
+              return (
+                <ListItem key={result.id} disablePadding>
+                  <ListItemButton
+                    component="a"
+                    href={result.gameGenerated ? `/games/${result.title}` : `/search/${encodeURI(result.title)}/1`}
+                  >
+                    <ListItemIcon>
+                      {result.gameGenerated ? (
+                        <SportsEsportsIcon />
+                        ) : (
+                        <SearchIcon />
+                      )}
+                    </ListItemIcon>
+                    <ListItemText primary={result.title} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
       )}
     </>
   );
