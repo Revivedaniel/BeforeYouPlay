@@ -23,7 +23,6 @@ export default function Search() {
       clearTimeout(debounceTimeout.current);
     }
     debounceTimeout.current = setTimeout(async () => {
-      console.log("searching for: ", e.target.value);
       if (e.target.value !== "") {
         const results = await fetch(
           `https://vgi-api-test.azurewebsites.net/game-titles/search?q=${e.target.value}`
