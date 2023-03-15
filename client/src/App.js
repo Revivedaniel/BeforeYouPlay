@@ -33,7 +33,23 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          searchGame: {
+            keyArgs: false,
+            merge(existing = { games: [], count: 0 }, incoming) {
+              return {
+                games: [...existing.games, ...incoming.games],
+                count: incoming.count,
+              };
+            }
+          }
+        }
+      }
+    }
+  }),
 });
 
 function App() {

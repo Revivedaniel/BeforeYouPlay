@@ -73,44 +73,19 @@ const resolvers = {
     },
     searchGame: async (parent, { search, page }) => {
       try {
-        // search for the search term in the giantbomb api
         let response = await axios({
-          url: `https://www.giantbomb.com/api/search/?api_key=${process.env.GIANTBOMB_API_KEY}&format=json&resources=game&limit=10&page=${page}&query=${search}`,
+          url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
           },
         });
         // if response is empty, return empty
-        if (response.data.results.length === 0) {
-          return { games: [], count: 0 };
+        if (response.data.length === 0) {
+          return { statusCode: 204, games: [] };
         }
-        // if response is not empty, return the games and set count to the total number of games
-        let games = response.data.results;
-        let count = response.data.number_of_total_results;
-        // for all the games, include image, title, description, rating, releasedate, and genres
-        let gameData = games.map((game) => {
-          let gameRating;
-          game?.original_game_rating
-            ? (gameRating = game.original_game_rating[0].name)
-            : (gameRating = "No Rating");
 
-          let releaseYear =
-            game?.original_release_date?.split("-")[0] || "No Release Date";
-
-          const output = {
-            title: game?.name || "",
-            summary: game?.deck || "",
-            image: game?.image?.original_url || "",
-            release_year: releaseYear || "",
-            age_rating: gameRating || "",
-            slug: game?.name.replace(/\s+/g, "-") || "",
-          };
-
-          return output;
-        });
-
-        return { games: gameData, count };
+        return { games: response.data };
       } catch (error) {
         console.log(error);
       }

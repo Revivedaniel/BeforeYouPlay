@@ -40,13 +40,10 @@ const typeDefs = gql`
     manually_typed: Boolean
   }
 
-  type GameSearchResults {
+  type GameTitle {
     title: String
-    summary: String
-    image: String
-    release_year: String
-    age_ratings: String
-    slug: String
+    imageName: String
+    gameGenerated: Boolean
   }
 
   type Games {
@@ -55,8 +52,7 @@ const typeDefs = gql`
   }
 
   type Search {
-    games: [GameSearchResults]
-    count: Int
+    games: [GameTitle]
   }
 
   type User {

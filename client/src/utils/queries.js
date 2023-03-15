@@ -49,13 +49,9 @@ export const QUERY_SEARCH_GAME = gql`
     searchGame(search: $search, page: $page) {
       games {
         title
-        release_year
-        summary
-        age_ratings
-        image
-        slug
+        imageName
+        gameGenerated
       }
-      count
     }
   }
 `;
