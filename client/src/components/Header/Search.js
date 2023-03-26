@@ -8,6 +8,7 @@ export default function Search() {
   let debounceTimeout = useRef(null);
 
   const handleInputChange = (e) => {
+    setDebounce(false);
     setSearch(e.target.value);
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
@@ -32,9 +33,6 @@ export default function Search() {
   return (
     <>
       <div className="top-search">
-        {/* <select>
-        <option value="united">Video Games</option>
-      </select> */}
         <input
           type="search"
           value={search}
@@ -43,9 +41,7 @@ export default function Search() {
           onKeyPress={handleKeypress}
         />
       </div>
-      {debounce && (
-        <SearchDebounce search={search} />
-      )}
+      {debounce && search !== "" && <SearchDebounce search={search} />}
     </>
   );
 }
