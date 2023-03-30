@@ -44,12 +44,15 @@ const typeDefs = gql`
     title: String
     imageName: String
     gameGenerated: Boolean
+    lazyAfternoonContent: Boolean
+    contentAddedDate: String
+    platforms: [String]
+    genres: [String]
   }
 
-  type Games {
-    games: [Game]
-    count: Int
-  }
+  # type Games {
+  #   games: [Game]
+  # }
 
   type Search {
     games: [GameTitle]
@@ -66,12 +69,22 @@ const typeDefs = gql`
     user: User
   }
 
+  type FeaturedGame {
+    title: String
+    imageName: String
+  }
+
   type Query {
     user: User
     game(slug: String!, title: String!, gameImage: String): Game
-    games(page: Int!, perPage: Int!): Games
+    games(page: Int!): [Game]
     searchGame(search: String!, page: Int!): Search
     getDataPointsByRating: [FreshData]
+    featuredGame: FeaturedGame
+    gamesByPlatform(platform: String!, page: Int!): Search
+    allPlatforms: [String]
+    allGameTitles(page: Int!): Search
+    gameWithVideos(page: Int!): Search
   }
 
   type Mutation {

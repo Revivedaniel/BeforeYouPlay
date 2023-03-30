@@ -1,0 +1,16 @@
+.div {
+    padding: 0;
+}
+
+.div input {
+    border: none;
+    background-color: #233a50;
+    font-family: 'Nunito', sans-serif;
+    color: var(--primary-font-color);
+    font-weight: 300;
+    text-transform: none;
+}
+
+.div label {
+    color: var(--primary-font-color);
+}

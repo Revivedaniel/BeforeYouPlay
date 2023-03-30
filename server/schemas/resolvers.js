@@ -61,12 +61,15 @@ const resolvers = {
         console.log(error);
       }
     },
-    games: async (parent, { page, perPage }) => {
-      try {
-        let games = await Game.find({}).sort({ _id: -1 }).limit(34);
-        let count = await Game.countDocuments();
+    games: async (parent, { page }) => {
+      const limit = 15;
+      const offset = parseInt(page - 1) * limit;
 
-        return { games, count };
+      try {
+        let games = await Game.find({}).skip(offset).limit(limit).sort({ _id: -1 });
+        // let count = await Game.countDocuments();
+        console.log(`games: ${games.length}, offset: ${offset}, limit: ${limit}`);
+        return games;
       } catch (error) {
         console.log(error);
       }
@@ -89,7 +92,105 @@ const resolvers = {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
+    featuredGame: async () => {
+
+      try {
+        let response = await axios({
+          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
+          url: `http://localhost:7777/game-titles/with-content?&limit=1&page=1`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        // if response is empty, return empty
+        if (response.data.length === 0) {
+          return { statusCode: 204, games: [] };
+        }
+        return response.data[0];
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    gamesByPlatform: async (parent, { platform, page }) => {
+      try {
+        let response = await axios({
+          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
+          url: `http://localhost:7777/game-titles/by-platform?platform=${platform}&limit=20&page=${page}`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        // if response is empty, return empty
+        if (response.data.length === 0) {
+          return { statusCode: 204, games: [] };
+        }
+
+        return { games: response.data };
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    allPlatforms: async () => {
+      try {
+        let response = await axios({
+          // url: `${process.env.VGI_API_URI}/platforms`,
+          url: `http://localhost:7777/platforms`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        response.data = response.data.map((platform) => {
+          return platform.name;
+        });
+        console.log(response.data);
+
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    allGameTitles: async (parent, { page }) => {
+      try {
+        let response = await axios({
+          // url: `${process.env.VGI_API_URI}/platforms`,
+          url: `http://localhost:7777/game-titles?page=${page}`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        console.log(response.data);
+
+        return { games: response.data };
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    gameWithVideos: async (parent, { page }) => {
+      try {
+        let response = await axios({
+          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
+          url: `http://localhost:7777/game-titles/with-content?&limit=20&page=${page}`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        // if response is empty, return empty
+        if (response.data.length === 0) {
+          return { statusCode: 204, games: [] };
+        }
+
+        return { games: response.data };
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
