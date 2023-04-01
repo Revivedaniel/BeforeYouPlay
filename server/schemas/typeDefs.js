@@ -9,21 +9,35 @@ const typeDefs = gql`
   }
 
   type Game {
-    _id: ID
     title: String
+    platforms: [String]
+    gameId: Int
+    imageName: String
+    ageRatings: [AgeRating]
+    releaseDates: [ReleaseDate]
+    developers: [String]
+    publishers: [String]
+    genres: [String]
     summary: String
-    image_url: String
-    release_year: String
-    genres: String
-    age_ratings: String
-    slug: String
-    reviews: [Review]
-    custom_datapoints: String
-    platforms: String
-    lazy_afternoon_videos: String
-    lazy_afternoon_review: String
-    vgm_link: String
-    needs_editing: Boolean
+    gameModes: [String]
+    series: String
+    relatedGames: [String]
+    credits: [Credit]
+  }
+
+  type AgeRating {
+    title: String
+    rating: String
+  }
+
+  type ReleaseDate {
+    title: String
+    date: String
+  }
+
+  type Credit {
+    title: String
+    entries: String
   }
 
   type FreshData {
@@ -40,23 +54,22 @@ const typeDefs = gql`
     manually_typed: Boolean
   }
 
-  type GameSearchResults {
+  type GameTitle {
     title: String
-    summary: String
-    image: String
-    release_year: String
-    age_ratings: String
-    slug: String
+    imageName: String
+    gameGenerated: Boolean
+    lazyAfternoonContent: Boolean
+    contentAddedDate: String
+    platforms: [String]
+    genres: [String]
   }
 
-  type Games {
-    games: [Game]
-    count: Int
-  }
+  # type Games {
+  #   games: [Game]
+  # }
 
   type Search {
-    games: [GameSearchResults]
-    count: Int
+    games: [GameTitle]
   }
 
   type User {
@@ -70,12 +83,30 @@ const typeDefs = gql`
     user: User
   }
 
+  type FeaturedGame {
+    title: String
+    imageName: String
+  }
+
+  type Video {
+    type: String
+    gameTitle: String
+    videoUrl: String
+    dateAdded: String
+  }
+
   type Query {
     user: User
-    game(slug: String!, title: String!, gameImage: String): Game
-    games(page: Int!, perPage: Int!): Games
+    game(title: String!): Game
+    games(page: Int!): [Game]
     searchGame(search: String!, page: Int!): Search
     getDataPointsByRating: [FreshData]
+    featuredGame: FeaturedGame
+    gamesByPlatform(platform: String!, page: Int!): Search
+    allPlatforms: [String]
+    allGameTitles(page: Int!): Search
+    gameWithVideos(page: Int!): Search
+    video(title: String!): Video
   }
 
   type Mutation {
@@ -84,7 +115,12 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addReview(game_id: ID!, stars: Int!): Review
     rateDataPoint(slug: String!, title: String!, vote: Int!): FreshData
-    updateDataPoint(slug: String!, title: String!, update: String!, dataType: String!): FreshData
+    updateDataPoint(
+      slug: String!
+      title: String!
+      update: String!
+      dataType: String!
+    ): FreshData
     deleteDataPoint(slug: String!, title: String!, dataType: String!): FreshData
   }
 `;

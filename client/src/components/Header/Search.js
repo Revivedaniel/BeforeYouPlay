@@ -1,33 +1,47 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import SearchDebounce from "./SearchDebounce";
 
 export default function Search() {
   const [search, setSearch] = useState("");
+  const [debounce, setDebounce] = useState(false);
 
-  // handlers
+  let debounceTimeout = useRef(null);
+
   const handleInputChange = (e) => {
-    console.log(e.target.value);
+    setDebounce(false);
     setSearch(e.target.value);
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+    debounceTimeout.current = setTimeout(async () => {
+      if (e.target.value !== "") {
+        setDebounce(false);
+        setDebounce(true);
+      } else {
+        setDebounce(false);
+      }
+    }, 500);
   };
 
-  const handleKeypress = e => {
+  const handleKeypress = (e) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
       window.location.replace(`/search/${encodeURI(search)}/1`);
-  }
-};
+    }
+  };
 
   return (
-    <div className="top-search">
-      {/* <select>
-        <option value="united">Video Games</option>
-      </select> */}
-      <input
-        type="search"
-        value={search}
-        onChange={handleInputChange}
-        placeholder="Search for a game..."
-        onKeyPress={handleKeypress}
-      />
-    </div>
+    <>
+      <div className="top-search">
+        <input
+          type="search"
+          value={search}
+          onChange={handleInputChange}
+          placeholder="Search for a game..."
+          onKeyPress={handleKeypress}
+        />
+      </div>
+      {debounce && search !== "" && <SearchDebounce search={search} />}
+    </>
   );
 }

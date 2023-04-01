@@ -33,7 +33,42 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          searchGame: {
+            keyArgs: false,
+            merge(existing = { games: [], count: 0 }, incoming) {
+              return {
+                games: [...existing.games, ...incoming.games],
+                count: incoming.count,
+              };
+            }
+          },
+          games: {
+            keyArgs: false,
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            }
+          },
+          gamesByPlatform: {
+            keyArgs: false,
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming.games];
+            }
+          },
+          // allGameTitles: {
+          //   keyArgs: false,
+          //   merge(existing = [], incoming) {
+          //     console.log(existing, incoming)
+          //     return [...existing, ...incoming.games];
+          //   }
+          // },
+        }
+      }
+    }
+  }),
 });
 
 function App() {
@@ -59,13 +94,13 @@ function App() {
         <div id="mainContainer">
           <Routes>
             <Route index path="/" element={<Index gameTitle={gameTitle} setGameTitle={setGameTitle}/>} />
-            <Route path="/games/:slug" element={<Gamepage setLogin={setLogin} gameTitle={gameTitle} setGameTitle={setGameTitle} gameImage={gameImage}/>} />
+            <Route path="/games/:gameTitle" element={<Gamepage setLogin={setLogin} gameTitle={gameTitle} setGameTitle={setGameTitle} gameImage={gameImage}/>} />
             <Route path="/search/:search" element={<Searchpage gameTitle={gameTitle} setGameTitle={setGameTitle} setGameImage={setGameImage} />} />
             <Route path="/search/:search/:page" element={<Searchpage gameTitle={gameTitle} setGameTitle={setGameTitle} setGameImage={setGameImage} />} />
             <Route path="/:page" element={<Index gameTitle={gameTitle} setGameTitle={setGameTitle}/>} />
           </Routes>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </ApolloProvider>
   );

@@ -1,26 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_ALL_GAMES = gql`
-  query gamesWithCount($page: Int!, $perPage: Int!) {
-    games(page: $page, perPage: $perPage) {
-      games {
-        _id
-        title
-        summary
-        image_url
-        release_year
-        genres
-        age_ratings
-        slug
-      }
-      count
-    }
-  }
-`;
-
-export const QUERY_SINGLE_GAME = gql`
-  query singleGame($slug: String!, $title: String!, $gameImage: String) {
-    game(slug: $slug, title: $title, gameImage: $gameImage) {
+  query gamesWithCount($page: Int!) {
+    games(page: $page) {
       _id
       title
       summary
@@ -29,17 +11,38 @@ export const QUERY_SINGLE_GAME = gql`
       genres
       age_ratings
       slug
-      reviews {
-        _id
-        username
-        stars
-      }
-      custom_datapoints
+    }
+  }
+`;
+
+export const QUERY_SINGLE_GAME = gql`
+  query singleGame($title: String!) {
+    video(title: $title) {
+      videoUrl
+    }
+    game(title: $title) {
+      title
       platforms
-      lazy_afternoon_videos
-      lazy_afternoon_review
-      vgm_link
-      needs_editing
+      imageName
+      ageRatings {
+        title
+        rating
+      }
+      releaseDates {
+        title
+        date
+      }
+      developers
+      publishers
+      genres
+      summary
+      gameModes
+      series
+      relatedGames
+      credits {
+        title
+        entries
+      }
     }
   }
 `;
@@ -49,13 +52,62 @@ export const QUERY_SEARCH_GAME = gql`
     searchGame(search: $search, page: $page) {
       games {
         title
-        release_year
-        summary
-        age_ratings
-        image
-        slug
+        imageName
+        gameGenerated
       }
-      count
+    }
+  }
+`;
+
+export const QUERY_FEATURED_GAME = gql`
+  query featuredGame {
+    featuredGame {
+      title
+      imageName
+    }
+  }
+`;
+
+export const QUERY_ALL_PLATFORMS = gql`
+  query allPlatforms {
+    allPlatforms
+  }
+`;
+
+export const QUERY_GAME_BY_PLATFORM = gql`
+  query gamesByPlatform($platform: String!, $page: Int!) {
+    gamesByPlatform(platform: $platform, page: $page) {
+      games {
+        title
+        imageName
+        gameGenerated
+      }
+    }
+  }
+`;
+
+export const QUERY_ALL_GAME_TITLES = gql`
+  query allGameTitles($page: Int!) {
+    allGameTitles(page: $page) {
+      games {
+        title
+        imageName
+        gameGenerated
+      }
+    }
+  }
+`;
+
+export const QUERY_GAMES_WITH_VIDEOS = gql`
+  query gamesWithVideos($page: Int!) {
+    gameWithVideos(page: $page) {
+      games {
+        title
+        imageName
+        gameGenerated
+        lazyAfternoonContent
+        contentAddedDate
+      }
     }
   }
 `;
