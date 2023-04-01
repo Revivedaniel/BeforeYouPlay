@@ -1,0 +1,22 @@
+.summaryContainer {
+    font-family: 'Roboto', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .summaryItem {
+    margin-bottom: 1.5em;
+  }
+  
+  .summaryKey {
+    font-size: 1.2em;
+    margin-bottom: 0.25em;
+    color: #333;
+  }
+  
+  .summaryValue {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+  }
+  

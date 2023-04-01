@@ -1,0 +1,29 @@
+.gameDetailsContainer {
+    font-family: 'Roboto', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gameDetailsContainer h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+.gameDetailsContainer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gameDetailsContainer ul li {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.gameDetailsContainer p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}

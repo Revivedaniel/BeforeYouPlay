@@ -23,7 +23,7 @@ export default function FeaturedGame() {
       <h2>Featured Game</h2>
       <div>
         <img
-          src={`https://vgiapitest.blob.core.windows.net/game-images/${data.featuredGame.imageName}.webp`}
+          src={`https://vgiapitest.blob.core.windows.net/game-images/${data.featuredGame.imageName || "byp-new-game"}.webp`}
           alt={` cover art`}
           style={{ cursor: "pointer" }}
           onClick={handleGameSelect}
