@@ -21,7 +21,7 @@ const resolvers = {
       try {
         // search for the game title in the database
         let titleResponse = await axios({
-          url: `http://localhost:7777/game-titles/${title}`,
+          url: `${process.env.VGI_API_URI}/game-titles/${title}`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -38,13 +38,12 @@ const resolvers = {
         // if it was not, generate the game with the AI
         if (titleResponse.data.gameGenerated) {
           let gameResponse = await axios({
-            url: `http://localhost:7777/games/${title}`,
+            url: `${process.env.VGI_API_URI}/games/${title}`,
             method: "GET",
             headers: {
               Accept: "application/json",
             },
           });
-          console.log(gameResponse.data);
           return gameResponse.data;
         } else {
             // Genrate the game with AI
@@ -66,8 +65,6 @@ const resolvers = {
 
       try {
         let games = await Game.find({}).skip(offset).limit(limit).sort({ _id: -1 });
-        // let count = await Game.countDocuments();
-        console.log(`games: ${games.length}, offset: ${offset}, limit: ${limit}`);
         return games;
       } catch (error) {
         console.log(error);
@@ -96,8 +93,7 @@ const resolvers = {
 
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
-          url: `http://localhost:7777/game-titles/with-content?&limit=1&page=1`,
+          url: `${process.env.VGI_API_URI}/game-titles/with-content?&limit=1&page=1`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -115,8 +111,7 @@ const resolvers = {
     gamesByPlatform: async (parent, { platform, page }) => {
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
-          url: `http://localhost:7777/game-titles/by-platform?platform=${platform}&limit=20&page=${page}`,
+          url: `${process.env.VGI_API_URI}/game-titles/by-platform?platform=${platform}&limit=20&page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -136,7 +131,7 @@ const resolvers = {
       try {
         let response = await axios({
           // url: `${process.env.VGI_API_URI}/platforms`,
-          url: `http://localhost:7777/platforms`,
+          url: `${process.env.VGI_API_URI}/platforms`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -146,7 +141,6 @@ const resolvers = {
         response.data = response.data.map((platform) => {
           return platform.name;
         });
-        console.log(response.data);
 
         return response.data;
       } catch (error) {
@@ -156,14 +150,12 @@ const resolvers = {
     allGameTitles: async (parent, { page }) => {
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/platforms`,
-          url: `http://localhost:7777/game-titles?page=${page}`,
+          url: `${process.env.VGI_API_URI}/game-titles?page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
           },
         });
-        console.log(response.data);
 
         return { games: response.data };
       } catch (error) {
@@ -173,8 +165,7 @@ const resolvers = {
     gameWithVideos: async (parent, { page }) => {
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
-          url: `http://localhost:7777/game-titles/with-content?&limit=20&page=${page}`,
+          url: `${process.env.VGI_API_URI}/game-titles/with-content?&limit=20&page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
