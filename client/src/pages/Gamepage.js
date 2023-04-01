@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import GamepageHero from "../components/Gamepage/GamepageHero";
 //import the query here
 import { QUERY_SINGLE_GAME } from "../utils/queries";
 import { useState } from "react";
@@ -28,31 +27,8 @@ export default function Gamepage() {
   if (loading) {
     return (
       <>
-        <GamepageHero />
-        <div className="page-single movie-single movie_single">
-          <div className="container">
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <div
-                style={{
-                  zIndex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <h2 style={{ color: "var(--primary-font-color)" }}>
-                  Congratulations! You found a new game!
-                </h2>
-                <h2 style={{ color: "var(--primary-font-color)" }}>
-                  The data for {gameTitle} is being generated. Please wait...
-                </h2>
-                <CircularProgress />
-              </div>
-            </Box>
-            <div style={{ height: "800px" }} />
-          </div>
-        </div>
         <p>Loading...</p>
+        <CircularProgress />
       </>
     );
   } else if (game === null) {
@@ -63,9 +39,7 @@ export default function Gamepage() {
     <div className={css.div}>
       <GameImage game={game} />
       <h1>{game.title}</h1>
-      {video && (
-        <Video video={video} />
-      )}
+      {video && <Video video={video} />}
       <InfoTabs game={game} />
     </div>
   );

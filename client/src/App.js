@@ -3,8 +3,6 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@ap
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { setContext } from '@apollo/client/link/context';
 
-import "./App.css";
-
 //Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
