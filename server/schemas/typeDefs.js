@@ -9,21 +9,35 @@ const typeDefs = gql`
   }
 
   type Game {
-    _id: ID
     title: String
+    platforms: [String]
+    gameId: Int
+    imageName: String
+    ageRatings: [AgeRating]
+    releaseDates: [ReleaseDate]
+    developers: [String]
+    publishers: [String]
+    genres: [String]
     summary: String
-    image_url: String
-    release_year: String
-    genres: String
-    age_ratings: String
-    slug: String
-    reviews: [Review]
-    custom_datapoints: String
-    platforms: String
-    lazy_afternoon_videos: String
-    lazy_afternoon_review: String
-    vgm_link: String
-    needs_editing: Boolean
+    gameModes: [String]
+    series: String
+    relatedGames: [String]
+    credits: [Credit]
+  }
+
+  type AgeRating {
+    title: String
+    rating: String
+  }
+
+  type ReleaseDate {
+    title: String
+    date: String
+  }
+
+  type Credit {
+    title: String
+    entries: String
   }
 
   type FreshData {
@@ -74,9 +88,16 @@ const typeDefs = gql`
     imageName: String
   }
 
+  type Video {
+    type: String
+    gameTitle: String
+    videoUrl: String
+    dateAdded: String
+  }
+
   type Query {
     user: User
-    game(slug: String!, title: String!, gameImage: String): Game
+    game(title: String!): Game
     games(page: Int!): [Game]
     searchGame(search: String!, page: Int!): Search
     getDataPointsByRating: [FreshData]
@@ -85,6 +106,7 @@ const typeDefs = gql`
     allPlatforms: [String]
     allGameTitles(page: Int!): Search
     gameWithVideos(page: Int!): Search
+    video(title: String!): Video
   }
 
   type Mutation {
@@ -93,7 +115,12 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addReview(game_id: ID!, stars: Int!): Review
     rateDataPoint(slug: String!, title: String!, vote: Int!): FreshData
-    updateDataPoint(slug: String!, title: String!, update: String!, dataType: String!): FreshData
+    updateDataPoint(
+      slug: String!
+      title: String!
+      update: String!
+      dataType: String!
+    ): FreshData
     deleteDataPoint(slug: String!, title: String!, dataType: String!): FreshData
   }
 `;

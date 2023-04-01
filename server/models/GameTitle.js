@@ -13,4 +13,4 @@ const gameTitleSchema = new Schema({
 
 const GameTitle = mongoose.model("GameTitle", gameTitleSchema);
 
-module.exports = GameTitle;
+module.exports = {GameTitle, gameTitleSchema};
