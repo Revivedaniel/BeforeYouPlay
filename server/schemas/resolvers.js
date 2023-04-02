@@ -1,14 +1,8 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Game, FreshData } = require("../models");
+const { User, Game } = require("../models");
 const axios = require("axios");
 const { signToken } = require("../utils/auth");
-const Review = require("../models/Review");
 const generateGame = require("../utils/generateGame");
-const { Configuration, OpenAIApi } = require("openai");
-const createFreshData = require("../utils/createFreshData");
-const updateCustomDatapoints = require("../utils/updateCustomDatapoints");
-const filterTitle = require("../utils/filterTitle");
-const { response } = require("express");
 const parseCompletion = require("../utils/parseCompletion");
 const submitNewGame = require("../utils/submitNewGame");
 const { Video } = require("../models");
@@ -27,7 +21,7 @@ const resolvers = {
       try {
         // search for the game title in the database
         let titleResponse = await axios({
-          url: `http://localhost:7777/game-titles/${title}`,
+          url: `${process.env.VGI_API_URI}/game-titles/${title}`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -44,13 +38,12 @@ const resolvers = {
         // if it was not, generate the game with the AI
         if (titleResponse.data.gameGenerated) {
           let gameResponse = await axios({
-            url: `http://localhost:7777/games/${title}`,
+            url: `${process.env.VGI_API_URI}/games/${title}`,
             method: "GET",
             headers: {
               Accept: "application/json",
             },
           });
-          console.log(gameResponse.data);
           return gameResponse.data;
         } else {
             // Genrate the game with AI
@@ -72,8 +65,6 @@ const resolvers = {
 
       try {
         let games = await Game.find({}).skip(offset).limit(limit).sort({ _id: -1 });
-        // let count = await Game.countDocuments();
-        console.log(`games: ${games.length}, offset: ${offset}, limit: ${limit}`);
         return games;
       } catch (error) {
         console.log(error);
@@ -102,8 +93,7 @@ const resolvers = {
 
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
-          url: `http://localhost:7777/game-titles/with-content?&limit=1&page=1`,
+          url: `${process.env.VGI_API_URI}/game-titles/with-content?&limit=1&page=1`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -121,8 +111,7 @@ const resolvers = {
     gamesByPlatform: async (parent, { platform, page }) => {
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
-          url: `http://localhost:7777/game-titles/by-platform?platform=${platform}&limit=20&page=${page}`,
+          url: `${process.env.VGI_API_URI}/game-titles/by-platform?platform=${platform}&limit=20&page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -142,7 +131,7 @@ const resolvers = {
       try {
         let response = await axios({
           // url: `${process.env.VGI_API_URI}/platforms`,
-          url: `http://localhost:7777/platforms`,
+          url: `${process.env.VGI_API_URI}/platforms`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -152,7 +141,6 @@ const resolvers = {
         response.data = response.data.map((platform) => {
           return platform.name;
         });
-        console.log(response.data);
 
         return response.data;
       } catch (error) {
@@ -162,14 +150,12 @@ const resolvers = {
     allGameTitles: async (parent, { page }) => {
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/platforms`,
-          url: `http://localhost:7777/game-titles?page=${page}`,
+          url: `${process.env.VGI_API_URI}/game-titles?page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
           },
         });
-        console.log(response.data);
 
         return { games: response.data };
       } catch (error) {
@@ -179,8 +165,7 @@ const resolvers = {
     gameWithVideos: async (parent, { page }) => {
       try {
         let response = await axios({
-          // url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
-          url: `http://localhost:7777/game-titles/with-content?&limit=20&page=${page}`,
+          url: `${process.env.VGI_API_URI}/game-titles/with-content?&limit=20&page=${page}`,
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -250,170 +235,6 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    },
-    addReview: async (parent, { game_id, stars }, context) => {
-      if (context.user) {
-        const review = new Review({
-          username: context.user.username,
-          game_id,
-          stars,
-        });
-
-        await Game.findByIdAndUpdate(game_id, { $push: { reviews: review } });
-
-        return review;
-      }
-
-      throw new AuthenticationError("Please, log in first!");
-    },
-    rateDataPoint: async (parent, { slug, title, vote }, context) => {
-      if (context.user) {
-        // Find the game via the slug
-        let game = await Game.find({ slug: slug });
-        if (game.length === 0) {
-          throw new Error("Game not found");
-        }
-
-        title = filterTitle(title);
-
-        let freshData;
-        // Find the FreshData entry via game ID and title
-        // if the vote is positive, add 1 to the positive count
-        if (vote > 0) {
-          freshData = await FreshData.findOneAndUpdate(
-            {
-              game_id: game[0]._id,
-              data_title: title,
-            },
-            { $inc: { up_votes: 1, votes_total: 1 } },
-            { new: true }
-          );
-        }
-        // Find the FreshData entry via game ID and title
-        // if the vote is negative, add 1 to the negative count and subtract 1 from votes_total
-        if (vote < 0) {
-          freshData = await FreshData.findOneAndUpdate(
-            {
-              game_id: game[0]._id,
-              data_title: title,
-            },
-            { $inc: { down_votes: 1, votes_total: -1 } },
-            { new: true }
-          );
-        }
-        // Find the FreshData entry via game ID and title
-        // if the vote is zero, null, or NaN, throw error for invalid vote
-        if (vote === 0 || vote === null || isNaN(vote)) {
-          throw new Error("Invalid vote");
-        }
-        // Return the freshData entry
-        return freshData;
-      }
-
-      throw new AuthenticationError("Please, log in first!");
-    },
-    updateDataPoint: async (
-      parent,
-      { slug, title, update, dataType },
-      context
-    ) => {
-      // TODO: make this resolver only accessable for admins
-
-      if (context.user) {
-        // Find the game via the slug
-        let game = await Game.find({ slug: slug });
-        if (game.length === 0) {
-          throw new Error("Game not found");
-        }
-
-        // Find the FreshData entry via game ID and title
-        // Update the data field
-        // change manually_typed to true
-        // add 1 to admin_approvals
-        if (typeof update !== "string") {
-          throw new Error("Invalid update");
-        }
-        let freshData = await FreshData.findOneAndUpdate(
-          {
-            game_id: game[0]._id,
-            data_title: title,
-          },
-          {
-            $set: { data: update, manually_typed: true },
-            $inc: { admin_approvals: 1 },
-          },
-          { new: true }
-        );
-
-        // if the dataType is Custom, add the data to the custom_datapoints field
-        if (dataType === "Custom" || dataType === "GameTeam") {
-          const updatedCustomDatapoints = updateCustomDatapoints(
-            game[0].custom_datapoints,
-            title,
-            update,
-            dataType
-          );
-          await Game.findByIdAndUpdate(game[0]._id, {
-            $set: { custom_datapoints: updatedCustomDatapoints },
-          });
-        } else {
-          // if the dataType is Standard, add the data to the game using title as the field name and update as the value
-          await Game.findByIdAndUpdate(game[0]._id, { [title]: update });
-        }
-        // Return the freshData entry
-        return freshData;
-      }
-
-      throw new AuthenticationError("Please, log in first!");
-    },
-    deleteDataPoint: async (
-      parent,
-      { slug, title, dataType },
-      context
-    ) => {
-      // TODO: make this resolver only accessable for admins
-
-      if (context.user) {
-        // Find the game via the slug
-        let game = await Game.find({ slug: slug });
-        if (game.length === 0) {
-          throw new Error("Game not found");
-        }
-
-        // Find the FreshData entry via game ID and title
-        // Update the data field to be null
-        let freshData = await FreshData.findOneAndUpdate(
-          {
-            game_id: game[0]._id,
-            data_title: title,
-          },
-          {
-            $set: { data: null, manually_typed: true },
-            $inc: { admin_approvals: 1 },
-          },
-          { new: true }
-        );
-
-        // if the dataType is Custom, add the data to the custom_datapoints field
-        if (dataType === "Custom" || dataType === "GameTeam") {
-          const updatedCustomDatapoints = updateCustomDatapoints(
-            game[0].custom_datapoints,
-            title,
-            null,
-            dataType
-          );
-          await Game.findByIdAndUpdate(game[0]._id, {
-            $set: { custom_datapoints: updatedCustomDatapoints },
-          });
-        } else {
-          // if the dataType is Standard, add the data to the game using title as the field name and update as the value
-          await Game.findByIdAndUpdate(game[0]._id, { [title]: null });
-        }
-        // Return the freshData entry
-        return freshData;
-      }
-
-      throw new AuthenticationError("Please, log in first!");
     },
   },
 };

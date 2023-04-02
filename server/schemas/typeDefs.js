@@ -1,12 +1,6 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Review {
-    _id: ID
-    username: String
-    game_id: ID
-    stars: Int
-  }
 
   type Game {
     title: String
@@ -64,10 +58,6 @@ const typeDefs = gql`
     genres: [String]
   }
 
-  # type Games {
-  #   games: [Game]
-  # }
-
   type Search {
     games: [GameTitle]
   }
@@ -100,7 +90,6 @@ const typeDefs = gql`
     game(title: String!): Game
     games(page: Int!): [Game]
     searchGame(search: String!, page: Int!): Search
-    getDataPointsByRating: [FreshData]
     featuredGame: FeaturedGame
     gamesByPlatform(platform: String!, page: Int!): Search
     allPlatforms: [String]
@@ -113,15 +102,6 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
-    addReview(game_id: ID!, stars: Int!): Review
-    rateDataPoint(slug: String!, title: String!, vote: Int!): FreshData
-    updateDataPoint(
-      slug: String!
-      title: String!
-      update: String!
-      dataType: String!
-    ): FreshData
-    deleteDataPoint(slug: String!, title: String!, dataType: String!): FreshData
   }
 `;
 

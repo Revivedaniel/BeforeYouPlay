@@ -10,8 +10,6 @@ function parseCompletion(completion) {
     let start = completion.indexOf('{');
     let end = completion.lastIndexOf('}') + 1;
     let code = completion.slice(start, end);
-    console.log(completion)
-    console.log(code)
     let parsed;
 
     try {

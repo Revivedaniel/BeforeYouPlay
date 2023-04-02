@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
-const Review = require("./Review");
 
 const ageRatingSchema = new Schema({
   title: { type: String, required: true },
