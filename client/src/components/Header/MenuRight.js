@@ -1,5 +1,5 @@
 import { ListItem, ListItemButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import Auth from "../../utils/auth";
 
 export default function MenuRight({ setLogin, setSignUp }) {

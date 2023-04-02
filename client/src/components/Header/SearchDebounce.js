@@ -11,8 +11,11 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import { useQuery } from "@apollo/client";
 import { QUERY_SEARCH_GAME } from "../../utils/queries";
 import { useEffect } from "react";
+import { useRouter } from 'next/router'
 
 export default function SearchDebounce(props) {
+  const router = useRouter()
+
   const { loading, data, error, refetch } = useQuery(QUERY_SEARCH_GAME, {
     variables: { search: props.search, page: 1 },
   });
@@ -40,11 +43,15 @@ export default function SearchDebounce(props) {
             <ListItem key={i} disablePadding>
               <ListItemButton
                 component="a"
-                href={
-                  result.gameGenerated
-                    ? `/games/${result.title}`
-                    : `/search/${encodeURI(result.title)}/1`
-                }
+                onClick={() => {
+                    if (result.gameGenerated) {
+                      router.push(`/games/${result.title}`);
+                    } else {
+                      router.push(`/search/${encodeURI(result.title)}`)
+                      props.setSearch(result.title)
+                    }
+                  props.setDebounce(false);
+                }}
               >
                 <ListItemIcon>
                   {result.gameGenerated ? (

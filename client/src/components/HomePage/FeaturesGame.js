@@ -1,14 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router'
 import { QUERY_FEATURED_GAME } from "../../utils/queries";
 
 export default function FeaturedGame() {
   const { loading, data, error, fetchMore } = useQuery(QUERY_FEATURED_GAME);
-
-  let navigate = useNavigate();
+  const router = useRouter();
   const handleGameSelect = (e) => {
     e.preventDefault();
-    // navigate(`/games/${encodeURI(game.title)}`);
+    router.push(`/games/${encodeURI(data.featuredGame.title)}`);
   };
 
   if (loading) {

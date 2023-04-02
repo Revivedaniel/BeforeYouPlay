@@ -1,12 +1,12 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import css from './RelatedGames.module.css';
 
 const RelatedGames = ({ relatedGames }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleClick = (title) => {
-    navigate(`/search/${encodeURI(title)}`);
+    router.push(`/search/${encodeURI(title)}`);
   };
 
   if (relatedGames.length === 0) {

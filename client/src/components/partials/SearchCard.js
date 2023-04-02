@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router'
 import css from "./SearchCard.module.css";
 
 export default function SearchCard(props) {
 
-  let navigate = useNavigate();
+  const router = useRouter();
   const handleGameSelect = (e) => {
     e.preventDefault();
-    navigate(`/games/${encodeURI(props.game.title)}`);
+    router.push(`/games/${encodeURI(props.game.title)}`);
   };
   return (
     <div className={css.div}>

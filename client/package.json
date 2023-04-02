@@ -1,51 +1,33 @@
 {
-  "name": "client",
+  "name": "before-you-play-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
-  "dependencies": {
-    "@apollo/client": "^3.5.6",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.11.11",
-    "@mui/material": "^5.10.3",
-    "@mui/styled-engine-sc": "^5.10.3",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "dotenv": "^10.0.0",
-    "graphql": "^16.2.0",
-    "jwt-decode": "^3.1.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "^5.0.1",
-    "styled-components": "^5.3.5",
-    "swiper": "^8.3.2",
-    "web-vitals": "^0.2.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@apollo/client": "^3.7.11",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.15",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.31",
+    "@types/react-dom": "18.0.11",
+    "deepmerge": "^4.3.1",
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.2.4",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "next": "13.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+
   }
 }

@@ -1,15 +1,15 @@
-const { Configuration, OpenAIApi } = require("openai");
+import { Configuration, OpenAIApi, CreateChatCompletionRequest } from 'openai';
 
-async function generateGame(title) {
+async function generateGame(title: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
       const configuration = new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
+        apiKey: process.env.OPENAI_API_KEY || '',
       });
       const openai = new OpenAIApi(configuration);
-    
-      const chatCompletion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+
+      const chatCompletionRequest: CreateChatCompletionRequest = {
+        model: 'gpt-3.5-turbo',
         messages: [
           {
             role: "system",
@@ -21,7 +21,9 @@ async function generateGame(title) {
             content: `Can you provide information about the video game ${title}?`,
           },
         ],
-      });
+      };
+
+      const chatCompletion = await openai.createChatCompletion(chatCompletionRequest);
       resolve(chatCompletion.data.choices[0].message.content);
     } catch (error) {
       console.log(error);
@@ -30,4 +32,4 @@ async function generateGame(title) {
   });
 }
 
-module.exports = generateGame;
+export default generateGame;

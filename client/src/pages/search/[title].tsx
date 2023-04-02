@@ -1,20 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import css from "./Searchpage.module.css";
-import { QUERY_SEARCH_GAME } from "../utils/queries";
-import SearchCard from "../components/partials/SearchCard";
-import FourOhFour from "../components/404.js";
+import css from "./[title].module.css";
+import { QUERY_SEARCH_GAME } from "../../utils/queries";
+import SearchCard from "../../components/partials/SearchCard";
+import FourOhFour from "../../components/404.js";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@mui/material";
 
-export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
-  // Get search and page from the pathname
-  let { search } = useParams();
+export default function Searchpage() {
+  const router = useRouter();
+  const { title } = router.query;
   const [pages, setPages] = useState(1);
   const { loading, data, error, fetchMore } = useQuery(QUERY_SEARCH_GAME, {
-    variables: { search: search, page: pages },
+    variables: { search: title, page: pages },
   });
-  // const { games, count } = data?.searchGame || { games: [], count: 1 };
   const [games, setGames] = useState([]);
   const [fetchingMore, setFetchingMore] = useState(false);
   const [endOfResults, setEndOfResults] = useState(false);
@@ -31,7 +30,7 @@ export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
       if (entries[0].isIntersecting && !endOfResults && !fetchingMore) {
         setFetchingMore(true);
         fetchMore({
-          variables: { search: search, page: pages + 1 },
+          variables: { search: title, page: pages + 1 },
         }).then((res) => {
           setFetchingMore(false);
           if (res.data.searchGame.games.length === 0) setEndOfResults(true);
@@ -48,7 +47,7 @@ export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
     if (lastGameRef.current) {
       observer.current.observe(lastGameRef.current);
     }
-  }, [lastGameRef, games, fetchMore, pages, search, data, endOfResults, fetchingMore]);
+  }, [lastGameRef, games, fetchMore, pages, title, data, endOfResults, fetchingMore]);
 
   if (error) {
     return <FourOhFour />;
@@ -67,8 +66,6 @@ export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
                 <div key={i} ref={lastGameRef}>
                   <SearchCard
                     game={game}
-                    setGameTitle={setGameTitle}
-                    setGameImage={setGameImage}
                   />
                 </div>
               );
@@ -76,15 +73,13 @@ export function Searchpage({ gameTitle, setGameTitle, setGameImage }) {
               return (
                 <SearchCard
                   game={game}
-                  setGameTitle={setGameTitle}
-                  setGameImage={setGameImage}
                   key={i}
                 />
               );
             }
           })
         : null}
-      {games?.length === 0 ? <h2>No results found for {search}</h2> : null}
+      {games?.length === 0 ? <h2>No results found for {title}</h2> : null}
     </div>
   );
 }

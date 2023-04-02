@@ -1,15 +1,39 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Game } = require("../models");
-const axios = require("axios");
-const { signToken } = require("../utils/auth");
-const generateGame = require("../utils/generateGame");
-const parseCompletion = require("../utils/parseCompletion");
-const submitNewGame = require("../utils/submitNewGame");
-const { Video } = require("../models");
+import { AuthenticationError } from "apollo-server-express";
+import { User, Game, Video } from "../models/index.js";
+import axios from "axios";
+import { signToken } from "../utils/auth.js";
+import generateGame from "../utils/generateGame.js";
+import parseCompletion from "../utils/parseCompletion.js";
+import submitNewGame from "../utils/submitNewGame.js";
+import { PlatformDoc } from "../utils/types.js";
+
+interface Context {
+  user: {
+    _id: string;
+  };
+}
+
+interface GameTitle {
+  title: string;
+}
+
+interface Page {
+  page: number;
+}
+
+interface Search {
+  search: string;
+  page: number;
+}
+
+interface Platform {
+  platform: string;
+  page: number;
+}
 
 const resolvers = {
   Query: {
-    user: async (parent, args, context) => {
+    user: async (parent: any, args: any, context: Context) => {
       if (context.user) {
         let user = await User.findById(context.user._id);
         return user;
@@ -17,7 +41,7 @@ const resolvers = {
 
       throw new AuthenticationError("Please, log in first!");
     },
-    game: async (parent, {title}) => {
+    game: async (parent: any, { title }: GameTitle) => {
       try {
         // search for the game title in the database
         let titleResponse = await axios({
@@ -59,9 +83,9 @@ const resolvers = {
         console.log(error);
       }
     },
-    games: async (parent, { page }) => {
+    games: async (parent: any, { page }: Page) => {
       const limit = 15;
-      const offset = parseInt(page - 1) * limit;
+      const offset = page - 1 * limit;
 
       try {
         let games = await Game.find({}).skip(offset).limit(limit).sort({ _id: -1 });
@@ -70,7 +94,7 @@ const resolvers = {
         console.log(error);
       }
     },
-    searchGame: async (parent, { search, page }) => {
+    searchGame: async (parent: any, { search, page }: Search) => {
       try {
         let response = await axios({
           url: `${process.env.VGI_API_URI}/game-titles/search?q=${search}&limit=20&page=${page}`,
@@ -81,7 +105,7 @@ const resolvers = {
         });
         // if response is empty, return empty
         if (response.data.length === 0) {
-          return { statusCode: 204, games: [] };
+          return { statusCode: 204, games: [] as any };
         }
 
         return { games: response.data };
@@ -90,7 +114,6 @@ const resolvers = {
       }
     },
     featuredGame: async () => {
-
       try {
         let response = await axios({
           url: `${process.env.VGI_API_URI}/game-titles/with-content?&limit=1&page=1`,
@@ -108,7 +131,7 @@ const resolvers = {
         console.log(error);
       }
     },
-    gamesByPlatform: async (parent, { platform, page }) => {
+    gamesByPlatform: async (parent: any, { platform, page }: Platform) => {
       try {
         let response = await axios({
           url: `${process.env.VGI_API_URI}/game-titles/by-platform?platform=${platform}&limit=20&page=${page}`,
@@ -119,7 +142,7 @@ const resolvers = {
         });
         // if response is empty, return empty
         if (response.data.length === 0) {
-          return { statusCode: 204, games: [] };
+          return { statusCode: 204, games: [] as any };
         }
 
         return { games: response.data };
@@ -138,7 +161,7 @@ const resolvers = {
           },
         });
 
-        response.data = response.data.map((platform) => {
+        response.data = response.data.map((platform: PlatformDoc) => {
           return platform.name;
         });
 
@@ -147,7 +170,7 @@ const resolvers = {
         console.log(error);
       }
     },
-    allGameTitles: async (parent, { page }) => {
+    allGameTitles: async (parent: any, { page }: Page) => {
       try {
         let response = await axios({
           url: `${process.env.VGI_API_URI}/game-titles?page=${page}`,
@@ -162,7 +185,7 @@ const resolvers = {
         console.log(error);
       }
     },
-    gameWithVideos: async (parent, { page }) => {
+    gameWithVideos: async (parent: any, { page }: Page) => {
       try {
         let response = await axios({
           url: `${process.env.VGI_API_URI}/game-titles/with-content?&limit=20&page=${page}`,
@@ -173,7 +196,7 @@ const resolvers = {
         });
         // if response is empty, return empty
         if (response.data.length === 0) {
-          return { statusCode: 204, games: [] };
+          return { statusCode: 204, games: [] as any };
         }
 
         return { games: response.data };
@@ -181,7 +204,7 @@ const resolvers = {
         console.log(error);
       }
     },
-    video: async (parent, { title }) => {
+    video: async (parent: any, { title }: GameTitle) => {
       try {
         // find a video by gameTitle
         // if video is found, return the video
@@ -199,7 +222,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, args) => {
+    addUser: async (parent: any, args: any) => {
       try {
         const user = await User.create(args);
         const token = signToken(user);
@@ -210,7 +233,7 @@ const resolvers = {
         throw new AuthenticationError("Email has already been used");
       }
     },
-    updateUser: async (parent, args, context) => {
+    updateUser: async (parent: any, args: any, context: Context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
@@ -219,7 +242,7 @@ const resolvers = {
 
       throw new AuthenticationError("Please, log in first!");
     },
-    login: async (parent, { email, password }) => {
+    login: async (parent: any, { email, password }: { email: string; password: string }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -239,4 +262,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

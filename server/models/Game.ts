@@ -1,23 +1,54 @@
-const mongoose = require("mongoose");
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
-const { Schema } = mongoose;
+interface AgeRating {
+  title: string;
+  rating: string;
+}
 
-const ageRatingSchema = new Schema({
+const ageRatingSchema: Schema = new Schema({
   title: { type: String, required: true },
   rating: { type: String, required: true },
 });
 
-const creditSchema = new Schema({
+interface Credit {
+  title: string;
+  entries: string[];
+}
+
+const creditSchema: Schema = new Schema({
   title: { type: String, required: true },
   entries: { type: [String], required: true },
 });
 
-const releaseDateSchema = new Schema({
+interface ReleaseDate {
+  title: string;
+  date: string;
+}
+
+const releaseDateSchema: Schema = new Schema({
   title: { type: String, required: true },
   date: { type: String, required: true },
 });
 
-const gameSchema = new Schema(
+export interface GameDocument extends Document {
+  title: string;
+  platforms: string[];
+  gameId: number;
+  imageName: string;
+  ageRatings: AgeRating[];
+  releaseDates: ReleaseDate[];
+  developers: string[];
+  publishers: string[];
+  genres: string[];
+  gameModes: string[];
+  series?: string;
+  credits: Credit[];
+  summary: string;
+  relatedGames: string[];
+  createdAt: Date;
+}
+
+const gameSchema: Schema = new Schema(
   {
     title: {
       type: String,
@@ -35,7 +66,7 @@ const gameSchema = new Schema(
     imageName: {
       type: String,
       required: true,
-      default: "byp-new-game",
+      default: 'byp-new-game',
     },
     ageRatings: {
       type: [ageRatingSchema],
@@ -95,6 +126,6 @@ const gameSchema = new Schema(
   }
 );
 
-const Game = mongoose.model("Game", gameSchema);
+const Game: Model<GameDocument> = mongoose.model<GameDocument>('Game', gameSchema);
 
-module.exports = {Game, gameSchema};
+export { Game, gameSchema };

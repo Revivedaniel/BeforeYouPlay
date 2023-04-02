@@ -1,17 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 //import the query here
-import { QUERY_SINGLE_GAME } from "../utils/queries";
+import { QUERY_SINGLE_GAME } from "../../utils/queries";
 import { useState } from "react";
-import FourOhFour from "../components/404";
+import FourOhFour from "../../components/404";
 import { Box, CircularProgress } from "@mui/material";
 import css from "./Gamepage.module.css";
-import GameImage from "../components/Gamepage/GameImage";
-import Video from "../components/Gamepage/Video";
-import InfoTabs from "../components/Gamepage/InfoTabs";
+import GameImage from "../../components/Gamepage/GameImage";
+import Video from "../../components/Gamepage/Video";
+import InfoTabs from "../../components/Gamepage/InfoTabs";
 
 export default function Gamepage() {
-  const { gameTitle } = useParams();
+    const router = useRouter();
+  const { gameTitle } = router.query;
   const [game, setGame] = useState(null);
   const [video, setVideo] = useState(null);
   const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
