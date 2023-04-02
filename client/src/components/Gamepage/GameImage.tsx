@@ -1,4 +1,13 @@
-export default function GameImage(props) {
+interface Game {
+  imageName: string;
+  title: string;
+}
+
+interface GameImageProps {
+  game: Game;
+}
+
+export default function GameImage(props: GameImageProps) {
   return (
     <>
       <img

@@ -1,7 +1,16 @@
 import React from 'react';
 import css from './Credits.module.css';
 
-const Credits = ({ credits }) => {
+interface Credit {
+  title: string;
+  entries: string[];
+}
+
+interface CreditsProps {
+  credits: Credit[];
+}
+
+const Credits: React.FC<CreditsProps> = ({ credits }) => {
   if (credits.length === 0) {
     return (
       <div className={css.emptyCredits}>

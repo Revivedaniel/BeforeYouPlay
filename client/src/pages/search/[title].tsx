@@ -5,28 +5,38 @@ import { QUERY_SEARCH_GAME } from "../../utils/queries";
 import SearchCard from "../../components/partials/SearchCard";
 import FourOhFour from "../../components/404.js";
 import { useState, useRef, useEffect } from "react";
-import { Button } from "@mui/material";
+
+interface Game {
+  // Add any properties here
+}
+
+interface QueryData {
+  searchGame: {
+    games: Game[];
+    // Add any other properties here
+  };
+}
 
 export default function Searchpage() {
   const router = useRouter();
-  const { title } = router.query;
-  const [pages, setPages] = useState(1);
-  const { loading, data, error, fetchMore } = useQuery(QUERY_SEARCH_GAME, {
+  const { title } = router.query as { title: string };
+  const [pages, setPages] = useState<number>(1);
+  const { loading, data, error, fetchMore } = useQuery<QueryData>(QUERY_SEARCH_GAME, {
     variables: { search: title, page: pages },
   });
-  const [games, setGames] = useState([]);
-  const [fetchingMore, setFetchingMore] = useState(false);
-  const [endOfResults, setEndOfResults] = useState(false);
+  const [games, setGames] = useState<Game[]>([]);
+  const [fetchingMore, setFetchingMore] = useState<boolean>(false);
+  const [endOfResults, setEndOfResults] = useState<boolean>(false);
 
-  const observer = useRef();
-  const lastGameRef = useRef(null);
+  const observer = useRef<IntersectionObserver>();
+  const lastGameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (data && data.searchGame) {
       setGames(data.searchGame.games);
     }
 
-    const handleObserver = (entries) => {
+    const handleObserver = (entries: IntersectionObserverEntry[]) => {
       if (entries[0].isIntersecting && !endOfResults && !fetchingMore) {
         setFetchingMore(true);
         fetchMore({
@@ -64,18 +74,11 @@ export default function Searchpage() {
             if (i === games.length - 1) {
               return (
                 <div key={i} ref={lastGameRef}>
-                  <SearchCard
-                    game={game}
-                  />
+                  <SearchCard game={game} />
                 </div>
               );
             } else {
-              return (
-                <SearchCard
-                  game={game}
-                  key={i}
-                />
-              );
+              return <SearchCard game={game} key={i} />;
             }
           })
         : null}
@@ -83,3 +86,4 @@ export default function Searchpage() {
     </div>
   );
 }
+

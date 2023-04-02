@@ -1,18 +1,18 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, QueryResult } from "@apollo/client";
 import { Autocomplete, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { QUERY_ALL_PLATFORMS, QUERY_GAME_BY_PLATFORM } from "../../../utils/queries";
 import ScrollLoadGames from "../../shared/ScrollLoadGames";
 import css from "./GamesByPlatform.module.css";
 
-export default function GamesByPlatform() {
-  const [platform, setPlatform] = useState(null);
-  const [debounce, setDebounce] = useState(false);
+export default function GamesByPlatform(): JSX.Element {
+  const [platform, setPlatform] = useState<string | null>(null);
+  const [debounce, setDebounce] = useState<boolean>(false);
 
-  const { loading, data, error } = useQuery(QUERY_ALL_PLATFORMS);
+  const { loading, data }: QueryResult = useQuery(QUERY_ALL_PLATFORMS);
 
-  const handleInputChange = (newValue) => {
-    setPlatform(null)
+  const handleInputChange = (newValue: string | null): void => {
+    setPlatform(null);
     if (platform) {
       setDebounce(false);
       setTimeout(() => {
@@ -47,7 +47,7 @@ export default function GamesByPlatform() {
         />
       )}
       {debounce && platform && platform !== "Select A Platform" && (
-        <ScrollLoadGames query={QUERY_GAME_BY_PLATFORM} variables={{platform: platform}} />
+        <ScrollLoadGames query={QUERY_GAME_BY_PLATFORM} variables={{ platform: platform }} />
       )}
     </div>
   );

@@ -17,19 +17,27 @@ import {
 import { useState } from "react";
 import MenuRight from "./MenuRight";
 
-export default function Nav(props) {
+interface NavProps {
+  handleSearchVisible: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
+  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Nav(props: NavProps) {
   const [state, setState] = useState(false);
 
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
 
-    setState(open);
-  };
+      setState(open);
+    };
 
   const list = () => (
     <Box
@@ -51,7 +59,7 @@ export default function Nav(props) {
       </List>
       <Divider />
       <List>
-        <MenuRight setLogin={props.setLogin} setSignUp={props.setSignUp}/>
+        <MenuRight setLogin={props.setLogin} setSignUp={props.setSignUp} />
       </List>
     </Box>
   );
@@ -59,19 +67,12 @@ export default function Nav(props) {
   return (
     <nav className={css.nav}>
       <Jumbotron />
-      {/* <div
-        className="collapse navbar-collapse flex-parent"
-        id="bs-example-navbar-collapse-1"
-      >
-        <MenuLeft />
-        <MenuRight setLogin={setLogin} setSignUp={setSignUp}/>
-      </div> */}
       <div>
-        <SearchIcon fontSize="large" onClick={props.handleSearchVisable} />
+        <SearchIcon fontSize="large" onClick={props.handleSearchVisible} />
         <MenuIcon fontSize="large" onClick={toggleDrawer(true)} />
       </div>
       <Drawer open={state} onClose={toggleDrawer(false)} anchor={"right"}>
-        {list("sidebar")}
+        {list()}
       </Drawer>
     </nav>
   );

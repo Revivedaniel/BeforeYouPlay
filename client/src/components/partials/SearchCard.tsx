@@ -1,10 +1,18 @@
 import { useRouter } from 'next/router'
 import css from "./SearchCard.module.css";
 
-export default function SearchCard(props) {
+interface Game {
+  title: string;
+  imageName: string;
+}
 
+interface SearchCardProps {
+  game: Game;
+}
+
+export default function SearchCard(props: SearchCardProps): JSX.Element {
   const router = useRouter();
-  const handleGameSelect = (e) => {
+  const handleGameSelect = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLImageElement, MouseEvent>): void => {
     e.preventDefault();
     router.push(`/games/${encodeURI(props.game.title)}`);
   };

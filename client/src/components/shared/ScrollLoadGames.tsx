@@ -1,26 +1,34 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, QueryResult } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import FourOhFour from "../404";
 import SearchCard from "../partials/SearchCard";
 
-export default function ScrollLoadGames(props) {
-  const pages = useRef(1);
-  const { loading, data, error, fetchMore } = useQuery(props.query, {
-    variables: { ...props.variables, page: pages.current },
-  });
-  const [games, setGames] = useState([]);
-  const [fetchingMore, setFetchingMore] = useState(false);
-  const [endOfResults, setEndOfResults] = useState(false);
+interface ScrollLoadGamesProps {
+  query: any;
+  variables?: any;
+}
 
-  const observer = useRef();
-  const lastGameRef = useRef(null);
+export default function ScrollLoadGames(props: ScrollLoadGamesProps): JSX.Element {
+  const pages = useRef<number>(1);
+  const { loading, data, error, fetchMore }: QueryResult = useQuery(
+    props.query,
+    {
+      variables: { ...props.variables, page: pages.current },
+    }
+  );
+  const [games, setGames] = useState<any[]>([]);
+  const [fetchingMore, setFetchingMore] = useState<boolean>(false);
+  const [endOfResults, setEndOfResults] = useState<boolean>(false);
+
+  const observer = useRef<IntersectionObserver>();
+  const lastGameRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (data && data[Object.keys(data)[0]] && games.length === 0) {
       setGames(data[Object.keys(data)[0]].games);
     }
 
-    const handleObserver = (entries) => {
+    const handleObserver = (entries: IntersectionObserverEntry[]) => {
       if (entries[0].isIntersecting && !endOfResults && !fetchingMore) {
         setFetchingMore(true);
         fetchMore({
@@ -32,7 +40,7 @@ export default function ScrollLoadGames(props) {
           } else {
             setGames([...games, ...res.data[Object.keys(data)[0]].games]);
           }
-          
+
           pages.current += 1;
         });
       }
@@ -59,7 +67,7 @@ export default function ScrollLoadGames(props) {
   ) : (
     <div>
       {games
-        ? games.map((game, i, arr) => {
+        ? games.map((game: any, i: number, arr: any[]) => {
             if (i === games.length - 1) {
               return (
                 <div key={i} ref={lastGameRef}>

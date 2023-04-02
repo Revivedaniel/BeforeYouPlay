@@ -1,8 +1,29 @@
 import React from 'react';
 import css from './GameDetails.module.css';
 
-const GameDetails = ({ platforms, ageRatings, releaseDates, developers, publishers, genres, gameModes, series }) => {
-  const renderListItems = (items) => {
+interface AgeRating {
+  title: string;
+  rating: string;
+}
+
+interface ReleaseDate {
+  title: string;
+  date: string;
+}
+
+interface GameDetailsProps {
+  platforms: string[];
+  ageRatings: AgeRating[];
+  releaseDates: ReleaseDate[];
+  developers: string[];
+  publishers: string[];
+  genres: string[];
+  gameModes: string[];
+  series: string;
+}
+
+const GameDetails: React.FC<GameDetailsProps> = ({ platforms, ageRatings, releaseDates, developers, publishers, genres, gameModes, series }) => {
+  const renderListItems = (items: string[]) => {
     return items.map((item, index) => <li key={index}>{item}</li>);
   };
 

@@ -3,13 +3,13 @@ import SearchDebounce from "./SearchDebounce";
 import { useRouter } from 'next/router'
 
 export default function Search() {
-  const [search, setSearch] = useState("");
-  const [debounce, setDebounce] = useState(false);
+  const [search, setSearch] = useState<string>("");
+  const [debounce, setDebounce] = useState<boolean>(false);
 
-  let debounceTimeout = useRef(null);
+  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter()
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDebounce(false);
     setSearch(e.target.value);
     if (debounceTimeout.current) {
@@ -25,7 +25,7 @@ export default function Search() {
     }, 500);
   };
 
-  const handleKeypress = (e) => {
+  const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
       router.push(`/search/${encodeURI(search)}`);

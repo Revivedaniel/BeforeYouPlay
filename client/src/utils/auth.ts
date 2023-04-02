@@ -1,35 +1,35 @@
 import decode from 'jwt-decode';
 
 class AuthService {
-    getProfile() {
-        return decode(this.getToken());
+    public getProfile() {
+        return decode(this.getToken() as string);
     }
 
-    loggedIn() {
+    public loggedIn() {
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token);
     }
 
-    isTokenExpired(token) {
+    private isTokenExpired(token: string) {
         try {
-            const decoded = decode(token);
-            return (decoded.exp < Date.now() / 1000) ? true : false;
+            const decoded: { exp: number } = decode(token);
+            return decoded.exp < Date.now() / 1000;
         } catch (err) {
             return false;
         }
     }
 
-    getToken() {
+    private getToken() {
         return localStorage.getItem('id_token');
     }
 
-    login(idToken) {
+    public login(idToken: string) {
         localStorage.setItem('id_token', idToken);
         window.location.assign('/');
         // window.history.back();
     }
 
-    logout() {
+    public logout() {
         localStorage.removeItem('id_token');
         window.location.assign('/');
     }

@@ -2,10 +2,14 @@ import React from 'react';
 import { useRouter } from "next/router";
 import css from './RelatedGames.module.css';
 
-const RelatedGames = ({ relatedGames }) => {
+interface Props {
+  relatedGames: string[];
+}
+
+const RelatedGames: React.FC<Props> = ({ relatedGames }) => {
   const router = useRouter();
 
-  const handleClick = (title) => {
+  const handleClick = (title: string) => {
     router.push(`/search/${encodeURI(title)}`);
   };
 
@@ -19,7 +23,7 @@ const RelatedGames = ({ relatedGames }) => {
 
   return (
     <div className={css.relatedGamesContainer}>
-      {relatedGames.map((title, index) => (
+      {relatedGames.map((title: string, index: number) => (
         <div
           key={index}
           className={css.gameCard}

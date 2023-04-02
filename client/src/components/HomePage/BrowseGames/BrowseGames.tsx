@@ -1,12 +1,20 @@
-import { Box, Tab, Tabs, Typography } from "@mui/material";
-import PropTypes from "prop-types";
 import { useState } from "react";
-import Overview from "./Overview";
-import Credits from "./Credits";
-import RelatedGames from "./RelatedGames";
-import Extras from "./Extras";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import AllGames from "./AllGames";
+import GamesByPlatform from "./GamesByPlatform";
+import GamesWithVideos from "./GamesWithVideos";
+import PropTypes from "prop-types";
 
-function TabPanel(props) {
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps): JSX.Element {
   const { children, value, index, ...other } = props;
 
   return (
@@ -32,24 +40,24 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
+function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
-export default function InfoTabs(props) {
-
+export default function BrowseGames(): JSX.Element {
   // for MUI tabs
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number>(0);
 
-  const handleChange = (_, newValue) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number): void => {
     setValue(newValue);
   };
 
   return (
-    <>
+    <div>
+      <h2>Browse Games</h2>
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
@@ -57,25 +65,21 @@ export default function InfoTabs(props) {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab label="Overview" {...a11yProps(0)} />
-            <Tab label="Credits" {...a11yProps(1)} />
-            <Tab label="Related Games" {...a11yProps(2)} />
-            <Tab label="Extras" {...a11yProps(3)} />
+            <Tab label="Games With Videos" {...a11yProps(0)} />
+            <Tab label="Games By Platform" {...a11yProps(1)} />
+            <Tab label="All Games" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <Overview game={props.game} />
+          <GamesWithVideos />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Credits credits={props.game.credits} />
+          <GamesByPlatform />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <RelatedGames relatedGames={props.game.relatedGames} />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <Extras />
+          <AllGames />
         </TabPanel>
       </Box>
-    </>
+    </div>
   );
 }

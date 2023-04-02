@@ -1,23 +1,30 @@
-import { ListItem, ListItemButton } from "@mui/material";
-import Link from 'next/link'
+import { ListItemButton } from "@mui/material";
+import Link from "next/link";
 import Auth from "../../utils/auth";
 
-export default function MenuRight({ setLogin, setSignUp }) {
-  const handleLogin = (e) => {
+interface MenuRightProps {
+  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function MenuRight({ setLogin, setSignUp }: MenuRightProps) {
+  const handleLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     setLogin(true);
   };
-  const handleSignUp = (e) => {
+  const handleSignUp = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     setSignUp(true);
   };
+
   return (
     <>
       {!Auth.loggedIn() ? (
         <>
           <ListItemButton
+            href="#"
             onClick={handleLogin}
-            style={{
+            sx={{
               position: "relative",
               display: "block",
               padding: "10px 15px",
@@ -28,8 +35,9 @@ export default function MenuRight({ setLogin, setSignUp }) {
             Login
           </ListItemButton>
           <ListItemButton
+            href="#"
             onClick={handleSignUp}
-            style={{
+            sx={{
               position: "relative",
               display: "block",
               padding: "10px 15px",
@@ -41,6 +49,8 @@ export default function MenuRight({ setLogin, setSignUp }) {
         </>
       ) : (
         <Link
+          href="/"
+          passHref
           style={{
             position: "relative",
             display: "block",

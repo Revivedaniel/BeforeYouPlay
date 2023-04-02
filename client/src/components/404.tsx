@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function FourOhFour() {
+export default function FourOhFour(): JSX.Element {
 
   useEffect(() => {
     document.title = "404 - Page Not Found";

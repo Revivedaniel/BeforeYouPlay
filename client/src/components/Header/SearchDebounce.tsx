@@ -13,10 +13,27 @@ import { QUERY_SEARCH_GAME } from "../../utils/queries";
 import { useEffect } from "react";
 import { useRouter } from 'next/router'
 
-export default function SearchDebounce(props) {
+interface SearchDebounceProps {
+  search: string;
+  setDebounce: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
+interface Game {
+  title: string;
+  gameGenerated: boolean;
+}
+
+interface SearchGameData {
+  searchGame: {
+    games: Game[];
+  };
+}
+
+export default function SearchDebounce(props: SearchDebounceProps) {
   const router = useRouter()
 
-  const { loading, data, error, refetch } = useQuery(QUERY_SEARCH_GAME, {
+  const { loading, data, error, refetch } = useQuery<SearchGameData>(QUERY_SEARCH_GAME, {
     variables: { search: props.search, page: 1 },
   });
 
@@ -38,18 +55,18 @@ export default function SearchDebounce(props) {
   return (
     <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       <List>
-        {data ? (data.searchGame.games.slice(0, 5).map((result, i) => {
+        {data ? (data.searchGame.games.slice(0, 5).map((result: Game, i: number) => {
           return (
             <ListItem key={i} disablePadding>
               <ListItemButton
                 component="a"
                 onClick={() => {
-                    if (result.gameGenerated) {
-                      router.push(`/games/${result.title}`);
-                    } else {
-                      router.push(`/search/${encodeURI(result.title)}`)
-                      props.setSearch(result.title)
-                    }
+                  if (result.gameGenerated) {
+                    router.push(`/games/${result.title}`);
+                  } else {
+                    router.push(`/search/${encodeURI(result.title)}`)
+                    props.setSearch(result.title)
+                  }
                   props.setDebounce(false);
                 }}
               >
