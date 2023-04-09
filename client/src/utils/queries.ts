@@ -64,6 +64,7 @@ export const QUERY_FEATURED_GAME = gql`
     featuredGame {
       title
       imageName
+      shortDescription
     }
   }
 `;

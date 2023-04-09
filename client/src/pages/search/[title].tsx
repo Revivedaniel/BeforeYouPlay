@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import css from "./[title].module.css";
 import { QUERY_SEARCH_GAME } from "../../utils/queries";
 import SearchCard from "../../components/partials/SearchCard";
-import FourOhFour from "../../components/404.js";
+import FourOhFour from "../../components/404";
 import { useState, useRef, useEffect } from "react";
 
 interface Game {

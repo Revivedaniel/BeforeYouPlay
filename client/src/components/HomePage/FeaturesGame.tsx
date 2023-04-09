@@ -1,11 +1,16 @@
 import { useQuery, QueryResult } from "@apollo/client";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { QUERY_FEATURED_GAME } from "../../utils/queries";
+import css from "./FeaturedGame.module.css";
+import Link from "next/link";
+import { Skeleton } from "@mui/material";
 
 export default function FeaturedGame(): JSX.Element {
   const { loading, data, error }: QueryResult = useQuery(QUERY_FEATURED_GAME);
   const router = useRouter();
-  const handleGameSelect = (e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLImageElement>): void => {
+  const handleGameSelect = (
+    e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLImageElement>
+  ): void => {
     e.preventDefault();
     if (data?.featuredGame?.title) {
       router.push(`/games/${encodeURI(data.featuredGame.title)}`);
@@ -13,7 +18,9 @@ export default function FeaturedGame(): JSX.Element {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Skeleton variant="rectangular" className={css.featuredGame} />
+    );
   }
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -21,18 +28,21 @@ export default function FeaturedGame(): JSX.Element {
 
   return (
     <>
-      <h2>Featured Game</h2>
-      <div>
-        <img
-          src={`https://vgiapitest.blob.core.windows.net/game-images/${data?.featuredGame?.imageName || "byp-new-game"}.webp`}
-          alt={` cover art`}
-          style={{ cursor: "pointer" }}
-          onClick={handleGameSelect}
-        />
-        <a href="/" onClick={handleGameSelect}>
-          <h6>{data?.featuredGame?.title}</h6>
-        </a>
-      </div>
+      <Link
+        href={`/games/${data?.featuredGame?.title}`}
+        className={css.featuredGame}
+        style={{
+          backgroundImage: `url('https://vgiapitest.blob.core.windows.net/game-images/${data?.featuredGame?.imageName}.webp')`,
+        }}
+      >
+        <div className={css.nameContainer}>
+          <h2>{data?.featuredGame?.title}</h2>
+          <p>
+            {`${data?.featuredGame?.shortDescription} ...`}
+            <span>Click here to read more</span>
+          </p>
+        </div>
+      </Link>
     </>
   );
 }

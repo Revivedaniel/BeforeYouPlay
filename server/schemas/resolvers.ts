@@ -124,9 +124,21 @@ const resolvers = {
         });
         // if response is empty, return empty
         if (response.data.length === 0) {
-          return { statusCode: 204, games: [] };
+          return;
         }
-        return response.data[0];
+        const gameResponse = await await axios({
+          url: `${process.env.VGI_API_URI}/games/${response.data[0].title}`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const featuredGame = {
+          title: response.data[0].title,
+          imageName: response.data[0].imageName,
+          shortDescription: JSON.parse(gameResponse.data.summary)['Gameplay Mechanics'].substring(0, 89)
+        };
+        return featuredGame;
       } catch (error) {
         console.log(error);
       }
@@ -198,8 +210,7 @@ const resolvers = {
         if (response.data.length === 0) {
           return { statusCode: 204, games: [] as any };
         }
-
-        return { games: response.data };
+        return { games: response.data.slice(1) };
       } catch (error) {
         console.log(error);
       }

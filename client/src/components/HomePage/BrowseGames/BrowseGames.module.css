@@ -1,0 +1,24 @@
+.container {
+    min-height: 1000px;
+}
+
+.container h2 {
+    color: #fff;
+    padding: 12px;
+    /* text-align: center; */
+}
+
+@media screen and (min-width: 769px) {
+    .container h2 {
+        margin-left: 20vw;
+    }
+
+    .box {
+        margin-left: 20vw;
+        width: 58vw;
+    }
+
+    .tabs  {
+        font-size: 2.04vw;
+    }
+}

@@ -2,6 +2,7 @@ import { useQuery, QueryResult } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import FourOhFour from "../404";
 import SearchCard from "../partials/SearchCard";
+import css from "./ScrollLoadGames.module.css";
 
 interface ScrollLoadGamesProps {
   query: any;
@@ -61,11 +62,9 @@ export default function ScrollLoadGames(props: ScrollLoadGamesProps): JSX.Elemen
   }
 
   return loading ? (
-    <div style={{ paddingTop: "160px" }}>
-      <h2>Loading Search Results...</h2>
-    </div>
+      <SearchCard loading={true} />
   ) : (
-    <div>
+    <div className={css.container}>
       {games
         ? games.map((game: any, i: number, arr: any[]) => {
             if (i === games.length - 1) {

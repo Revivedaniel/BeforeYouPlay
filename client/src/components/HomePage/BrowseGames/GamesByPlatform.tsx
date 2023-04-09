@@ -1,53 +1,69 @@
 import { useQuery, QueryResult } from "@apollo/client";
-import { Autocomplete, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Skeleton
+} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { QUERY_ALL_PLATFORMS, QUERY_GAME_BY_PLATFORM } from "../../../utils/queries";
+import {
+  QUERY_ALL_PLATFORMS,
+  QUERY_GAME_BY_PLATFORM,
+} from "../../../utils/queries";
 import ScrollLoadGames from "../../shared/ScrollLoadGames";
 import css from "./GamesByPlatform.module.css";
 
 export default function GamesByPlatform(): JSX.Element {
-  const [platform, setPlatform] = useState<string | null>(null);
+  const [platform, setPlatform] = useState<string>("");
   const [debounce, setDebounce] = useState<boolean>(false);
 
   const { loading, data }: QueryResult = useQuery(QUERY_ALL_PLATFORMS);
 
-  const handleInputChange = (newValue: string | null): void => {
-    setPlatform(null);
+  const handleInputChange = (event: SelectChangeEvent): void => {
+    setPlatform("");
     if (platform) {
       setDebounce(false);
       setTimeout(() => {
-        setPlatform(newValue);
+        setPlatform(event.target.value as string);
       }, 500);
     } else {
-      setPlatform(newValue);
+      setPlatform(event.target.value as string);
     }
     setDebounce(true);
   };
 
   return (
     <div className={css.div}>
-      {loading && <p>Loading...</p>}
+      {loading && <>
+      <InputLabel id="platformSelectLabel">Please Wait...</InputLabel>
+        <Skeleton style={{ width: "100%", height: "12.2vh", backgroundColor: "#fff" }} />
+      </>}
       {data && (
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={[...data.allPlatforms, "Select A Platform"]}
-          sx={{ width: "100%" }}
-          renderInput={(params) => <TextField {...params} label="Platform" />}
-          value={platform || "Select A Platform"}
-          onChange={(event, newValue) => {
-            if (newValue) {
-              handleInputChange(newValue);
-            }
-          }}
-          inputValue={platform || "Select A Platform"}
-          onInputChange={(event, newInputValue) => {
-            handleInputChange(newInputValue);
-          }}
-        />
+        <>
+          <InputLabel id="platformSelectLabel">Select A Platform</InputLabel>
+          <Select
+            labelId="platformSelectLabel"
+            sx={{ width: "100%", backgroundColor: "white", fontSize: "2rem", color: "var(--primary-dark)" }}
+            label="Select A Platform"
+            value={platform || "Select A Platform"}
+            onChange={handleInputChange}
+          >
+            {data.allPlatforms.map((platform: string) => (
+              <MenuItem key={platform} value={platform}>
+                {platform}
+              </MenuItem>
+            ))}
+          </Select>
+        </>
       )}
       {debounce && platform && platform !== "Select A Platform" && (
-        <ScrollLoadGames query={QUERY_GAME_BY_PLATFORM} variables={{ platform: platform }} />
+        <ScrollLoadGames
+          query={QUERY_GAME_BY_PLATFORM}
+          variables={{ platform: platform }}
+        />
       )}
     </div>
   );

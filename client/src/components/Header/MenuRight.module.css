@@ -1,0 +1,37 @@
+.login, .signup {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+}
+
+.login {
+    color: var(--cta-dark);
+    background-color: var(--primary-dark);
+}
+
+.signup {
+    color: var(--primary-dark);
+    background-color: var(--cta-dark);
+}
+
+@media screen and (min-width: 769px) {
+    .signup, .login {
+        border-radius: 20px;
+    }
+
+    .login:hover {
+        color: var(--primary-dark);
+        background-color: var(--cta-dark);
+    }
+
+    .signup:hover {
+        color: var(--primary-dark);
+        background-color: var(--cta-dark);
+    }
+}

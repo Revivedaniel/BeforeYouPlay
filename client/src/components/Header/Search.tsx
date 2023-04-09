@@ -1,13 +1,15 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import SearchDebounce from "./SearchDebounce";
 import { useRouter } from 'next/router'
+import css from "./Search.module.css";
 
 export default function Search() {
   const [search, setSearch] = useState<string>("");
   const [debounce, setDebounce] = useState<boolean>(false);
-
+  
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter()
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDebounce(false);
@@ -33,15 +35,20 @@ export default function Search() {
     }
   };
 
+  useEffect(() => {
+    searchRef.current?.focus();
+  }, []);
+
   return (
     <>
-      <div className="top-search">
+      <div className={css.topSearch}>
         <input
           type="search"
           value={search}
           onChange={handleInputChange}
           placeholder="Search for a game..."
           onKeyPress={handleKeypress}
+          ref={searchRef}
         />
       </div>
       {debounce && search !== "" && <SearchDebounce search={search} setDebounce={setDebounce} setSearch={setSearch} />}

@@ -1,6 +1,7 @@
 import { ListItemButton } from "@mui/material";
 import Link from "next/link";
 import Auth from "../../utils/auth";
+import css from "./MenuRight.module.css";
 
 interface MenuRightProps {
   setLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,13 +25,7 @@ export default function MenuRight({ setLogin, setSignUp }: MenuRightProps) {
           <ListItemButton
             href="#"
             onClick={handleLogin}
-            sx={{
-              position: "relative",
-              display: "block",
-              padding: "10px 15px",
-              color: "var(--cta-dark)",
-              backgroundColor: "var(--primary-dark)",
-            }}
+            className={css.login}
           >
             Login
           </ListItemButton>
@@ -43,6 +38,7 @@ export default function MenuRight({ setLogin, setSignUp }: MenuRightProps) {
               padding: "10px 15px",
               color: "var(--primary-dark)",
             }}
+            className={css.signup}
           >
             sign up
           </ListItemButton>
@@ -58,6 +54,7 @@ export default function MenuRight({ setLogin, setSignUp }: MenuRightProps) {
             color: "var(--primary-dark)",
           }}
           onClick={() => Auth.logout()}
+          className={css.a}
         >
           Logout
         </Link>

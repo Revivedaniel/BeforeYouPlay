@@ -6,6 +6,7 @@
 
 .div img {
     width: 150px;
+    min-width: 150px;
 }
 
 .div a {

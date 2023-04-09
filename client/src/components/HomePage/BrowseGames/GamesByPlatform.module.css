@@ -13,4 +13,8 @@
 
 .div label {
     color: var(--primary-font-color);
+    text-transform: none;
+    font-size: 1.17rem;
+    font-weight: bold;
+    color: #fff;
 }
