@@ -49,16 +49,17 @@
 @media screen and (min-width: 1440px) {
     .div {
         width: 33.33%;
+        margin: 1px;
     }
 }
 
 @media screen and (min-width: 2560px) {
     .div {
-        justify-content: center;
+        /* justify-content: center; */
     }
 
     .div img {
-        width: 315px;
+        min-width: 315px;
     }
 
     .div a h6 {

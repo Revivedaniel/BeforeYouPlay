@@ -5,15 +5,11 @@ import { QUERY_SEARCH_GAME } from "../../utils/queries";
 import SearchCard from "../../components/partials/SearchCard";
 import FourOhFour from "../../components/404";
 import { useState, useRef, useEffect } from "react";
-
-interface Game {
-  // Add any properties here
-}
+import { Game } from "@/components/Gamepage/Game.model";
 
 interface QueryData {
   searchGame: {
     games: Game[];
-    // Add any other properties here
   };
 }
 
@@ -69,6 +65,7 @@ export default function Searchpage() {
     </div>
   ) : (
     <div className={css.div}>
+      <div className={css.innerContainer}>
       {games
         ? games?.map((game, i) => {
             if (i === games.length - 1) {
@@ -83,6 +80,7 @@ export default function Searchpage() {
           })
         : null}
       {games?.length === 0 ? <h2>No results found for {title}</h2> : null}
+      </div>
     </div>
   );
 }

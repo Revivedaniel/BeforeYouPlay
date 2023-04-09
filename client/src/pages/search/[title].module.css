@@ -20,16 +20,23 @@
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
     .div {
         padding: 22.2vh 0;
     }
+    .innerContainer {
+        margin-left: 20vw;
+        width: 58vw;
+        display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    }
 }
 
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
     .div {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
     }
-}
+} */
