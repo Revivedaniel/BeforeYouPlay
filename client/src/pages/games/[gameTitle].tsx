@@ -25,7 +25,7 @@ export default function Gamepage() {
   const { gameTitle } = router.query as { gameTitle: string };
   const [game, setGame] = useState<Game | null>(null);
   const [video, setVideo] = useState<string | null>(null);
-  const { loading, data } = useQuery<QueryData>(QUERY_SINGLE_GAME, {
+  const { loading, data, error } = useQuery<QueryData>(QUERY_SINGLE_GAME, {
     variables: { title: gameTitle },
     onCompleted: (data) => {
       setGame(data.game);
@@ -33,23 +33,28 @@ export default function Gamepage() {
     },
   });
 
-  if (loading) {
+  console.log(gameTitle)
+
+  if (loading || game === null) {
     return (
       <>
         <p>Loading...</p>
         <CircularProgress />
       </>
     );
-  } else if (game === null) {
+  } else if (error) {
     return <FourOhFour />;
   }
 
   return (
+    // <div className={css.div} style={{backgroundImage: `url(https://vgiapitest.blob.core.windows.net/game-images/${game.imageName}.webp)`}}>
     <div className={css.div}>
       <GameImage game={game} />
-      <h1>{game.title}</h1>
-      {video && <Video video={video} />}
-      <InfoTabs game={game} />
+      <div className={css.mainContent}>
+        <h1>{game.title}</h1>
+        {video && <Video video={video} />}
+        <InfoTabs game={game} />
+      </div>
     </div>
   );
 }

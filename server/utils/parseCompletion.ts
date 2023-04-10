@@ -18,7 +18,7 @@ export interface IParsedGame {
     summary: string;
 }
 
-function parseCompletion(completion: string): IParsedGame {
+function parseCompletion(completion: string, title: string): IParsedGame {
   if (!completion) {
     return undefined;
   }
@@ -30,6 +30,7 @@ function parseCompletion(completion: string): IParsedGame {
     try {
       parsed = JSON.parse(code);
       parsed.summary = JSON.stringify(parsed.summary);
+      parsed.title = title;
     } catch (err) {
       console.log('error parsing completion');
       console.log(code);

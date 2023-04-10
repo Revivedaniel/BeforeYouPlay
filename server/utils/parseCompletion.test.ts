@@ -107,7 +107,7 @@ describe("parseCompletion", () => {
       relatedGames: ["Slalom", "Winter Olympics: Lillehammer '94"],
     };
 
-    const result = parseCompletion(completion);
+    const result = parseCompletion(completion, "Ski");
 
     expect(result).toEqual(expected);
   });
@@ -116,28 +116,28 @@ describe("parseCompletion", () => {
     const completionString = "";
     const expected: IParsedGame = undefined;
 
-    expect(parseCompletion(completionString)).toEqual(expected);
+    expect(parseCompletion(completionString, "Ski")).toEqual(expected);
   });
 
   it("should handle invalid JSON input", () => {
     const completionString = '{ "title": "Super Mario World", }';
     const expected: IParsedGame = undefined;
 
-    expect(parseCompletion(completionString)).toEqual(expected);
+    expect(parseCompletion(completionString, "Super Mario World")).toEqual(expected);
   });
 
   it("should handle undefined input", () => {
     const completionString: undefined = undefined;
     const expected: IParsedGame = undefined;
 
-    expect(parseCompletion(completionString)).toEqual(expected);
+    expect(parseCompletion(completionString, "")).toEqual(expected);
   });
 
   it("should handle null input", () => {
     const completionString: null = null;
     const expected: IParsedGame = undefined;
 
-    expect(parseCompletion(completionString)).toEqual(expected);
+    expect(parseCompletion(completionString, "")).toEqual(expected);
   });
 });
 const asd = {

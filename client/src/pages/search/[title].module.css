@@ -31,6 +31,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     }
+
+    .innerContainer div {
+        margin: 1px;
+    }
 }
 
 /* @media screen and (min-width: 1024px) {

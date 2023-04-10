@@ -1,0 +1,15 @@
+.img {
+    padding: 8.8vh 0;
+    width: 84.62vw;
+    margin-bottom: -206px;
+    z-index: 1;
+}
+
+@media screen and (min-width: 769px) {
+    .img {
+        width: 18.62vw;
+        margin-bottom: -206px;
+        z-index: 1;
+        margin-left: 21.5vw;
+    }
+}

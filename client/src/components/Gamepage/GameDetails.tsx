@@ -1,5 +1,5 @@
-import React from 'react';
-import css from './GameDetails.module.css';
+import React from "react";
+import css from "./GameDetails.module.css";
 
 interface AgeRating {
   title: string;
@@ -22,7 +22,16 @@ interface GameDetailsProps {
   series: string;
 }
 
-const GameDetails: React.FC<GameDetailsProps> = ({ platforms, ageRatings, releaseDates, developers, publishers, genres, gameModes, series }) => {
+const GameDetails: React.FC<GameDetailsProps> = ({
+  platforms,
+  ageRatings,
+  releaseDates,
+  developers,
+  publishers,
+  genres,
+  gameModes,
+  series,
+}) => {
   const renderListItems = (items: string[]) => {
     return items.map((item, index) => <li key={index}>{item}</li>);
   };
@@ -40,31 +49,47 @@ const GameDetails: React.FC<GameDetailsProps> = ({ platforms, ageRatings, releas
   };
 
   return (
-    <div className={css.gameDetailsContainer}>
-      <h2>Platforms</h2>
-      <ul>{renderListItems(platforms)}</ul>
+    <section className={css.gameDetailsContainer}>
+      <article>
+        <h2>Platforms</h2>
+        <ul>{renderListItems(platforms)}</ul>
+      </article>
 
-      <h2>Age Ratings</h2>
-      <ul>{renderAgeRatings()}</ul>
+      <article>
+        <h2>Age Ratings</h2>
+        <ul>{renderAgeRatings()}</ul>
+      </article>
 
-      <h2>Release Dates</h2>
-      <ul>{renderReleaseDates()}</ul>
+      <article>
+        <h2>Release Dates</h2>
+        <ul>{renderReleaseDates()}</ul>
+      </article>
 
-      <h2>Developers</h2>
-      <ul>{renderListItems(developers)}</ul>
+      <article>
+        <h2>Developers</h2>
+        <ul>{renderListItems(developers)}</ul>
+      </article>
 
-      <h2>Publishers</h2>
-      <ul>{renderListItems(publishers)}</ul>
+      <article>
+        <h2>Publishers</h2>
+        <ul>{renderListItems(publishers)}</ul>
+      </article>
 
-      <h2>Genres</h2>
-      <ul>{renderListItems(genres)}</ul>
+      <article>
+        <h2>Genres</h2>
+        <ul>{renderListItems(genres)}</ul>
+      </article>
 
-      <h2>Game Modes</h2>
-      <ul>{renderListItems(gameModes)}</ul>
+      <article>
+        <h2>Game Modes</h2>
+        <ul>{renderListItems(gameModes)}</ul>
+      </article>
 
-      <h2>Series</h2>
-      <p>{series}</p>
-    </div>
+      <article>
+        <h2>Series</h2>
+        <p>{series}</p>
+      </article>
+    </section>
   );
 };
 

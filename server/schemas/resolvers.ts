@@ -73,7 +73,7 @@ const resolvers = {
             // Genrate the game with AI
             const generatedGameData = await generateGame(title);
             // parse the response for the JSON data
-            const jsonResponse = parseCompletion(generatedGameData);
+            const jsonResponse = parseCompletion(generatedGameData, title);
             // submit the new game to the VGI database
             const newGame = await submitNewGame(jsonResponse);
             

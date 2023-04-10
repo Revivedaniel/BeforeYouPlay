@@ -4020,14 +4020,6 @@ select {
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
 }
-p {
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  color: var(--primary-font-color);
-  font-weight: 300;
-  text-transform: none;
-  line-height: 24px !important;
-}
 ul {
   list-style: none;
   margin-left: 0;
