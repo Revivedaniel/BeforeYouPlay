@@ -1,10 +1,13 @@
 import jwt from 'jsonwebtoken';
 import { Request } from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const secret: string = process.env.AUTH_SECRET;
 const expiration: string = '2h';
 
-interface User {
+export interface User {
   username: string;
   email: string;
   _id: string;
@@ -22,7 +25,7 @@ interface DecodedToken {
   };
 }
 
-interface authRequest extends Request {
+export interface authRequest extends Request {
   user?: User;
 }
 
@@ -30,8 +33,8 @@ interface AuthMiddlewareArgs {
   req: authRequest;
 }
 
-export const authMiddleware = function ({ req }: AuthMiddlewareArgs): Request {
-  let token: string | undefined = req.body.token || req.query.token || req.headers.authorization;
+export const authMiddleware = function ({ req }: AuthMiddlewareArgs): Request | authRequest {
+  let token: string | undefined = req?.body?.token || req?.query?.token || req?.headers?.authorization;
 
   if (req.headers.authorization) {
     token = token?.split(' ').pop()?.trim();

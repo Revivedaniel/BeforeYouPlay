@@ -1,0 +1,32 @@
+.videoResponsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+  width: 100vw;
+}
+
+.videoResponsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+@media screen and (min-width: 769px) {
+  .videoResponsive {
+    /* position: absolute;
+    top: 25vh;
+    left: 43vw;
+    height: auto;
+    width: 35.5vw;
+    padding-bottom: 21.25%; */
+    position: absolute;
+    top: 71vh;
+    left: 22vw;
+    height: auto;
+    width: 18.1vw;
+    padding-bottom: 13.25%;
+  }
+}

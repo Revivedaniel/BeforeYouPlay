@@ -76,6 +76,7 @@ const typeDefs = gql`
   type FeaturedGame {
     title: String
     imageName: String
+    shortDescription: String
   }
 
   type Video {

@@ -1,7 +1,13 @@
 import { Configuration, OpenAIApi, CreateChatCompletionRequest } from 'openai';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function generateGame(title: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
+    if (!title) {
+      reject(new Error('No game title provided'));
+    }
     try {
       const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY || '',

@@ -14,7 +14,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MenuRight from "./MenuRight";
 
 interface NavProps {
@@ -25,6 +25,24 @@ interface NavProps {
 
 export default function Nav(props: NavProps) {
   const [state, setState] = useState(false);
+  const [desktopView, setDesktopView] = useState(false);
+
+  useEffect(() => {
+    const updateFontSize = () => {
+      if (window.innerWidth >= 769) {
+        setDesktopView(true);
+      } else {
+        setDesktopView(false);
+      }
+    };
+
+    window.addEventListener("resize", updateFontSize);
+    updateFontSize(); // Set initial font size
+
+    return () => {
+      window.removeEventListener("resize", updateFontSize);
+    };
+  }, []);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -68,12 +86,20 @@ export default function Nav(props: NavProps) {
     <nav className={css.nav}>
       <Jumbotron />
       <div>
-        <SearchIcon fontSize="large" onClick={props.handleSearchVisible} />
-        <MenuIcon fontSize="large" onClick={toggleDrawer(true)} />
+        {desktopView ? (
+          <MenuRight setLogin={props.setLogin} setSignUp={props.setSignUp} />
+        ) : (
+          <>
+            <SearchIcon fontSize="large" onClick={props.handleSearchVisible} />
+            <MenuIcon fontSize="large" onClick={toggleDrawer(true)} />
+          </>
+        )}
       </div>
-      <Drawer open={state} onClose={toggleDrawer(false)} anchor={"right"}>
+      {desktopView ? null : (
+        <Drawer open={state} onClose={toggleDrawer(false)} anchor={"right"}>
         {list()}
       </Drawer>
+      )}
     </nav>
   );
 }

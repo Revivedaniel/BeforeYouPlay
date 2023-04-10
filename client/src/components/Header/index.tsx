@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Nav from "./Nav";
 import Search from "./Search";
+import css from "./index.module.css";
 
 interface HeaderProps {
   setLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,13 +11,19 @@ interface HeaderProps {
 export default function Header({ setLogin, setSignUp }: HeaderProps) {
   const [searchVisible, setSearchVisible] = useState(false);
 
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      setSearchVisible(true);
+    }
+  }, []);
+
   const handleSearchVisible = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.preventDefault();
     setSearchVisible(!searchVisible);
   };
 
   return (
-    <header>
+    <header className={css.header}>
       <Nav handleSearchVisible={handleSearchVisible} setLogin={setLogin} setSignUp={setSignUp} />
       {searchVisible && <Search />}
     </header>

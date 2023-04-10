@@ -18,7 +18,10 @@ export interface IParsedGame {
     summary: string;
 }
 
-function parseCompletion(completion: string): IParsedGame {
+function parseCompletion(completion: string, title: string): IParsedGame {
+  if (!completion) {
+    return undefined;
+  }
     let start: number = completion.indexOf('{');
     let end: number = completion.lastIndexOf('}') + 1;
     let code: string = completion.slice(start, end);
@@ -26,13 +29,14 @@ function parseCompletion(completion: string): IParsedGame {
   
     try {
       parsed = JSON.parse(code);
+      parsed.summary = JSON.stringify(parsed.summary);
+      parsed.title = title;
     } catch (err) {
       console.log('error parsing completion');
       console.log(code);
       console.log(err);
     }
   
-    parsed.summary = JSON.stringify(parsed.summary);
   
     return parsed;
   }

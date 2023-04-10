@@ -1,0 +1,9 @@
+@media screen and (min-width: 769px) {
+    .container {
+        width: 59vw;
+        margin-left: 40.2vw;
+    }
+    .container button {
+        font-size: 18px;
+    }
+}

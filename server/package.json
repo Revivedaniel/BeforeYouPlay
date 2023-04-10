@@ -9,7 +9,8 @@
     "prestart": "npm run build",
     "start": "node dist/server.js",
     "watch": "nodemon",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/seed.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -32,8 +33,9 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^18.15.11",
-    "jest": "^28.0.3",
+    "@types/jest": "^29.5.0",
     "nodemon": "^2.0.3",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.3"
   }
 }

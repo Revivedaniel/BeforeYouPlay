@@ -7,11 +7,11 @@
 .emptyCredits {
     text-align: center;
     font-size: 1.2em;
-    color: #555;
+    color: #fff;
 }
 
 .emptyCredits p {
-    color: #333;
+    color: #fff;
 }
 
 .creditSection {
@@ -21,7 +21,7 @@
 .sectionTitle {
     font-size: 1.5em;
     margin-bottom: 0.5em;
-    color: #333;
+    color: #fff;
 }
 
 .entriesList {
@@ -32,6 +32,6 @@
 
 .entryItem {
     font-size: 1em;
-    color: #555;
+    color: #fff;
     line-height: 1.5;
 }
