@@ -1,15 +1,12 @@
 import { useRouter } from "next/router";
 import css from "./SearchCard.module.css";
 import { Skeleton } from "@mui/material";
-
-interface Game {
-  title: string;
-  imageName: string;
-}
+import { Game } from "@/components/Gamepage/Game.model";
 
 interface SearchCardProps {
   game?: Game;
   loading?: boolean;
+  setGames?: React.Dispatch<React.SetStateAction<Game[]>>
 }
 
 export default function SearchCard(props: SearchCardProps): JSX.Element {
@@ -21,6 +18,9 @@ export default function SearchCard(props: SearchCardProps): JSX.Element {
   ): void => {
     e.preventDefault();
     if (props.game) {
+      if (props.setGames) {
+        props.setGames([])
+      }
       router.push(`/games/${encodeURI(props.game.title)}`);
     }
   };

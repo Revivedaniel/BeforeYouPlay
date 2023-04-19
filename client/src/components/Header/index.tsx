@@ -8,7 +8,7 @@ interface HeaderProps {
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Header({ setLogin, setSignUp }: HeaderProps) {
+export default function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Header({ setLogin, setSignUp }: HeaderProps) {
 
   return (
     <header className={css.header}>
-      <Nav handleSearchVisible={handleSearchVisible} setLogin={setLogin} setSignUp={setSignUp} />
+      <Nav handleSearchVisible={handleSearchVisible} />
       {searchVisible && <Search />}
     </header>
   );

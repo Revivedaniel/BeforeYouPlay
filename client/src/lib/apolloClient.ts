@@ -28,9 +28,8 @@ const authLink = setContext((_, { headers }) => {
       },
   };
 });
-
 const httpLink = new HttpLink({
-    uri: 'http://192.168.1.141:3001/graphql', // Server URL (must be absolute)
+    uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/graphql`, // Server URL (must be absolute)
   credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
 })
 

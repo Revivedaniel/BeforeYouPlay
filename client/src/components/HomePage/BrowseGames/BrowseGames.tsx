@@ -77,7 +77,7 @@ export default function BrowseGames(): JSX.Element {
   return (
     <div className={css.container}>
       <h2>Browse</h2>
-      <Box sx={{ width: "100%"}} className={css.box}>
+      <Box className={css.box}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}

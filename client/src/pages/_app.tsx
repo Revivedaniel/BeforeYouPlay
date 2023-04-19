@@ -15,17 +15,17 @@ interface State {
 
 export default function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps)
-  const [state, setState] = useState<State>({ login: false, signUp: false });
-  const { login, signUp } = state;
+  // const [state, setState] = useState<State>({ login: false, signUp: false });
+  // const { login, signUp } = state;
   return (
     <ApolloProvider client={apolloClient}>
-      <Header setLogin={() => setState((prev) => ({ ...prev, login: true }))} setSignUp={() => setState((prev) => ({ ...prev, signUp: true }))} />
-      {login && (
+      <Header />
+      {/* {login && (
         <Login setLogin={() => setState((prev) => ({ ...prev, login: false }))} />
       )}
       {signUp && (
         <Signup setSignUp={() => setState((prev) => ({ ...prev, signUp: false }))} />
-      )}
+      )} */}
       <Component {...pageProps} />
     </ApolloProvider>
   )

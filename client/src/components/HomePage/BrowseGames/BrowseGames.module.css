@@ -2,6 +2,10 @@
     min-height: 1000px;
 }
 
+.box {
+    width: 100%;
+}
+
 .container h2 {
     color: #fff;
     padding: 12px;

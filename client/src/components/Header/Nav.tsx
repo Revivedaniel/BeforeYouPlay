@@ -19,8 +19,8 @@ import MenuRight from "./MenuRight";
 
 interface NavProps {
   handleSearchVisible: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
-  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
-  setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+  // setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  // setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Nav(props: NavProps) {
@@ -77,7 +77,7 @@ export default function Nav(props: NavProps) {
       </List>
       <Divider />
       <List>
-        <MenuRight setLogin={props.setLogin} setSignUp={props.setSignUp} />
+        <MenuRight />
       </List>
     </Box>
   );
@@ -87,19 +87,20 @@ export default function Nav(props: NavProps) {
       <Jumbotron />
       <div>
         {desktopView ? (
-          <MenuRight setLogin={props.setLogin} setSignUp={props.setSignUp} />
+          // <MenuRight />
+          null
         ) : (
           <>
             <SearchIcon fontSize="large" onClick={props.handleSearchVisible} />
-            <MenuIcon fontSize="large" onClick={toggleDrawer(true)} />
+            {/* <MenuIcon fontSize="large" onClick={toggleDrawer(true)} /> */}
           </>
         )}
       </div>
-      {desktopView ? null : (
+      {/* {desktopView ? null : (
         <Drawer open={state} onClose={toggleDrawer(false)} anchor={"right"}>
         {list()}
       </Drawer>
-      )}
+      )} */}
     </nav>
   );
 }

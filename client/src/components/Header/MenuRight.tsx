@@ -8,14 +8,14 @@ interface MenuRightProps {
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function MenuRight({ setLogin, setSignUp }: MenuRightProps) {
+export default function MenuRight() {
   const handleLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    setLogin(true);
+    // setLogin(true);
   };
   const handleSignUp = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    setSignUp(true);
+    // setSignUp(true);
   };
 
   return (

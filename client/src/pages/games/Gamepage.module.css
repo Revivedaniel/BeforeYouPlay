@@ -24,6 +24,7 @@
     font-weight: 700;
     text-transform: none;
     margin-bottom: 2.96vh;
+    transition: ease-in 1s
 }
 
 @media screen and (min-width: 769px) {
