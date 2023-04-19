@@ -31,7 +31,7 @@ export interface GameInput {
   };
 }
 
-async function submitNewGame(game: IParsedGame): Promise<GameDocument> {
+async function submitNewGame(game: IParsedGame, imageName: string): Promise<GameDocument> {
   return new Promise(async (resolve, reject) => {
     try {
       const connection: Connection = await mongoose.createConnection(process.env.VGI_API_MONGODB_URI || '');
@@ -40,7 +40,7 @@ async function submitNewGame(game: IParsedGame): Promise<GameDocument> {
       const GameTitle: Model<GameTitleDocument> = connection.model<GameTitleDocument>('GameTitle', gameTitleSchema);
 
       const count: number = await Game.countDocuments();
-      const newGame: GameDocument = await Game.create({ ...game, gameId: count + 1 });
+      const newGame: GameDocument = await Game.create({ ...game, gameId: count + 1, imageName: imageName });
 
       // if the new game was created successfully,
       // update the gameTitle to gameGenerated = true
