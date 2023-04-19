@@ -18,6 +18,7 @@ interface VideoData {
 interface QueryData {
   game: Game;
   video: VideoData;
+  errors?: string
 }
 
 export default function Gamepage() {
@@ -25,25 +26,35 @@ export default function Gamepage() {
   const { gameTitle } = router.query as { gameTitle: string };
   const [game, setGame] = useState<Game | null>(null);
   const [video, setVideo] = useState<string | null>(null);
+  const [loadingStatement, setLoadingStatement] = useState<string>("Loading...");
   const { loading, data, error } = useQuery<QueryData>(QUERY_SINGLE_GAME, {
     variables: { title: gameTitle },
     onCompleted: (data) => {
-      setGame(data.game);
-      setVideo(data.video.videoUrl);
+      if (data?.errors) {
+      } else {
+        setGame(data.game);
+        setVideo(data.video.videoUrl);
+      }
     },
   });
 
-  console.log(gameTitle)
+  
 
-  if (loading || game === null) {
-    return (
-      <>
-        <p>Loading...</p>
-        <CircularProgress />
-      </>
-    );
-  } else if (error) {
+  if (error) {
     return <FourOhFour />;
+  } else if (loading || game === null) {
+    const timeout = setTimeout(() => {
+      setLoadingStatement("Generating Game...");
+    }, 5000);
+    return (
+      <div className={css.div}>
+      <GameImage />
+      <div className={css.mainContent}>
+        <h1>{loadingStatement}</h1>
+        <InfoTabs />
+      </div>
+    </div>
+    );
   }
 
   return (

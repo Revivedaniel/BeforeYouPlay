@@ -71,11 +71,11 @@ export default function Searchpage() {
             if (i === games.length - 1) {
               return (
                 <div key={i} ref={lastGameRef}>
-                  <SearchCard game={game} />
+                  <SearchCard game={game} setGames={setGames} />
                 </div>
               );
             } else {
-              return <SearchCard game={game} key={i} />;
+              return <SearchCard game={game} key={i} setGames={setGames} />;
             }
           })
         : null}

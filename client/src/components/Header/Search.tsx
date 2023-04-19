@@ -30,8 +30,9 @@ export default function Search() {
   const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     //it triggers by pressing the enter key
     if (e.charCode === 13) {
-      router.push(`/search/${encodeURI(search)}`);
       setDebounce(false);
+      setSearch("")
+      router.push(`/search/${encodeURI(search)}`);
     }
   };
 

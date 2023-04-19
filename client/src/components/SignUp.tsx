@@ -34,7 +34,6 @@ export default function Signup({ setSignUp }: Props) {
 
   const handleSignupSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("///////////////////////Submitted/////////////////////////////");
     try {
       const mutationResponse = await addUser({
         variables: {

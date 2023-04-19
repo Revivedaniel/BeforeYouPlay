@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs, Typography } from "@mui/material";
+import { Box, CircularProgress, Tab, Tabs, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import Overview from "./Overview";
@@ -9,7 +9,7 @@ import { Game } from "./Game.model";
 import css from "./InfoTabs.module.css";
 
 interface InfoTabsProps {
-  game: Game;
+  game?: Game;
 }
 
 function TabPanel(props: any) {
@@ -80,7 +80,7 @@ export default function InfoTabs(props: InfoTabsProps) {
 
   return (
     <>
-      <Box sx={{ width: "100%", minHeight: "1000px", "& .MuiBox-root": {width} }} className={css.container}>
+      <Box sx={{ minHeight: "1000px", "& .MuiBox-root": {width} }} className={css.container}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
@@ -95,13 +95,25 @@ export default function InfoTabs(props: InfoTabsProps) {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <Overview game={props.game} />
+          {props.game ? (
+            <Overview game={props.game} />
+          ) : (
+            <CircularProgress />
+          )}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Credits credits={props.game.credits} />
+          {props.game ? (
+            <Credits credits={props.game.credits} />
+          ) : (
+            <CircularProgress />
+          )}
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <RelatedGames relatedGames={props.game.relatedGames} />
+          {props.game ? (
+            <RelatedGames relatedGames={props.game.relatedGames} />
+          ) : (
+            <CircularProgress />
+          )}
         </TabPanel>
         <TabPanel value={value} index={3}>
           <Extras />

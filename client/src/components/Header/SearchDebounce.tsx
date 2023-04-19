@@ -53,7 +53,7 @@ export default function SearchDebounce(props: SearchDebounceProps) {
     return null;
   }
   return (
-    <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Box sx={{ minWidth: "58vw", maxWidth: "100vw", bgcolor: "background.paper" }}>
       <List>
         {data ? (data.searchGame.games.slice(0, 5).map((result: Game, i: number) => {
           return (

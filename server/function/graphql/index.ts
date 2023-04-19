@@ -1,12 +1,118 @@
-import { AuthenticationError } from "apollo-server-express";
-import { User, Game, Video } from "../models/index.js";
+import { ApolloServer, gql} from "apollo-server-azure-functions";
+import { Game, Video } from "../models/index.js";
 import axios from "axios";
-import { signToken } from "../utils/auth.js";
 import generateGame from "../utils/generateGame.js";
 import parseCompletion from "../utils/parseCompletion.js";
 import submitNewGame from "../utils/submitNewGame.js";
 import { PlatformDoc } from "../utils/types.js";
 import { GraphQLError } from "graphql";
+import "../config/connection.js";
+
+const typeDefs = gql`
+
+  type Game {
+    title: String
+    platforms: [String]
+    gameId: Int
+    imageName: String
+    ageRatings: [AgeRating]
+    releaseDates: [ReleaseDate]
+    developers: [String]
+    publishers: [String]
+    genres: [String]
+    summary: String
+    gameModes: [String]
+    series: String
+    relatedGames: [String]
+    credits: [Credit]
+  }
+
+  type AgeRating {
+    title: String
+    rating: String
+  }
+
+  type ReleaseDate {
+    title: String
+    date: String
+  }
+
+  type Credit {
+    title: String
+    entries: String
+  }
+
+  type FreshData {
+    _id: ID
+    game_id: ID
+    created_at: String
+    up_votes: Int
+    down_votes: Int
+    potentially_outdated: Boolean
+    data: String
+    data_title: String
+    admin_approvals: Int
+    votes_total: Int
+    manually_typed: Boolean
+  }
+
+  type GameTitle {
+    title: String
+    imageName: String
+    gameGenerated: Boolean
+    lazyAfternoonContent: Boolean
+    contentAddedDate: String
+    platforms: [String]
+    genres: [String]
+  }
+
+  type Search {
+    games: [GameTitle]
+  }
+
+  type User {
+    _id: ID
+    username: String
+    email: String
+  }
+
+  type Auth {
+    token: ID
+    user: User
+  }
+
+  type FeaturedGame {
+    title: String
+    imageName: String
+    shortDescription: String
+  }
+
+  type Video {
+    type: String
+    gameTitle: String
+    videoUrl: String
+    dateAdded: String
+  }
+
+  type Query {
+    user: User
+    game(title: String!): Game
+    games(page: Int!): [Game]
+    searchGame(search: String!, page: Int!): Search
+    featuredGame: FeaturedGame
+    gamesByPlatform(platform: String!, page: Int!): Search
+    allPlatforms: [String]
+    allGameTitles(page: Int!): Search
+    gameWithVideos(page: Int!): Search
+    video(title: String!): Video
+  }
+
+  type Mutation {
+    addUser(username: String!, email: String!, password: String!): Auth
+    updateUser(username: String, email: String, password: String): User
+    login(email: String!, password: String!): Auth
+  }
+`;
 
 interface Context {
   user: {
@@ -34,14 +140,6 @@ interface Platform {
 
 const resolvers = {
   Query: {
-    user: async (parent: any, args: any, context: Context) => {
-      if (context.user) {
-        let user = await User.findById(context.user._id);
-        return user;
-      }
-
-      throw new AuthenticationError("Please, log in first!");
-    },
     game: async (parent: any, { title }: GameTitle) => {
       try {
         // search for the game title in the database
@@ -250,45 +348,20 @@ const resolvers = {
       }
     },
   },
-  Mutation: {
-    addUser: async (parent: any, args: any) => {
-      try {
-        const user = await User.create(args);
-        const token = signToken(user);
-
-        return { token, user };
-      } catch (error) {
-        console.log(error);
-        throw new AuthenticationError("Email has already been used");
-      }
-    },
-    updateUser: async (parent: any, args: any, context: Context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
-
-      throw new AuthenticationError("Please, log in first!");
-    },
-    login: async (parent: any, { email, password }: { email: string; password: string }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError("Email and/or password is incorrect!");
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Email and/or password is incorrect!");
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
-    },
-  },
+  Mutation: {}
 };
 
-export default resolvers;
+// @ts-ignore
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  debug: true
+});
+
+export default server.createHandler({
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["access-control-allow-credentials", "access-control-allow-origin", "content-type"]
+  },
+});

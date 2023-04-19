@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent, MouseEvent } from "react";
 import auth from "../utils/auth";
 import { LOGIN } from "../utils/mutations";
 
-export default function Login({ setLogin }) {
-  let handleClose = (e) => {
-    if (e.target.classList.contains("openform")) {
+export default function Login() {
+  let handleClose = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget.classList.contains("openform")) {
       e.preventDefault();
-      setLogin(false);
+      // setLogin(false);
     }
   };
 
@@ -18,7 +18,7 @@ export default function Login({ setLogin }) {
   });
   // Creating login mutation
   const [login, { loading }] = useMutation(LOGIN);
-  const handleLoginSubmit = async (event) => {
+  const handleLoginSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const mutationResponse = await login({
@@ -33,7 +33,7 @@ export default function Login({ setLogin }) {
       console.log(e);
     }
   };
-  const handleLoginChange = (event) => {
+  const handleLoginChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInputs({
       ...inputs,
@@ -57,7 +57,7 @@ export default function Login({ setLogin }) {
                   name="email"
                   id="username"
                   pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
-                  required="required"
+                  required
                   value={inputs.email}
                   onChange={handleLoginChange}
                 />
@@ -72,7 +72,7 @@ export default function Login({ setLogin }) {
                   name="password"
                   id="password"
                   pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                  required="required"
+                  required
                  value={inputs.password}
                   onChange={handleLoginChange}
                 />
