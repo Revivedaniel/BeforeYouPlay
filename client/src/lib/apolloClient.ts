@@ -29,7 +29,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 const httpLink = new HttpLink({
-    uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/graphql`, // Server URL (must be absolute)
+    uri: `https://before-you-play.azurewebsites.net/api/graphql`, // Server URL (must be absolute)
   credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
 })
 
