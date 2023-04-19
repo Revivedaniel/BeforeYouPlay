@@ -1,0 +1,66 @@
+.gameDetailsContainer {
+    font-family: 'Roboto', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gameDetailsContainer article {
+    width: 33.33%;
+    padding-top: 1vh;
+}
+
+.gameDetailsContainer h2 {
+    font-size: 4vw;
+    margin-bottom: 0.5em;
+    color: var(--cta-dark);
+
+}
+
+.gameDetailsContainer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gameDetailsContainer ul li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vw;
+    color: #fff;
+    line-height: 1.5;
+}
+
+.gameDetailsContainer p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vw;
+    color: #fff;
+    line-height: 1.5;
+}
+
+@media screen and (min-width: 769px) {
+    .gameDetailsContainer {
+        position: absolute;
+        top: 98vh;
+        left: 22vw;
+        width: 18vw;
+    }
+
+    .gameDetailsContainer article {
+        width: 50%;
+    }
+
+    .gameDetailsContainer h2 {
+        font-size: 1vw;
+    }
+
+    .gameDetailsContainer ul li {
+        font-size: .7vw;
+    }
+
+    .gameDetailsContainer p {
+        font-size: .7vw;
+    }
+}

@@ -1,0 +1,40 @@
+.summaryContainer {
+    font-family: 'Roboto', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .summaryItem {
+    margin-bottom: 1.5em;
+  }
+  
+  .summaryKey {
+    font-family: 'Roboto', sans-serif;
+    font-size: 6vw;
+    margin-bottom: 0.3vh;
+    color: var(--cta-dark);
+  }
+  
+  .summaryValue {
+    font-family: 'Roboto', sans-serif;
+    font-size: 4vw;
+    color: #fff;
+    line-height: 1.5;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .summaryValue {
+      font-size: 3vw;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .summaryValue {
+      font-size: 1vw;
+      line-height: 1.1;
+    }
+
+    .summaryKey {
+      font-size: 2vw;
+    }
+  }

@@ -1,0 +1,53 @@
+.topSearch {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 4px solid var(--primary-dark);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 100vw;
+}
+
+.topSearch select,
+.topSearch input {
+    height: 46px;
+    border: none;
+    background-color: #233a50 !important;
+    font-family: 'Nunito', sans-serif;
+    font-size: var(--primary-font-color);
+    color: var(--primary-font-color);
+    font-weight: 300;
+    text-transform: none;
+}
+
+.topSearch select {
+    width: 20%;
+    border-right: 1px solid var(--primary-dark);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Firefox */
+
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAALVJREFUSEvtk9ENwjAMRN9twCYwAkzECNAN2AhGgE3YwMhSkKhp6vSjEkjJXyLn3vmciJWXVtanA9KEe0Q/HpGZnYGLpOeUVTPbAEdJQ62V6pCL+Am4A4cIKeJXYAcMktzM15oDuLsbsI2QIP4A9rUuZ59pERpBisW381lxr03/wQTE73ksqXgTwIsCxI+axJsBAeLbauZxymlEnxdKJ9QGuugVpV+0sWBRB42ao7IOSFP7/4heXKU+GSXAcV0AAAAASUVORK5CYII=') no-repeat right 20px center;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.topSearch input::-webkit-input-placeholder {
+    color: var(--primary-font-color);
+}
+
+.topSearch input {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAVVJREFUSEvVVVFRA0EUSxSABFBA6wAcgAJwADgAB8UBOMABoIA6oBKogjBh3nYe7e4thSsz7Mx9XPc2yea9lxI7XtwxPpoEkg4AXAI4BjAJIXMAzwDuSC6+I65KIGkW4EMYM5LXPZINAklWeRQHHwAYyL9Bkm9yBeC83IjkdIjkC0FSvrQ1BXgdIIhs1V7YZdLqWhGE52/x1bQFXlCC5DXeD1s1yQTFdxewqSjLlHQfdjXPZILifVd95RbzVi0ygXyQ5FazIWnw3FgES5L7tSqPZdELSQ/kxvrTIjsaftKmnplJt01jUkurvgM46QzaEwD7fkvypjtoqfVyVLjP3eM5KhyAFwnQexZjUe0arA1QL+xsi785jdxqkvTi2hPt7nD4GdRAfhyAC0m2yJnk/SrJVkNVs6BH8muCaI58kzOSj0XMKASJxBG/Av+MnqE/izH2/j/BB3p8rBlg04KKAAAAAElFTkSuQmCC') no-repeat right 20px center;
+}
+
+@media screen and (min-width: 769px) {
+    .topSearch {
+        width: 58vw;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,33 @@
+.relatedGamesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.gameCard {
+    width: 200px;
+    height: 100px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.gameCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gameTitle {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.emptyRelatedGames {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+  }

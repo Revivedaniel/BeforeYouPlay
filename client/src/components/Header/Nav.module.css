@@ -1,0 +1,32 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    height: 100%;
+    width: 100vw;
+}
+
+.nav div {
+    width: 30vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Icons */
+.nav div svg {
+    color: var(--primary-font-color);
+    width: 8vw;
+    height: auto;
+}
+
+@media screen and (min-width: 769px) {
+    .nav {
+        width: 58vw;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .nav div {
+        width: initial;
+    }
+}
