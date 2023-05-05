@@ -14,17 +14,17 @@ export default function Search() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDebounce(false);
     setSearch(e.target.value);
-    if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
-    }
-    debounceTimeout.current = setTimeout(async () => {
-      if (e.target.value !== "") {
-        setDebounce(false);
-        setDebounce(true);
-      } else {
-        setDebounce(false);
-      }
-    }, 500);
+    // if (debounceTimeout.current) {
+    //   clearTimeout(debounceTimeout.current);
+    // }
+    // debounceTimeout.current = setTimeout(async () => {
+    //   if (e.target.value !== "") {
+    //     setDebounce(false);
+    //     setDebounce(true);
+    //   } else {
+    //     setDebounce(false);
+    //   }
+    // }, 500);
   };
 
   const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
