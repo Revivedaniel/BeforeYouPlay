@@ -9,10 +9,12 @@ import InfoTabs from "../../components/Gamepage/InfoTabs";
 import { QUERY_SINGLE_GAME } from "../../utils/queries";
 import FourOhFour from "@/components/404";
 import { Game } from "@/components/Gamepage/Game.model";
+import { createApolloClientSSR } from "@/lib/apolloClient";
+import { GetServerSidePropsContext } from 'next';
+
 
 interface VideoData {
   videoUrl: string;
-  // Add any other properties here
 }
 
 interface QueryData {
@@ -21,51 +23,73 @@ interface QueryData {
   errors?: string
 }
 
-export default function Gamepage() {
-  const router = useRouter();
-  const { gameTitle } = router.query as { gameTitle: string };
-  const [game, setGame] = useState<Game | null>(null);
-  const [video, setVideo] = useState<string | null>(null);
-  const [loadingStatement, setLoadingStatement] = useState<string>("Loading...");
-  const { loading, data, error } = useQuery<QueryData>(QUERY_SINGLE_GAME, {
-    variables: { title: gameTitle },
-    onCompleted: (data) => {
-      if (data?.errors) {
-      } else {
-        setGame(data.game);
-        setVideo(data.video.videoUrl);
-      }
-    },
-  });
+interface GamePageProps {
+  game: Game;
+  video: VideoData;
+}
+
+export default function Gamepage(props: GamePageProps): JSX.Element {
+  // const router = useRouter();
+  // const { gameTitle } = router.query as { gameTitle: string };
+  // const [game, setGame] = useState<Game | null>(null);
+  // const [video, setVideo] = useState<string | null>(props.video?.videoUrl || null);
+  // const [loadingStatement, setLoadingStatement] = useState<string>("Loading...");
+  // const { loading, data, error } = useQuery<QueryData>(QUERY_SINGLE_GAME, {
+  //   variables: { title: gameTitle },
+  //   onCompleted: (data) => {
+  //     if (data?.errors) {
+  //     } else {
+  //       setGame(data.game);
+  //       setVideo(data.video.videoUrl);
+  //     }
+  //   },
+  // });
 
   
 
-  if (error) {
-    return <FourOhFour />;
-  } else if (loading || game === null) {
-    const timeout = setTimeout(() => {
-      setLoadingStatement("Generating Game...");
-    }, 5000);
-    return (
-      <div className={css.div}>
-      <GameImage />
-      <div className={css.mainContent}>
-        <h1>{loadingStatement}</h1>
-        <InfoTabs />
-      </div>
-    </div>
-    );
-  }
+  // if (error) {
+  //   return <FourOhFour />;
+  // } else if (loading || props.game === null) {
+  //   const timeout = setTimeout(() => {
+  //     setLoadingStatement("Generating Game...");
+  //   }, 5000);
+  //   return (
+  //     <div className={css.div}>
+  //     <GameImage />
+  //     <div className={css.mainContent}>
+  //       <h1>{loadingStatement}</h1>
+  //       <InfoTabs />
+  //     </div>
+  //   </div>
+  //   );
+  // }
 
   return (
     // <div className={css.div} style={{backgroundImage: `url(https://vgiapitest.blob.core.windows.net/game-images/${game.imageName}.webp)`}}>
     <div className={css.div}>
-      <GameImage game={game} />
+      <GameImage game={props.game} />
       <div className={css.mainContent}>
-        <h1>{game.title}</h1>
-        {video && <Video video={video} />}
-        <InfoTabs game={game} />
+        <h1>{props.game.title}</h1>
+        {props.video?.videoUrl && <Video video={props.video?.videoUrl} />}
+        <InfoTabs game={props.game} />
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const apolloClient = createApolloClientSSR();
+  const { gameTitle } = context.query;
+  const { data } = await apolloClient.query({
+    query: QUERY_SINGLE_GAME,
+    variables: { title: gameTitle }
+  });
+  console.log(data);
+
+  return {
+    props: {
+      game: data.game,
+      video: data.video,
+    },
+  };
 }
