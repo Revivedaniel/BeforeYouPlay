@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import css from "./[title].module.css";
 import { QUERY_SEARCH_GAME } from "../../utils/queries";
@@ -14,20 +14,25 @@ interface QueryData {
 }
 
 export default function Searchpage() {
-  const router = useRouter();
+  const router: NextRouter = useRouter();
   const { title } = router.query as { title: string };
   const [pages, setPages] = useState<number>(1);
-  const { loading, data, error, fetchMore } = useQuery<QueryData>(QUERY_SEARCH_GAME, {
-    variables: { search: title, page: pages },
-  });
+  const { loading, data, error, fetchMore, refetch } = useQuery<QueryData>(
+    QUERY_SEARCH_GAME,
+    {
+      variables: { search: title, page: pages },
+    }
+  );
   const [games, setGames] = useState<Game[]>([]);
   const [fetchingMore, setFetchingMore] = useState<boolean>(false);
+  const [refetching, setRefetching] = useState<boolean>(false);
   const [endOfResults, setEndOfResults] = useState<boolean>(false);
 
   const observer = useRef<IntersectionObserver>();
   const lastGameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
     if (data && data.searchGame) {
       setGames(data.searchGame.games);
     }
@@ -53,35 +58,59 @@ export default function Searchpage() {
     if (lastGameRef.current) {
       observer.current.observe(lastGameRef.current);
     }
-  }, [lastGameRef, games, fetchMore, pages, title, data, endOfResults, fetchingMore]);
+    // Cleanup the event listener on component unmount
+    return () => {
+    };
+  }, [
+    lastGameRef,
+  games,
+  fetchMore,
+  pages,
+  data,
+  endOfResults,
+  fetchingMore,
+  router,
+  ]);
+
+  useEffect(() => {
+    if (title && !refetching && !loading) {
+      console.log("refetching")
+      setPages(1);
+      setGames([]);
+      setEndOfResults(false);
+      setRefetching(true);
+      refetch({ search: title, page: 1 }).then(() => {
+        setRefetching(false);
+      });
+    }
+  }, [title]);
 
   if (error) {
     return <FourOhFour />;
   }
 
-  return loading ? (
+  return loading || refetching ? (
     <div className={css.div} style={{ paddingTop: "160px" }}>
       <h2>Loading Search Results...</h2>
     </div>
   ) : (
     <div className={css.div}>
       <div className={css.innerContainer}>
-      {games
-        ? games?.map((game, i) => {
-            if (i === games.length - 1) {
-              return (
-                <div key={i} ref={lastGameRef}>
-                  <SearchCard game={game} setGames={setGames} />
-                </div>
-              );
-            } else {
-              return <SearchCard game={game} key={i} setGames={setGames} />;
-            }
-          })
-        : null}
-      {games?.length === 0 ? <h2>No results found for {title}</h2> : null}
+        {games && !refetching
+          ? games?.map((game, i) => {
+              if (i === games.length - 1) {
+                return (
+                  <div key={i} ref={lastGameRef}>
+                    <SearchCard game={game} setGames={setGames} />
+                  </div>
+                );
+              } else {
+                return <SearchCard game={game} key={i} setGames={setGames} />;
+              }
+            })
+          : null}
+        {games?.length === 0 ? <h2>No results found for {title}</h2> : null}
       </div>
     </div>
   );
 }
-
