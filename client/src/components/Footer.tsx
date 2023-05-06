@@ -1,6 +1,7 @@
 import { useMutation, gql } from "@apollo/client";
 import { useState, ChangeEvent, FormEvent } from "react";
 import auth from "../utils/auth";
+import Link from "next/link";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -59,9 +60,9 @@ export default function Login({ setLogin }: Props) {
     <div className="overlay openform" onClick={handleClose}>
       <div className="login-wrapper" id="login-content">
         <div className="login-content">
-          <a href="/" onClick={(e) => { e.preventDefault();}} className="close">
+          <Link href="/" onClick={(e) => { e.preventDefault();}} className="close">
             x
-          </a>
+          </Link>
           <h3>Login</h3>
           <form onSubmit={handleLoginSubmit}>
             <div className="row">

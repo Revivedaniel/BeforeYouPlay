@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import css from "./SearchCard.module.css";
 import { Skeleton } from "@mui/material";
 import { Game } from "@/components/Gamepage/Game.model";
+import Link from "next/link";
 
 interface SearchCardProps {
   game?: Game;
@@ -33,11 +34,11 @@ export default function SearchCard(props: SearchCardProps): JSX.Element {
             alt={`Default cover art`}
             style={{ cursor: "pointer" }}
           />
-          <a href="/" onClick={handleGameSelect}>
+          <Link href="/" onClick={handleGameSelect}>
             <h6>
               Loading...
             </h6>
-          </a>
+          </Link>
         </>
       ) : null}
       {props.game ? (
@@ -50,9 +51,9 @@ export default function SearchCard(props: SearchCardProps): JSX.Element {
             style={{ cursor: "pointer" }}
             onClick={handleGameSelect}
           />
-          <a href="/" onClick={handleGameSelect}>
+          <Link href="/" onClick={handleGameSelect}>
             <h6>{props.game.title}</h6>
-          </a>
+          </Link>
         </>
       ) : null}
     </div>

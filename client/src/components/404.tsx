@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect } from "react";
 
 export default function FourOhFour(): JSX.Element {
@@ -11,14 +12,14 @@ export default function FourOhFour(): JSX.Element {
       <div className="container">
         <div className="row">
           <div className="middle-content">
-            <a href="/">
+            <Link href="/">
               <img className="md-logo" src="/images/logo1.png" alt="" />
-            </a>
+            </Link>
             <img src="images/uploads/err-img.png" alt="" />
             <h1>Page not found</h1>
-            <a href="/" className="redbtn">
+            <Link href="/" className="redbtn">
               go home
-            </a>
+            </Link>
           </div>
         </div>
       </div>
