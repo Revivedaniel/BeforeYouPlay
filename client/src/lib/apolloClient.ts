@@ -69,6 +69,15 @@ function createApolloClient() {
   })
 }
 
+// Creates a new apollo client for server side rendering
+export function createApolloClientSSR() {
+  return new ApolloClient({
+    ssrMode: true,
+    link: from([errorLink, httpLink]),
+    cache: new InMemoryCache(),
+  })
+}
+
 export function initializeApollo(initialState: any = null) {
   const _apolloClient = apolloClient ?? createApolloClient()
 
