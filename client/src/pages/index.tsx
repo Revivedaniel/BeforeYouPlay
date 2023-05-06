@@ -22,18 +22,20 @@ export default function Home(props: HomeProps): JSX.Element {
     </>
   );
 }
-
-export async function getServerSideProps() {
+ 
+// This function gets called at build time
+// The homepage will revalidate every 24 hours
+export async function getStaticProps() {
   const apolloClient = createApolloClientSSR();
 
   const { data } = await apolloClient.query({
     query: QUERY_FEATURED_GAME,
   });
-  console.log(data);
 
   return {
     props: {
       featuredGame: data.featuredGame,
     },
+    revalidate: 186400,
   };
 }
