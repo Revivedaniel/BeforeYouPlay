@@ -249,6 +249,26 @@ const resolvers = {
         console.log(error);
       }
     },
+    siteMap: async () => {
+      try {
+        let response = await axios({
+          url: `${process.env.VGI_API_URI}/game-titles-generated`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "api-version": process.env.VGI_API_VERSION,
+            "api-key": process.env.VGI_API_KEY
+          },
+        });
+        // if response is empty, return empty
+        if (response.data.length === 0) {
+          return;
+        }
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   Mutation: {
     addUser: async (parent: any, args: any) => {

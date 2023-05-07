@@ -1,4 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
+import logo from "../assets/logo1.webp";
 
 export default function FourOhFour(): JSX.Element {
 
@@ -11,14 +14,14 @@ export default function FourOhFour(): JSX.Element {
       <div className="container">
         <div className="row">
           <div className="middle-content">
-            <a href="/">
-              <img className="md-logo" src="/images/logo1.png" alt="" />
-            </a>
-            <img src="images/uploads/err-img.png" alt="" />
+            <Link href="/">
+              <Image src={logo} alt="Before You Play Logo" />
+            </Link>
+            {/* <img src="images/uploads/err-img.png" alt="" /> */}
             <h1>Page not found</h1>
-            <a href="/" className="redbtn">
+            <Link href="/" className="redbtn">
               go home
-            </a>
+            </Link>
           </div>
         </div>
       </div>
