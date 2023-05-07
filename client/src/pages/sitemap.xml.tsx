@@ -1,8 +1,6 @@
 import { createApolloClientSSR } from "@/lib/apolloClient";
 import { QUERY_SITE_MAP } from "@/utils/queries";
 
-const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
-
 function generateSiteMap(games: [string]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
