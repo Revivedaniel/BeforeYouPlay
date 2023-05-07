@@ -6,6 +6,7 @@ import SearchCard from "../../components/partials/SearchCard";
 import FourOhFour from "../../components/404";
 import { useState, useRef, useEffect } from "react";
 import { Game } from "@/components/Gamepage/Game.model";
+import Head from "next/head";
 
 interface QueryData {
   searchGame: {
@@ -90,27 +91,46 @@ export default function Searchpage() {
   }
 
   return loading || refetching ? (
-    <div className={css.div} style={{ paddingTop: "160px" }}>
-      <h2>Loading Search Results...</h2>
-    </div>
-  ) : (
-    <div className={css.div}>
-      <div className={css.innerContainer}>
-        {games && !refetching
-          ? games?.map((game, i) => {
-              if (i === games.length - 1) {
-                return (
-                  <div key={i} ref={lastGameRef}>
-                    <SearchCard game={game} setGames={setGames} />
-                  </div>
-                );
-              } else {
-                return <SearchCard game={game} key={i} setGames={setGames} />;
-              }
-            })
-          : null}
-        {games?.length === 0 ? <h2>No results found for {title}</h2> : null}
+    <>
+      <Head>
+        <title>Search Games | Before You Play</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="Find your next favorite game on Before You Play by searching our extensive library of video game reviews, ratings, and details. Discover, compare, and play!" />
+        <meta property="og:title" content="Search Games | Before You Play" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://www.beforeyouplay.info/search/${title}`} />
+        <meta property="og:image" content={`https://vgiapitest.blob.core.windows.net/game-images/logo1.webp`} />
+        <meta property="og:description" content={`Search results for ${title} on BeforeYouPlay.info`} />
+      </Head>
+      <div className={css.div} style={{ paddingTop: "160px" }}>
+        <h2>Loading Search Results...</h2>
       </div>
-    </div>
+    </>
+  ) : (
+    <>
+      <Head>
+        <title>Search Games | Before You Play</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="Find your next favorite game on Before You Play by searching our extensive library of video game reviews, ratings, and details. Discover, compare, and play!" />
+      </Head>
+      <div className={css.div}>
+        <div className={css.innerContainer}>
+          {games && !refetching
+            ? games?.map((game, i) => {
+                if (i === games.length - 1) {
+                  return (
+                    <div key={i} ref={lastGameRef}>
+                      <SearchCard game={game} setGames={setGames} />
+                    </div>
+                  );
+                } else {
+                  return <SearchCard game={game} key={i} setGames={setGames} />;
+                }
+              })
+            : null}
+          {games?.length === 0 ? <h2>No results found for {title}</h2> : null}
+        </div>
+      </div>
+    </>
   );
 }

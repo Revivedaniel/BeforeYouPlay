@@ -1,16 +1,12 @@
-import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { useState } from "react";
-import { CircularProgress } from "@mui/material";
 import css from "./Gamepage.module.css";
 import GameImage from "../../components/Gamepage/GameImage";
 import Video from "../../components/Gamepage/Video";
 import InfoTabs from "../../components/Gamepage/InfoTabs";
 import { QUERY_SINGLE_GAME } from "../../utils/queries";
-import FourOhFour from "@/components/404";
 import { Game } from "@/components/Gamepage/Game.model";
 import { createApolloClientSSR } from "@/lib/apolloClient";
 import { GetServerSidePropsContext } from 'next';
+import Head from "next/head";
 
 
 interface VideoData {
@@ -66,6 +62,17 @@ export default function Gamepage(props: GamePageProps): JSX.Element {
 
   return (
     // <div className={css.div} style={{backgroundImage: `url(https://vgiapitest.blob.core.windows.net/game-images/${game.imageName}.webp)`}}>
+    <>
+    <Head>
+      <title>{props.game.title} - Review, Platforms, and Details | Before You Play.</title>
+      <meta name="description" content={`Learn everything about ${props.game.title}, including its storyline, gameplay, and reviews. Make an informed decision before you play, only at Before You Play.`} />
+      <meta name="keywords" content={`${props.game.title}, video games, game reviews, game ratings, game recommendations, Before You Play`} />
+      <meta property="og:title" content={`${props.game.title} - Review, Platforms, and Details | Before You Play.`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`https://www.beforeyouplay.info/games/${props.game.title}`} />
+      <meta property="og:image" content={`https://vgiapitest.blob.core.windows.net/game-images/${props.game.imageName}.webp`} />
+      <meta property="og:description" content={`Learn everything about ${props.game.title}, including its storyline, gameplay, and reviews. Make an informed decision before you play, only at Before You Play.`} />
+    </Head>
     <div className={css.div}>
       <GameImage game={props.game} />
       <div className={css.mainContent}>
@@ -74,6 +81,7 @@ export default function Gamepage(props: GamePageProps): JSX.Element {
         <InfoTabs game={props.game} />
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import logo from "../assets/logo1.png";
+import logo from "../assets/logo1.webp";
 
 export default function FourOhFour(): JSX.Element {
 

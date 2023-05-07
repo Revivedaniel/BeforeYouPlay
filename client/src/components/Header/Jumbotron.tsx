@@ -1,7 +1,7 @@
 import Image from "next/image";
 import css from "./Jumbotron.module.css";
 import Link from 'next/link'
-import logo from "../../assets/logo1.png"
+import logo from "../../assets/logo1.webp"
 
 export default function Jumbotron() {
   return (
