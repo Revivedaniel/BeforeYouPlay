@@ -24,12 +24,11 @@ function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({ res }: { res: any}) {
   const apolloClient = createApolloClientSSR();
   const { data } = await apolloClient.query({
     query: QUERY_SITE_MAP
   });
-  console.log(data.siteMap)
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(data.siteMap);
 

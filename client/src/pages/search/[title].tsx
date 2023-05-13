@@ -75,7 +75,6 @@ export default function Searchpage() {
 
   useEffect(() => {
     if (title && !refetching && !loading) {
-      console.log("refetching")
       setPages(1);
       setGames([]);
       setEndOfResults(false);

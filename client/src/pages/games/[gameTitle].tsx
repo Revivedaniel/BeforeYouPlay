@@ -92,7 +92,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     query: QUERY_SINGLE_GAME,
     variables: { title: gameTitle }
   });
-  console.log(data);
 
   return {
     props: {
