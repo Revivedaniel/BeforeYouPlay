@@ -5,7 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
-<!-- [![Website][live-site-shield]][live-site-url] -->
+[![Website][live-site-shield]][live-site-url]
 
 
 <!-- PROJECT LOGO -->
@@ -15,7 +15,9 @@
 <h1 align="center">Before You Play</h1>
 
   <p align="center">
-    I built Before You Play from an idea I had to provide a spoiler free look into a Video Game before you play it. I wanted to know the themes, game play style and how long It takes to beat the game. These data points plus more are available for any video game you can think of on Before You Play! This solution leverages AI to generate data for its database and has a data point rating system. The DPRS (Data Point Rating System) allows users to rate the data on a game's page. Every piece of data you see on the game page has it's own rating in the backend. As users downvote and upvote data, the admins will be able to make manual changes to the data point to make them more accurate. Eventually having all the data for a video game be completely accurate and up to date.
+     Introducing Before You Play, your ultimate spoiler-free gaming discovery platform, featuring insightful yet spoiler-free essays on each game to help you make an informed decision Before You Play! Our website is designed to help you effortlessly uncover new video games tailored to your interests, while providing essential information to guide your choices. Explore hidden gems and trending titles with our curated browsing experience that highlights a diverse range of games you might have never heard of before.
+
+At Before You Play, parents can easily access age ratings, and gamers can quickly identify a game's genre, developer, and release date. Our in-depth, spoiler-free essays provide an unparalleled understanding of each game's unique appeal and features, ensuring you know what to expect before you play. Discover your next favorite game with Before You Play – your personalized, comprehensive, and spoiler-free guide to the gaming universe!
     <br />
     <br />
     <a href="#demo">View Demo</a>
@@ -63,19 +65,30 @@
 
 
 
-### Built With
+## Frontend Tech
+The Frontend of this app is built on the Next.js framework and leverages the !
+* [Next.js](https://nextjs.org/)
+* [Material UI](https://mui.com/)
 
-* [MongoDB](https://www.mongodb.com/)
-* [Express](https://www.npmjs.com/package/express)
-* [React](https://reactjs.org/)
-* [Node.js](https://nodejs.org/en/)
+## Backend Tech
+The backend uses Apollo server to run a GraphQL API which connects to a CosmosDB for MongoDB Database and dynamically generates new game data using OpenAI's GPT 3.5 Model.
+* [OpenAI](https://openai.com/)
 * [GraphQL](https://graphql.org/)
 * [Apollo](https://www.apollographql.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [Express](https://www.npmjs.com/package/express)
+* [Node.js](https://nodejs.org/en/)
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
 * [Axios](https://www.npmjs.com/package/axios)
-* [OpenAI](https://openai.com/)
 
-
+## Infrastructure
+All the Infra for this project is Azure based including the seperate Video Game Information API!
+* Frontend Client: [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static)
+* Backend GraphQL API: [Azure Functions App](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+* Backend Database: [Azure CosmosDB for MongoDB](https://learn.microsoft.com/en-us/azure/cosmos-db/mongodb/introduction)
+* VGI Game Images: [Azure Storage Accounts](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+* VGI API Backend: [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static)
+* VGI API Manager: [Azure API Manager](https://learn.microsoft.com/en-us/azure/api-management/)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Demo
@@ -179,4 +192,4 @@ Daniel Stark - contact@danielstark.dev
 [license-shield]: https://img.shields.io/github/license/Revivedaniel/BeforeYouPlay.svg?style=for-the-badge
 [license-url]: https://github.com/Revivedaniel/BeforeYouPlay/blob/main/LICENSE
 [live-site-url]: https://beforeyouplay.herokuapp.com/
-[live-site-shield]: https://img.shields.io/website?label=BeforeYouPlay&style=for-the-badge&url=https%3A%2F%2FBeforeYouPlay/
+[live-site-shield]: https://img.shields.io/website?label=beforeyouplay.info&style=for-the-badge&url=https%3A%2F%2Fwww.beforeyouplay.info/
