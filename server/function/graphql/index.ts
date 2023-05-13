@@ -105,6 +105,7 @@ const typeDefs = gql`
     allGameTitles(page: Int!): Search
     gameWithVideos(page: Int!): Search
     video(title: String!): Video
+    siteMap: [String]
   }
 
   type Mutation {
@@ -284,7 +285,11 @@ const resolvers = {
             "api-key": process.env.VGI_API_KEY
           },
         });
-
+        
+        // sort the platforms from newest to oldest
+        response.data.sort((a: PlatformDoc, b: PlatformDoc) => {
+          return b.platformId - a.platformId;
+        });
         response.data = response.data.map((platform: PlatformDoc) => {
           return platform.name;
         });
@@ -343,6 +348,29 @@ const resolvers = {
         }
 
         return { statusCode: 204, video: {} };
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    siteMap: async () => {
+      try {
+        let response = await axios({
+          url: `${process.env.VGI_API_URI}/game-titles-generated`,
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "api-version": process.env.VGI_API_VERSION,
+            "api-key": process.env.VGI_API_KEY
+          },
+        });
+        // if response is empty, return empty
+        if (response.data.length === 0) {
+          return;
+        }
+
+        return response.data.map((game: any) => {
+          return game.title;
+        });
       } catch (error) {
         console.log(error);
       }

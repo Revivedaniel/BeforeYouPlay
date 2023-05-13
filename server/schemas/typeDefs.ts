@@ -97,6 +97,7 @@ const typeDefs = gql`
     allGameTitles(page: Int!): Search
     gameWithVideos(page: Int!): Search
     video(title: String!): Video
+    siteMap: [String]
   }
 
   type Mutation {

@@ -112,3 +112,9 @@ export const QUERY_GAMES_WITH_VIDEOS = gql`
     }
   }
 `;
+
+export const QUERY_SITE_MAP = gql`
+  query siteMap {
+    siteMap
+  }
+`;

@@ -1,14 +1,6 @@
 {
     "azureFunctions.deploySubpath": "server\\function",
-    "azureFunctions.postDeployTask": "npm install (functions)",
     "azureFunctions.projectLanguage": "TypeScript",
     "azureFunctions.projectRuntime": "~4",
-    "azureFunctions.preDeployTask": "npm prune (functions)",
-    "azureFunctions.projectLanguageModel": 4,
-    "appService.zipIgnorePattern": [
-        "node_modules{,/**}",
-        ".vscode{,/**}"
-    ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/4d444f19-3147-4c07-bfa3-c924729384e2/resourceGroups/BeforeYouPlay-RG/providers/Microsoft.Web/sites/beforeyouplay",
-    "appService.deploySubpath": "client"
+    "azureFunctions.projectLanguageModel": 3,
 }

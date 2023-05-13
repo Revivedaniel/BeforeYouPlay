@@ -36,10 +36,10 @@ export default function ScrollLoadGames(props: ScrollLoadGamesProps): JSX.Elemen
           variables: { ...props.variables, page: pages.current + 1 },
         }).then((res) => {
           setFetchingMore(false);
-          if (res.data[Object.keys(data)[0]].games.length === 0) {
+          if (res.data[Object.keys(res.data)[0]].games.length === 0) {
             setEndOfResults(true);
           } else {
-            setGames([...games, ...res.data[Object.keys(data)[0]].games]);
+            setGames([...games, ...res.data[Object.keys(res.data)[0]].games]);
           }
 
           pages.current += 1;
@@ -61,7 +61,7 @@ export default function ScrollLoadGames(props: ScrollLoadGamesProps): JSX.Elemen
     return <FourOhFour />;
   }
 
-  return loading ? (
+  return loading && games.length === 0 ? (
       <SearchCard loading={true} />
   ) : (
     <div className={css.container}>

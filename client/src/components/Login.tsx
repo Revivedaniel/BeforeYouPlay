@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useState, ChangeEvent, FormEvent, MouseEvent } from "react";
 import auth from "../utils/auth";
 import { LOGIN } from "../utils/mutations";
+import Link from "next/link";
 
 export default function Login() {
   let handleClose = (e: MouseEvent<HTMLDivElement>) => {
@@ -44,9 +45,9 @@ export default function Login() {
     <div className="overlay openform" onClick={handleClose}>
       <div className="login-wrapper" id="login-content">
         <div className="login-content">
-          <a href="/" onClick={function(e) { e.preventDefault();}} className="close">
+          <Link href="/" onClick={function(e) { e.preventDefault();}} className="close">
             x
-          </a>
+          </Link>
           <h3>Login</h3>
           <form onSubmit={handleLoginSubmit}>
             <div className="row">

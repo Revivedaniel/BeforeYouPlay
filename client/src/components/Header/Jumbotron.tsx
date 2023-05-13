@@ -1,14 +1,14 @@
+import Image from "next/image";
 import css from "./Jumbotron.module.css";
 import Link from 'next/link'
+import logo from "../../assets/logo1.webp"
 
 export default function Jumbotron() {
   return (
     <Link href="/" passHref className={css.a}>
-        <img
-          src="/images/logo1.png"
+        <Image
+          src={logo}
           alt="Before You Play Logo"
-          width="119"
-          height="58"
         />
     </Link>
   );
