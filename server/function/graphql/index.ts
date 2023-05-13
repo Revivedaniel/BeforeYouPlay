@@ -285,7 +285,11 @@ const resolvers = {
             "api-key": process.env.VGI_API_KEY
           },
         });
-
+        
+        // sort the platforms from newest to oldest
+        response.data.sort((a: PlatformDoc, b: PlatformDoc) => {
+          return b.platformId - a.platformId;
+        });
         response.data = response.data.map((platform: PlatformDoc) => {
           return platform.name;
         });
