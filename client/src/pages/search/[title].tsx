@@ -2,15 +2,14 @@ import { NextRouter, useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import css from "./[title].module.css";
 import { QUERY_SEARCH_GAME } from "../../utils/queries";
-import SearchCard from "../../components/partials/SearchCard";
+import SearchCard, { GameTitle } from "../../components/partials/SearchCard";
 import FourOhFour from "../../components/404";
 import { useState, useRef, useEffect } from "react";
-import { Game } from "@/components/Gamepage/Game.model";
 import Head from "next/head";
 
 interface QueryData {
   searchGame: {
-    games: Game[];
+    games: GameTitle[];
   };
 }
 
@@ -24,7 +23,7 @@ export default function Searchpage() {
       variables: { search: title, page: pages },
     }
   );
-  const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<GameTitle[]>([]);
   const [fetchingMore, setFetchingMore] = useState<boolean>(false);
   const [refetching, setRefetching] = useState<boolean>(false);
   const [endOfResults, setEndOfResults] = useState<boolean>(false);

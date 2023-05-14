@@ -25,43 +25,7 @@ interface GamePageProps {
 }
 
 export default function Gamepage(props: GamePageProps): JSX.Element {
-  // const router = useRouter();
-  // const { gameTitle } = router.query as { gameTitle: string };
-  // const [game, setGame] = useState<Game | null>(null);
-  // const [video, setVideo] = useState<string | null>(props.video?.videoUrl || null);
-  // const [loadingStatement, setLoadingStatement] = useState<string>("Loading...");
-  // const { loading, data, error } = useQuery<QueryData>(QUERY_SINGLE_GAME, {
-  //   variables: { title: gameTitle },
-  //   onCompleted: (data) => {
-  //     if (data?.errors) {
-  //     } else {
-  //       setGame(data.game);
-  //       setVideo(data.video.videoUrl);
-  //     }
-  //   },
-  // });
-
-  
-
-  // if (error) {
-  //   return <FourOhFour />;
-  // } else if (loading || props.game === null) {
-  //   const timeout = setTimeout(() => {
-  //     setLoadingStatement("Generating Game...");
-  //   }, 5000);
-  //   return (
-  //     <div className={css.div}>
-  //     <GameImage />
-  //     <div className={css.mainContent}>
-  //       <h1>{loadingStatement}</h1>
-  //       <InfoTabs />
-  //     </div>
-  //   </div>
-  //   );
-  // }
-
   return (
-    // <div className={css.div} style={{backgroundImage: `url(https://vgiapitest.blob.core.windows.net/game-images/${game.imageName}.webp)`}}>
     <>
     <Head>
       <title>{props.game.title} - Review, Platforms, and Details | Before You Play.</title>

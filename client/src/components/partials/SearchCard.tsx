@@ -1,14 +1,22 @@
 import { useRouter } from "next/router";
 import css from "./SearchCard.module.css";
-import { Skeleton } from "@mui/material";
-import { Game } from "@/components/Gamepage/Game.model";
 import Link from "next/link";
 import Image from "next/image";
 
+export interface GameTitle {
+  title: string;
+  gameGenerated: boolean;
+  imageName: string;
+  lazyAfternoonContent: boolean;
+  contentAddedDate?: Date;
+  platforms: string[];
+  genres: string[];
+}
+
 interface SearchCardProps {
-  game?: Game;
+  game?: GameTitle;
   loading?: boolean;
-  setGames?: React.Dispatch<React.SetStateAction<Game[]>>
+  setGames?: React.Dispatch<React.SetStateAction<GameTitle[]>>
 }
 
 export default function SearchCard(props: SearchCardProps): JSX.Element {
@@ -23,7 +31,13 @@ export default function SearchCard(props: SearchCardProps): JSX.Element {
       if (props.setGames) {
         props.setGames([])
       }
-      router.push(`/games/${encodeURI(props.game.title)}`);
+      // If the game has been generated then it should be rendered on the SSR page.
+      // Else, it should generate the game and render dynamically.
+      if (props.game.gameGenerated) {
+        router.push(`/games/${encodeURI(props.game.title)}`);
+      } else {
+        router.push(`/generate/${encodeURI(props.game.title)}`);
+      }
     }
   };
   return (

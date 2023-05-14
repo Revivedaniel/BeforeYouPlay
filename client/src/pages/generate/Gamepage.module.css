@@ -1,0 +1,42 @@
+.div {
+    padding-top: 78px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    background-color: black;
+}
+
+.mainContent {
+    background-color: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20vh;
+}
+
+.mainContent h1 {
+    padding-top: 17.53vh;
+    font-family: 'Dosis', sans-serif;
+    font-size: 9vw;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: none;
+    margin-bottom: 2.96vh;
+    transition: ease-in 1s
+}
+
+@media screen and (min-width: 769px) {
+    .div {
+        align-items: flex-start;
+    }
+
+    .mainContent h1 {
+        font-size: 3vw;
+        position: absolute;
+        top: 0vh;
+        left: 43vw;
+        width: 100%;
+    }
+}
